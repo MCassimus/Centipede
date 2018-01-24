@@ -30,7 +30,11 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Flea.h">
+=======
+    <ClInclude Include="Player.h">
+>>>>>>> bfc27c46964123f27d2630393cc6ef41c7068910
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,7 +51,11 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Flea.cpp">
+=======
+    <ClCompile Include="Player.cpp">
+>>>>>>> bfc27c46964123f27d2630393cc6ef41c7068910
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
