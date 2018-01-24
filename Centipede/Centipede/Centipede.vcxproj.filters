@@ -37,6 +37,9 @@
 >>>>>>> bfc27c46964123f27d2630393cc6ef41c7068910
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Spider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -56,6 +59,9 @@
 =======
     <ClCompile Include="Player.cpp">
 >>>>>>> bfc27c46964123f27d2630393cc6ef41c7068910
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Spider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
