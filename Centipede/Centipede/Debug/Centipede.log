@@ -1,3 +1,17 @@
-﻿  Centipede.cpp
-  Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
-  Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
+﻿  Spider.cpp
+  Scorpion.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\scorpion.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Player.cpp
+  Mushroom.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.cpp(16): error C2561: 'Mushroom::setPoisoned': function must return a value
+  c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.cpp(13): note: see declaration of 'Mushroom::setPoisoned'
+c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.cpp(30): error C2561: 'Mushroom::getPoisoned': function must return a value
+  c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.cpp(27): note: see declaration of 'Mushroom::getPoisoned'
+  GameObject.cpp
+  Flea.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\flea.h(12): error C2143: syntax error: missing ';' before '}'
+  CentipedeSegment.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedesegment.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  CentipedeGame.cpp
+  Generating Code...
