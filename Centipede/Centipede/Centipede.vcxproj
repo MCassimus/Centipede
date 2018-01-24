@@ -152,11 +152,33 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <ClInclude Include="CentipedeGame.h" />
+    <ClInclude Include="CentipedeSegment.h" />
+    <ClInclude Include="Flea.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Mushroom.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Scorpion.h" />
+    <ClInclude Include="Spider.h" />
+>>>>>>> 8b025408fe5012a756b7ff0869e5b2af530bf922
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Centipede.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="CentipedeGame.cpp" />
+    <ClCompile Include="CentipedeSegment.cpp" />
+    <ClCompile Include="Flea.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Scorpion.cpp" />
+    <ClCompile Include="Spider.cpp" />
+>>>>>>> 8b025408fe5012a756b7ff0869e5b2af530bf922
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
