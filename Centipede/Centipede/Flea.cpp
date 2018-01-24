@@ -4,6 +4,15 @@
 
 Flea::Flea()
 {
+	points = 200;
+}
+
+
+void Flea::update()
+{
+	
+	
+	return;
 }
 
 
