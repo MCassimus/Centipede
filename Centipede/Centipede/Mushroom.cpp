@@ -10,9 +10,8 @@ Mushroom::Mushroom()
 }
 
 
-bool Mushroom::setPoisoned()
+void Mushroom::setPoisoned(bool isPoisoned)
 {
-
 	return;
 }
 
@@ -27,7 +26,7 @@ void Mushroom::update()
 bool Mushroom::getPoisoned()
 {
 
-	return;
+	return false;
 }
 
 

@@ -164,6 +164,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="CentipedeGame.cpp" />
     <ClCompile Include="CentipedeSegment.cpp" />
     <ClCompile Include="Flea.cpp" />

@@ -10,9 +10,8 @@ public:
 	bool getPoisoned();
 	~Mushroom();
 private:
-	bool setPoisoned();
+	void setPoisoned(bool );
 	int pointValue;
 	bool poisoned;
 	int health;
 };
-

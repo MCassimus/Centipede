@@ -6,11 +6,10 @@ class CentipedeSegment: public GameObject
 {
 public:
 	CentipedeSegment();
-	void update();
 	~CentipedeSegment();
+	void update();
 private:
 	int pointValue;
 	int dir;
 	bool isHead;
 };
-

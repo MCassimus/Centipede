@@ -8,13 +8,13 @@ CentipedeSegment::CentipedeSegment()
 }
 
 
+CentipedeSegment::~CentipedeSegment()
+{
+}
+
+
 void CentipedeSegment::update()
 {
 
 	return;
-}
-
-
-CentipedeSegment::~CentipedeSegment()
-{
 }
