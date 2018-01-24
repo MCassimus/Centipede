@@ -1,1 +1,3 @@
-﻿LINK : fatal error LNK1104: cannot open file 'sfml-window-s.lib'
+﻿  Centipede.cpp
+  Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
+  Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
