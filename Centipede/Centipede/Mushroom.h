@@ -1,14 +1,13 @@
 #pragma once
 #include "GameObject.h";
 
-
 class Mushroom: public GameObject
 {
 public:
 	Mushroom();
+	~Mushroom();
 	void update();
 	bool getPoisoned();
-	~Mushroom();
 private:
 	void setPoisoned(bool );
 	int pointValue;

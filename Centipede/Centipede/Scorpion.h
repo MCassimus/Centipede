@@ -6,9 +6,8 @@ class Scorpion: public GameObject
 {
 public:
 	Scorpion();
-	void update();
 	~Scorpion();
+	void update();
 private:
 	int pointValue;
 };
-

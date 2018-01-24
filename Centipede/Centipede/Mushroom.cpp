@@ -10,6 +10,11 @@ Mushroom::Mushroom()
 }
 
 
+Mushroom::~Mushroom()
+{
+}
+
+
 void Mushroom::setPoisoned(bool isPoisoned)
 {
 	return;
@@ -27,9 +32,4 @@ bool Mushroom::getPoisoned()
 {
 
 	return false;
-}
-
-
-Mushroom::~Mushroom()
-{
 }

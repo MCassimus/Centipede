@@ -8,14 +8,12 @@ Flea::Flea()
 }
 
 
-void Flea::update()
+Flea::~Flea()
 {
-	
-	
-	return;
 }
 
 
-Flea::~Flea()
+void Flea::update()
 {
+	return;
 }

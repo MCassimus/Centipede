@@ -1,5 +1,19 @@
-﻿  Mushroom.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+﻿  Spider.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\spider.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+  Scorpion.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\scorpion.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+  Player.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\player.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+  Mushroom.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+  GameObject.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
   Flea.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\flea.h(12): error C2143: syntax error: missing ';' before '}'
+c:\users\18mac03\documents\github\centipede\centipede\centipede\flea.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+  CentipedeSegment.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedesegment.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+  CentipedeGame.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+  main.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\main.cpp(4): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
   Generating Code...

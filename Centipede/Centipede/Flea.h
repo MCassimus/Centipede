@@ -5,9 +5,8 @@ class Flea : public GameObject
 {
 public:
 	Flea();
-	void update();
 	~Flea();
+	void update();
 private:
-	int points
+	int points;
 };
-
