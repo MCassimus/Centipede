@@ -1,10 +1,11 @@
 #pragma once
 #include "GameObject.h";
 
+
 class Mushroom: public GameObject
 {
 public:
-	Mushroom();
+	Mushroom(sf::RenderWindow *);
 	~Mushroom();
 	void update();
 	bool getPoisoned();

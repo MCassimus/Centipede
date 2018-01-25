@@ -1,7 +1,10 @@
 #pragma once
-class Spider
+#include "GameObject.h"
+
+
+class Spider : public GameObject
 {
 public:
-	Spider();
+	Spider(sf::RenderWindow *);
 	~Spider();
 };

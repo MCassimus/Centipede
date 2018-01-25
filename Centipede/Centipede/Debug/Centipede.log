@@ -1,19 +1,17 @@
-﻿  Spider.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\spider.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
-  Scorpion.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\scorpion.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
-  Player.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\player.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+﻿  Scorpion.cpp
+c:\users\18mac03\documents\centipede\centipede\centipede\scorpion.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\18mac03\documents\centipede\centipede\centipede\scorpion.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
+  c:\users\18mac03\documents\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
   Mushroom.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+c:\users\18mac03\documents\centipede\centipede\centipede\mushroom.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\18mac03\documents\centipede\centipede\centipede\mushroom.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
+  c:\users\18mac03\documents\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
   GameObject.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
   Flea.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\flea.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+c:\users\18mac03\documents\centipede\centipede\centipede\flea.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
+  c:\users\18mac03\documents\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
   CentipedeSegment.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedesegment.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
-  CentipedeGame.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(1): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
-  main.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\main.cpp(4): fatal error C1083: Cannot open precompiled header file: 'Debug\Centipede.pch': No such file or directory
+c:\users\18mac03\documents\centipede\centipede\centipede\centipedesegment.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\18mac03\documents\centipede\centipede\centipede\centipedesegment.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
+  c:\users\18mac03\documents\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
   Generating Code...

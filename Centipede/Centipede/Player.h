@@ -1,7 +1,10 @@
 #pragma once
+#include "GameObject.h"
+
+
 class Player
 {
 public:
-	Player();
+	Player(sf::RenderWindow *);
 	~Player();
 };

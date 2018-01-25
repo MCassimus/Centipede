@@ -5,7 +5,7 @@
 class CentipedeSegment: public GameObject
 {
 public:
-	CentipedeSegment();
+	CentipedeSegment(sf::RenderWindow *);
 	~CentipedeSegment();
 	void update();
 private:
