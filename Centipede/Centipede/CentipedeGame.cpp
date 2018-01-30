@@ -13,15 +13,31 @@ CentipedeGame::~CentipedeGame()
 }
 
 
-//main game loop
-bool loop()
+bool CentipedeGame::update()
 {
-	return true;//returns true while game should be running
+	return true;
 }
 
 
-//reset game
-void reset()
+void CentipedeGame::draw()
+{
+	return;
+}
+
+
+bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
+{
+	return false;
+}
+
+
+void CentipedeGame::resolveCollision()
+{
+	return;
+}
+
+
+void CentipedeGame::setCell(unsigned int x, unsigned int y, GameObject * object)
 {
 	return;
 }
