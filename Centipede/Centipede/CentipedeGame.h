@@ -2,28 +2,20 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\System.hpp>
 #include <vector>
-#include "Mushroom.h"
-#include "CentipedeSegment.h"
-#include "Scorpion.h"
-#include "Spider.h"
-#include "Player.h"
-#include "Flea.h"
-
+#include "GameObject.h"
 
 class CentipedeGame
 {
 public:
 	CentipedeGame(sf::RenderWindow *);
 	~CentipedeGame();
-	bool loop();
-	void reset();
+	bool update();
+	void draw();
 private:
-	sf::Clock clock;
+	bool isMushroomCell(unsigned int, unsigned int);
+	void resolveCollision();
+	void setCell(unsigned int, unsigned int, GameObject *);
+	std::vector<GameObject *> map[2][30][30];
+	bool frame = 0;
 	sf::RenderWindow * window = nullptr;
-	std::vector<Mushroom *> mushrooms;
-	std::vector<CentipedeSegment *> centipedes;
-	Scorpion * scorpion = nullptr;
-	Spider * spider = nullptr;
-	Flea * flea = nullptr;
-	Player * player = nullptr;
 };
