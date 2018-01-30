@@ -17,6 +17,7 @@ Mushroom::~Mushroom()
 
 void Mushroom::setPoisoned(bool isPoisoned)
 {
+	poisoned = isPoisoned;
 	return;
 }
 
