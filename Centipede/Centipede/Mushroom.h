@@ -10,7 +10,8 @@ public:
 	void update();
 	bool getPoisoned();
 private:
-	void setPoisoned(bool );
+	void setPoisoned(bool);
+
 	int pointValue;
 	bool poisoned;
 	int health;

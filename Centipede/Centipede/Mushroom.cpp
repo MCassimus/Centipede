@@ -2,7 +2,7 @@
 #include "Mushroom.h"
 
 
-Mushroom::Mushroom()
+Mushroom::Mushroom(sf::RenderWindow* window):GameObject(window)
 {
 	pointValue=1;
 	poisoned=false;
@@ -24,7 +24,7 @@ void Mushroom::setPoisoned(bool isPoisoned)
 
 void Mushroom::update()
 {
-
+	
 	return;
 }
 
