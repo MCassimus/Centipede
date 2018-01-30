@@ -1,17 +1,31 @@
-﻿  Scorpion.cpp
-c:\users\18mac03\documents\centipede\centipede\centipede\scorpion.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\18mac03\documents\centipede\centipede\centipede\scorpion.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
-  c:\users\18mac03\documents\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
+﻿  main.cpp
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\mushroom.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\centipedesegment.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Spider.cpp
+  Scorpion.cpp
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.cpp(6): error C2511: 'Scorpion::Scorpion(void)': overloaded member function not found in 'Scorpion'
+  c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.h(5): note: see declaration of 'Scorpion'
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.cpp(7): error C2597: illegal reference to non-static member 'Scorpion::pointValue'
+  Player.cpp
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\player.cpp(6): error C2511: 'Player::Player(void)': overloaded member function not found in 'Player'
+  c:\users\19tnn01\documents\github\centipede\centipede\centipede\player.h(6): note: see declaration of 'Player'
   Mushroom.cpp
-c:\users\18mac03\documents\centipede\centipede\centipede\mushroom.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\18mac03\documents\centipede\centipede\centipede\mushroom.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
-  c:\users\18mac03\documents\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
-  GameObject.cpp
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\mushroom.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\mushroom.cpp(6): error C2511: 'Mushroom::Mushroom(void)': overloaded member function not found in 'Mushroom'
+  c:\users\19tnn01\documents\github\centipede\centipede\centipede\mushroom.h(5): note: see declaration of 'Mushroom'
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\mushroom.cpp(7): error C2597: illegal reference to non-static member 'Mushroom::pointValue'
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\mushroom.cpp(8): error C2597: illegal reference to non-static member 'Mushroom::poisoned'
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\mushroom.cpp(9): error C2597: illegal reference to non-static member 'Mushroom::health'
   Flea.cpp
-c:\users\18mac03\documents\centipede\centipede\centipede\flea.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
-  c:\users\18mac03\documents\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\flea.cpp(6): error C2511: 'Flea::Flea(void)': overloaded member function not found in 'Flea'
+  c:\users\19tnn01\documents\github\centipede\centipede\centipede\flea.h(5): note: see declaration of 'Flea'
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\flea.cpp(7): error C2597: illegal reference to non-static member 'Flea::points'
   CentipedeSegment.cpp
-c:\users\18mac03\documents\centipede\centipede\centipede\centipedesegment.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\18mac03\documents\centipede\centipede\centipede\centipedesegment.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
-  c:\users\18mac03\documents\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\centipedesegment.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\centipedesegment.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
+  c:\users\19tnn01\documents\github\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
   Generating Code...
+  Skipping... (no relevant changes detected)
+  CentipedeGame.cpp

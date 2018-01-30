@@ -20,6 +20,7 @@ int main()
 
 	} while (game.loop());
 
+
 	window.close();
 	return 0;
 }
