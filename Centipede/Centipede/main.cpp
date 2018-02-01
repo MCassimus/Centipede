@@ -19,6 +19,7 @@ int main()
 		game.draw();
 	} while (game.update());
 
+
 	window.close();
 	return 0;
 }
