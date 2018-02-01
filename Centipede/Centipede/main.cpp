@@ -1,7 +1,6 @@
 /*
 	Project Title : Centipede
 	Date : 1/24/2018
-	Authors : 
 	Description : Recreate classic arcade game centipede for use with a trackball controller
 	for later use in arcade cabinet
 */
@@ -17,8 +16,8 @@ int main()
 	
 	do
 	{
-
-	} while (game.loop());
+		game.draw();
+	} while (game.update());
 
 
 	window.close();
