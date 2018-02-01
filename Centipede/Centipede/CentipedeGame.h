@@ -11,11 +11,11 @@ public:
 	~CentipedeGame();
 	bool update();
 	void draw();
+	static bool isMushroomCell(unsigned int, unsigned int);
 private:
-	bool isMushroomCell(unsigned int, unsigned int);
 	void resolveCollision();
-	void setCell(unsigned int, unsigned int, GameObject *);
-	std::vector<GameObject *> map[2][30][30];
-	bool frame = 0;
+	void placeObject(unsigned int, unsigned int, GameObject *);
+	static std::vector<GameObject *> map[2][30][30];
+	static bool frame;
 	sf::RenderWindow * window = nullptr;
 };
