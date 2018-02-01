@@ -12,15 +12,10 @@ GameObject::~GameObject()
 {
 }
 
+
 int GameObject::getPointValue() const
 {
 	return pointValue;
-}
-
-
-sf::Vector2f GameObject::getPosition() const
-{
-	return object.getPosition();
 }
 
 
@@ -33,12 +28,6 @@ unsigned int GameObject::getHealth() const
 sf::Vector2f GameObject::getVelocity() const
 {
 	return velocity;
-}
-
-
-sf::FloatRect GameObject::getBoundingBox() const
-{
-	return object.getGlobalBounds();
 }
 
 
@@ -62,27 +51,9 @@ void GameObject::render()
 }
 
 
-bool GameObject::collides(GameObject *  other)
-{
-	return object.getGlobalBounds().intersects(other->getBoundingBox());
-}
-
-
 void GameObject::setPointValue(unsigned int newPointValue)
 {
 	pointValue = newPointValue;
-}
-
-
-void GameObject::setPosition(sf::Vector2f newPos)
-{
-	object.setPosition(newPos);
-}
-
-
-void GameObject::setPosition(float newXPos, float newYPos)
-{
-	object.setPosition(sf::Vector2f(newXPos, newYPos));
 }
 
 
@@ -95,10 +66,4 @@ void GameObject::setVelocity(sf::Vector2f newVel)
 void GameObject::addHealth()
 {
 	health++;
-}
-
-
-bool GameObject::takeHealth()
-{
-	return --health == 0;
 }
