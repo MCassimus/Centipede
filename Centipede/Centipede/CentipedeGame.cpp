@@ -37,7 +37,7 @@ void CentipedeGame::draw()
 bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 {
 	for (int i = 0; i < map[frame][x][y].size(); i++)
-		if (dynamic_cast<Mushroom>(map[frame][x][y]) != nullptr)
+		if (dynamic_cast<Mushroom *>(map[frame][x][y].at(i)) != nullptr)
 			return true;
 	return false;
 }
