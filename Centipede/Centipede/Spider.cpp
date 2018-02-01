@@ -4,23 +4,38 @@
 
 Spider::Spider(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 {
-	sf::Sprite spiderSprite;
-	sf::Texture spiderTexture;
 
-	if (!spiderTexture.loadFromFile("spider.png"))
-	
-	spiderSprite.setTexture(spiderTexture);
 }
 
 
 void Spider::update()
 {
+	//while spider exists
+	{
+		// if collision with mushroom
+		{
+			//remove mushroom
+		}
+	}
+	//else
+	{
+		//spawn on screen with 1/400 chance
+	}
+
 	return;
 }
 
 int Spider::returnPointValue(int distanceFromPlayer)
 {
+	int value;
+	if (distanceFromPlayer > 4)
+		value = 300;
+	if (distanceFromPlayer < 4)
+		value = 600;
+	if (distanceFromPlayer == 1)
+		value = 900;
 
+	return value;          
 }
 bool Spider::takeHealth()
 {
