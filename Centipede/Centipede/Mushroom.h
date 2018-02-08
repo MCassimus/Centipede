@@ -9,6 +9,8 @@ public:
 	~Mushroom();
 	void update();
 	bool getPoisoned();
+	void resetHeath();
+	bool collides(GameObject *);
 private:
 	int pointValue;
 	bool poisoned;
