@@ -14,10 +14,16 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(240, 256), "Centipede");
 	CentipedeGame game(&window);
 	
+
+	sf::Event event;
 	do
 	{
+		window.pollEvent(event);
+		if (event.type == sf::Event::EventType::Closed)
+			window.close();
+
 		game.draw();
-	} while (game.update());
+	} while (game.update() && window.isOpen());
 
 
 	window.close();

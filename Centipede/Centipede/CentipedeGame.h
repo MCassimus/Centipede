@@ -13,9 +13,9 @@ public:
 	void draw();
 	static bool isMushroomCell(unsigned int, unsigned int);
 private:
+	static bool frame;
+	static std::vector<GameObject *> map[2][30][30];
 	void resolveCollision();
 	void placeObject(unsigned int, unsigned int, GameObject *);
-	static std::vector<GameObject *> map[2][30][30];
-	static bool frame;
 	sf::RenderWindow * window = nullptr;
 };
