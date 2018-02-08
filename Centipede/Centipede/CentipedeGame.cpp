@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "CentipedeGame.h"
-#include <typeinfo.h>
 #include "Mushroom.h"
 
 
@@ -19,8 +18,9 @@ CentipedeGame::~CentipedeGame()
 bool CentipedeGame::update()
 {
 	frame = !frame;
-
-	return true;
+	
+	draw();
+	return true;//return true while player alive
 }
 
 
@@ -30,7 +30,6 @@ void CentipedeGame::draw()
 		for (int x = 0; x < 30; x++)
 			for (int i = 0; i < map[frame][x][y].size(); i++)
 				map[frame][x][y].at(i)->render();
-
 }
 
 
