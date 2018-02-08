@@ -5,12 +5,12 @@
 class Mushroom: public GameObject
 {
 public:
-	Mushroom(sf::RenderWindow *);
+	Mushroom(sf::RenderWindow*);
 	~Mushroom();
 	void update();
 	bool getPoisoned();
 	void resetHeath();
-	bool collides(GameObject *);
+	void collides(GameObject*);
 private:
 	int pointValue;
 	bool poisoned;
