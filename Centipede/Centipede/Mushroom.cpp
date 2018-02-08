@@ -17,7 +17,13 @@ Mushroom::~Mushroom()
 
 void Mushroom::update()
 {
-	setTexture()
+	if (health = 3)
+		setTexture("Sprites\\Mushroom\\mushroom3");
+	if (health = 2)
+		setTexture("Sprites\\Mushroom\\mushroom2");
+	if (health = 1)
+		setTexture("Sprites\\Mushroom\\mushroom1");
+	
 	return;
 }
 
@@ -25,4 +31,12 @@ void Mushroom::update()
 bool Mushroom::getPoisoned()
 {
 	return poisoned;
+}
+
+
+void Mushroom::resetHeath()
+{
+	health = 4;
+	setTexture("Sprites\\Mushroom\\mushroom4");
+	return;
 }

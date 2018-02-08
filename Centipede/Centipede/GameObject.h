@@ -11,7 +11,7 @@ public:
 	void setTexture(const char *);
 	virtual void update() = 0;
 	void render();
-	bool collides(GameObject *);
+	void collides(GameObject *);
 protected:
 	void setPointValue(unsigned int);
 	void setVelocity(sf::Vector2f);
