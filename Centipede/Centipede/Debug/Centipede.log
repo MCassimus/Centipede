@@ -1,4 +1,5 @@
-﻿  Spider.cpp
+﻿  main.cpp
+  Spider.cpp
 c:\users\18mac03\documents\github\centipede\centipede\centipede\spider.cpp(6): error C2511: 'Spider::Spider(void)': overloaded member function not found in 'Spider'
   c:\users\18mac03\documents\github\centipede\centipede\centipede\spider.h(5): note: see declaration of 'Spider'
   Scorpion.cpp
@@ -18,8 +19,5 @@ c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedesegment
 c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedesegment.cpp(6): error C2511: 'CentipedeSegment::CentipedeSegment(void)': overloaded member function not found in 'CentipedeSegment'
   c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedesegment.h(5): note: see declaration of 'CentipedeSegment'
 c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedesegment.cpp(7): error C2597: illegal reference to non-static member 'CentipedeSegment::pointValue'
-  CentipedeGame.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(31): warning C4018: '<': signed/unsigned mismatch
-c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(39): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
+c:\users\18mac03\documents\github\centipede\centipede\centipede\main.cpp(24): error C4700: uninitialized local variable 'x' used
