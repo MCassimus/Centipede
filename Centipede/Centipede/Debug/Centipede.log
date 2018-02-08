@@ -1,20 +1,21 @@
 ﻿  Spider.cpp
-  Scorpion.cpp
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.cpp(6): error C2511: 'Scorpion::Scorpion(void)': overloaded member function not found in 'Scorpion'
-  c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.h(5): note: see declaration of 'Scorpion'
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\scorpion.cpp(7): error C2597: illegal reference to non-static member 'Scorpion::pointValue'
-  Player.cpp
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\player.cpp(6): error C2511: 'Player::Player(void)': overloaded member function not found in 'Player'
-  c:\users\19tnn01\documents\github\centipede\centipede\centipede\player.h(6): note: see declaration of 'Player'
-  Flea.cpp
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\flea.cpp(6): error C2511: 'Flea::Flea(void)': overloaded member function not found in 'Flea'
-  c:\users\19tnn01\documents\github\centipede\centipede\centipede\flea.h(5): note: see declaration of 'Flea'
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\flea.cpp(7): error C2597: illegal reference to non-static member 'Flea::points'
-  CentipedeSegment.cpp
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\centipedesegment.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\centipedesegment.cpp(6): error C2512: 'GameObject': no appropriate default constructor available
-  c:\users\19tnn01\documents\github\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
   Generating Code...
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\spider.cpp(24): error C4716: 'Spider::returnPointValue': must return a value
-c:\users\19tnn01\documents\github\centipede\centipede\centipede\spider.cpp(28): error C4716: 'Spider::takeHealth': must return a value
+  Compiling...
+  CentipedeGame.cpp
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\centipedegame.cpp(31): warning C4018: '<': signed/unsigned mismatch
+c:\users\19tnn01\documents\github\centipede\centipede\centipede\centipedegame.cpp(39): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  Mushroom.cpp
+  Generating Code...
+  Compiling...
+  CentipedeSegment.cpp
+  Generating Code...
+  Compiling...
+  Scorpion.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+CentipedeGame.obj : error LNK2001: unresolved external symbol "private: static class std::vector<class GameObject *,class std::allocator<class GameObject *> > (* CentipedeGame::map)[30][30]" (?map@CentipedeGame@@0PAY1BO@BO@V?$vector@PAVGameObject@@V?$allocator@PAVGameObject@@@std@@@std@@A)
+CentipedeGame.obj : error LNK2001: unresolved external symbol "private: static bool CentipedeGame::frame" (?frame@CentipedeGame@@0_NA)
+C:\Users\19TNN01\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe : fatal error LNK1120: 2 unresolved externals

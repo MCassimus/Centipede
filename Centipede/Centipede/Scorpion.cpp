@@ -2,7 +2,7 @@
 #include "Scorpion.h"
 
 
-Scorpion::Scorpion()
+Scorpion::Scorpion(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 {
 	pointValue = 1000;
 }

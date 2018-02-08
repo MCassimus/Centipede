@@ -4,7 +4,8 @@
 
 Spider::Spider(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 {
-
+	setTexture("spider.png");
+	pointValue = 0;
 }
 
 
@@ -25,21 +26,23 @@ void Spider::update()
 	return;
 }
 
-int Spider::returnPointValue(int distanceFromPlayer)
-{
-	int value;
-	if (distanceFromPlayer > 4)
-		value = 300;
-	if (distanceFromPlayer < 4)
-		value = 600;
-	if (distanceFromPlayer == 1)
-		value = 900;
 
-	return value;          
+void Spider::setPointValue()
+{
+	if (distanceFromPlayer > 4) //if more than 4 levels away
+		pointValue = 300;
+	else if (distanceFromPlayer < 4 || distanceFromPlayer == 4) //no more than 4 levels
+		pointValue = 600;
+	else if (distanceFromPlayer == 1) //no more than 1 level away 
+		pointValue = 900;
+
+	return;
 }
+
+
 bool Spider::takeHealth()
 {
-
+	return true;
 }
 
 

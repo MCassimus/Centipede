@@ -4,9 +4,9 @@
 
 Mushroom::Mushroom(sf::RenderWindow* window):GameObject(window)
 {
-	pointValue=1;
-	poisoned=false;
-	health=4;
+	pointValue = 1;
+	poisoned = false;
+	health = 4;
 }
 
 
@@ -15,22 +15,14 @@ Mushroom::~Mushroom()
 }
 
 
-void Mushroom::setPoisoned(bool isPoisoned)
-{
-	poisoned = isPoisoned;
-	return;
-}
-
-
 void Mushroom::update()
 {
-	
+	setTexture("mushroom.png");
 	return;
 }
 
 
 bool Mushroom::getPoisoned()
 {
-
-	return false;
+	return poisoned;
 }
