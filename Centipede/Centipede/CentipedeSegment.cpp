@@ -2,7 +2,7 @@
 #include "CentipedeSegment.h"
 
 
-CentipedeSegment::CentipedeSegment()
+CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow)
 {
 	pointValue = 10;
 }

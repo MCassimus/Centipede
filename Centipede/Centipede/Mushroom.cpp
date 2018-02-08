@@ -15,22 +15,14 @@ Mushroom::~Mushroom()
 }
 
 
-void Mushroom::setPoisoned(bool isPoisoned)
-{
-	poisoned = isPoisoned;
-	return;
-}
-
-
 void Mushroom::update()
 {
-	
+	setTexture()
 	return;
 }
 
 
 bool Mushroom::getPoisoned()
 {
-
-	return false;
+	return poisoned;
 }
