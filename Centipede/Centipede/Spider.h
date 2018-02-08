@@ -7,10 +7,10 @@ class Spider : public GameObject
 public:
 	Spider(sf::RenderWindow *);
 	void update();
-	int returnPointValue(int);
+	void setPointValue();
 	~Spider();
 private: 
-	int pointValue = 300; 
+	int pointValue; 
 	int distanceFromPlayer;
 	bool takeHealth();
 };

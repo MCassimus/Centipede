@@ -2,8 +2,14 @@
 #include "Player.h"
 
 
-Player::Player()
+Player::Player(sf::RenderWindow * renderWindow) 
 {
+}
+
+
+void Player::update()
+{
+
 }
 
 

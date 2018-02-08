@@ -2,7 +2,7 @@
 #include "Flea.h"
 
 
-Flea::Flea()
+Flea::Flea(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 {
 	points = 200;
 }
