@@ -1,14 +1,13 @@
 #pragma once
 #include "GameObject.h"
 
-
-class Player
+class Player : public GameObject
 {
 public:
 	Player(sf::RenderWindow *);
 	void update();
 	~Player();
 private:
-	int health;
+	int health = 3;
 	std::vector<sf::RectangleShape> bullets;
 };

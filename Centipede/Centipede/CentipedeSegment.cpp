@@ -16,6 +16,5 @@ CentipedeSegment::~CentipedeSegment()
 
 void CentipedeSegment::update()
 {
-
 	return;
 }

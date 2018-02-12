@@ -20,9 +20,6 @@ CentipedeGame::~CentipedeGame()
 bool CentipedeGame::update()
 {
 	frame = !frame;
-	
-
-
 
 	draw();
 	return true;//return true while player alive
