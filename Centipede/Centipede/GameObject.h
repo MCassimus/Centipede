@@ -11,15 +11,15 @@ public:
 	void setTexture(const char *);
 	virtual void update() = 0;
 	void render();
-	void collides(GameObject *);
+	void collideWith(GameObject *);
 protected:
 	void setPointValue(unsigned int);
-	void setVelocity(sf::Vector2f);
-	void addHealth();
-	void takeHealth();
+	void setVelocity(sf::Vector2i);
+	void addHealth(int);
+
 	sf::Sprite object;
 	unsigned int health = 1;
-	unsigned int pointValue = 0;
-	sf::Vector2f velocity;
+	unsigned int pointValue;
+	sf::Vector2u velocity, currentPosition;
 	sf::RenderWindow * window = nullptr;
 };
