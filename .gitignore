@@ -4,6 +4,9 @@ Centipede/Centipede/Debug/
 *.filters
 *.user
 *.ipch
+*.suo
 *.vcxproj
 stdafx.*
 targetserver.*
+
+
