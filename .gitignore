@@ -1,5 +1,12 @@
-
 Centipede/.vs/
 Centipede/Debug/
-Centipede/.vs/Centipede/v15/Browse.VC.db
-Centipede/.vs/Centipede/v15/.suo
+Centipede/Centipede/Debug/
+*.filters
+*.user
+*.ipch
+*.suo
+*.vcxproj
+stdafx.*
+targetserver.*
+
+
