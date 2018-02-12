@@ -27,7 +27,6 @@ void Mushroom::update()
 bool Mushroom::getPoisoned()
 {
 	return poisoned;
-<<<<<<< HEAD
 }
 
 
@@ -46,6 +45,4 @@ void Mushroom::collides( GameObject* other )
 
 
 	return;
-=======
->>>>>>> f8453ecc54debc2276045b1d3e82a7ba1d719e8c
 }

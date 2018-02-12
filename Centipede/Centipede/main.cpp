@@ -12,20 +12,20 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(240, 256), "Centipede");
-	CentipedeGame game(&window);
-	
+	CentipedeGame game(&window);	
 
 	sf::Event event;
-	do
+	while (window.isOpen())
 	{
+		game.update();
+
+		//events for window
 		window.pollEvent(event);
-		if (event.type == sf::Event::EventType::Closed)
+		if (event.type == sf::Event::Closed)
 			window.close();
+		else if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
+			window.setSize(sf::Vector2u(event.size.width, event.size.width * 1.066));
+	}
 
-		game.draw();
-	} while (game.update() && window.isOpen());
-
-
-	window.close();
 	return 0;
 }
