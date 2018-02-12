@@ -1,3 +1,9 @@
-
 Centipede/.vs/
 Centipede/Debug/
+Centipede/Centipede/Debug/
+*.filters
+*.user
+*.ipch
+*.vcxproj
+stdafx.*
+targetserver.*
