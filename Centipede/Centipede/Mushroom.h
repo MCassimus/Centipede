@@ -14,5 +14,4 @@ public:
 private:
 	int pointValue;
 	bool poisoned;
-	int health;
 };

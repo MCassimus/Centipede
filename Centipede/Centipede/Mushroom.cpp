@@ -32,6 +32,8 @@ void Mushroom::update()
 		setTexture("Sprites\\Mushroom\\mushroom4.png");
 		break;
 	}
+
+	render();
 	return;
 }
 
