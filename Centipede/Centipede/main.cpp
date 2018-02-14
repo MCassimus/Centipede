@@ -17,10 +17,13 @@ int main()
 	sf::Event event;
 	while (window.isOpen())
 	{
-		game.update();
 
 		//events for window
 		window.pollEvent(event);
+
+
+		game.update();
+
 		if (event.type == sf::Event::Closed)
 			window.close();
 		else if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
