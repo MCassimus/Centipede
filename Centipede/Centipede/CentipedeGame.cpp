@@ -2,6 +2,7 @@
 #include <iostream>
 #include "CentipedeGame.h"
 #include "Mushroom.h"
+#include "Player.h"
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
@@ -10,8 +11,12 @@ std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow) : player(renderWindow)
 {
 	window = renderWindow;
+<<<<<<< HEAD
 	placeObject(15, 29, &player);
 	std::cout << map[29][15][frame].size();
+=======
+	reset();
+>>>>>>> 3b76c4fdf483e40bc59efde2b7a3f23cb039b944
 }
 
 
@@ -30,6 +35,7 @@ bool CentipedeGame::update()
 	resolveCollisions();
 
 	for (int y = 0; y < 30; ++y)
+<<<<<<< HEAD
 		for (int x = 0; x < 30; ++x) {
 			std::cout << "at coordinates (" << x << ", " << y << ") ";
 			std::cout << "i have " << map[frame][y][x].size() << " elements\n";
@@ -40,6 +46,11 @@ bool CentipedeGame::update()
 		}
 
 	std::cout << "finished updating everybody\n";
+=======
+		for (int x = 0; x < 30; ++x)
+			for (int i = 0; i < map[frame][x][y].size(); ++i)
+				dynamic_cast<Player *>(CentipedeGame::map[CentipedeGame::frame][x][y].at(i))->update();
+>>>>>>> 3b76c4fdf483e40bc59efde2b7a3f23cb039b944
 
 	draw();
 
@@ -67,6 +78,13 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 		if (dynamic_cast<Mushroom *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
 			return true;
 	return false;
+}
+
+
+//start a level
+void CentipedeGame::reset()
+{
+	placeObject(15, 30,  new Player(window));
 }
 
 

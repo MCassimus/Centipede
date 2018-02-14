@@ -13,6 +13,7 @@ public:
 	bool update();
 	void draw();
 	static bool isMushroomCell(unsigned int, unsigned int);
+	void reset();
 private:
 	void resolveCollisions();
 	void placeObject(unsigned int, unsigned int, GameObject *);
