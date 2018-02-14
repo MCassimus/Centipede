@@ -7,11 +7,12 @@ public:
 	~GameObject();
 	int getPointValue() const;
 	unsigned int getHealth() const;
-	sf::Vector2f getVelocity() const;
+	sf::Vector2i getVelocity() const;
 	void setTexture(const char *);
 	virtual void update() = 0;
 	void render();
 	void collideWith(GameObject *);
+	void collideWith(std::vector<GameObject *> *);
 protected:
 	void setPointValue(unsigned int);
 	void setVelocity(sf::Vector2i);
@@ -20,6 +21,7 @@ protected:
 	sf::Sprite object;
 	unsigned int health = 1;
 	unsigned int pointValue;
-	sf::Vector2u velocity, currentPosition;
+	sf::Vector2i velocity;
+	sf::Vector2u currentPosition;
 	sf::RenderWindow * window = nullptr;
 };

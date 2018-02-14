@@ -25,7 +25,7 @@ unsigned int GameObject::getHealth() const
 }
 
 
-sf::Vector2f GameObject::getVelocity() const
+sf::Vector2i GameObject::getVelocity() const
 {
 	return velocity;
 }
@@ -51,19 +51,31 @@ void GameObject::render()
 }
 
 
+void GameObject::collideWith(GameObject *)
+{
+	return;
+}
+
+
+void GameObject::collideWith(std::vector<GameObject *> *)
+{
+	return;
+}
+
+
 void GameObject::setPointValue(unsigned int newPointValue)
 {
 	pointValue = newPointValue;
 }
 
 
-void GameObject::setVelocity(sf::Vector2f newVel)
+void GameObject::setVelocity(sf::Vector2i newVel)
 {
 	velocity = newVel;
 }
 
 
-void GameObject::addHealth()
+void GameObject::addHealth(int health)
 {
-	health++;
+	
 }
