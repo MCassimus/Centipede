@@ -10,6 +10,7 @@
     <ClCompile Include="Scorpion.cpp" />
     <ClCompile Include="Spider.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CentipedeGame.h" />
@@ -20,5 +21,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scorpion.h" />
     <ClInclude Include="Spider.h" />
+    <ClInclude Include="Bullet.h" />
   </ItemGroup>
 </Project>
