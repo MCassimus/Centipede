@@ -41,7 +41,8 @@ void GameObject::setTexture(const char * filePath)
 
 void GameObject::render()
 {
-	object.setPosition(currentPosition.x * (window->getSize().x / 30), currentPosition.y * (window->getSize().y / 30));
+	//object.setPosition(currentPosition.x * (window->getSize().x / 30), currentPosition.y * (window->getSize().y / 30));
+	//object.setPosition((sf::Vector2f)currentPosition);
 	window->draw(object);
 }
 

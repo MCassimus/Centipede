@@ -1,3 +1,4 @@
-﻿  Bullet.cpp
-  Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
-  Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
+﻿  Player.cpp
+c:\users\19crf01\documents\github\centipede\centipede\centipede\player.cpp(25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Centipede.vcxproj -> C:\Users\19crf01\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
+  Centipede.vcxproj -> C:\Users\19crf01\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
