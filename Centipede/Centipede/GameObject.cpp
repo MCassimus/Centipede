@@ -39,12 +39,6 @@ void GameObject::setTexture(const char * filePath)
 }
 
 
-void update(float deltaTime)
-{
-	return;
-}
-
-
 void GameObject::render()
 {
 	window->draw(object);
