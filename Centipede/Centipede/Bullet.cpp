@@ -2,7 +2,7 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet(sf::RenderWindow * renderWindow)
+Bullet::Bullet(sf::RenderWindow * renderWindow) : GameObject (renderWindow)
 {
 	window = renderWindow;
 }

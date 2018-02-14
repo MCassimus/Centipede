@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-﻿  CentipedeGame.cpp
-c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(36): warning C4018: '<': signed/unsigned mismatch
-c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(57): warning C4018: '<': signed/unsigned mismatch
-=======
-<<<<<<< HEAD
-﻿  Player.cpp
+﻿  Bullet.cpp
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
-=======
-﻿  main.cpp
-c:\users\19crf01\documents\github\centipede\centipede\centipede\main.cpp(30): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-  CentipedeGame.cpp
-c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(29): warning C4018: '<': signed/unsigned mismatch
-c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(43): warning C4018: '<': signed/unsigned mismatch
-c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(52): warning C4018: '<': signed/unsigned mismatch
->>>>>>> 3b76c4fdf483e40bc59efde2b7a3f23cb039b944
-c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(66): warning C4018: '<': signed/unsigned mismatch
-c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(80): warning C4018: '<': signed/unsigned mismatch
-  Centipede.vcxproj -> C:\Users\19crf01\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
-  Centipede.vcxproj -> C:\Users\19crf01\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
->>>>>>> 5361fcc89539b719878fc7a4774049a4b4de9f39

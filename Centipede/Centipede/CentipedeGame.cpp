@@ -11,12 +11,9 @@ std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow) : player(renderWindow)
 {
 	window = renderWindow;
-<<<<<<< HEAD
 	placeObject(15, 29, &player);
 	std::cout << map[29][15][frame].size();
-=======
 	reset();
->>>>>>> 3b76c4fdf483e40bc59efde2b7a3f23cb039b944
 }
 
 
@@ -35,22 +32,15 @@ bool CentipedeGame::update()
 	resolveCollisions();
 
 	for (int y = 0; y < 30; ++y)
-<<<<<<< HEAD
 		for (int x = 0; x < 30; ++x) {
-			std::cout << "at coordinates (" << x << ", " << y << ") ";
-			std::cout << "i have " << map[frame][y][x].size() << " elements\n";
+			/*std::cout << "at coordinates (" << x << ", " << y << ") ";
+			std::cout << "i have " << map[frame][y][x].size() << " elements\n";*/
 			for (int i = 0; i < map[y][x][frame].size(); ++i) {
-				std::cout << "updating element at coordinates (" << x << ", " << y << ", " << i << ")\n";
+				//std::cout << "updating element at coordinates (" << x << ", " << y << ", " << i << ")\n";
 				map[y][x][frame].at(i)->update();
 			}
 		}
 
-	std::cout << "finished updating everybody\n";
-=======
-		for (int x = 0; x < 30; ++x)
-			for (int i = 0; i < map[frame][x][y].size(); ++i)
-				dynamic_cast<Player *>(CentipedeGame::map[CentipedeGame::frame][x][y].at(i))->update();
->>>>>>> 3b76c4fdf483e40bc59efde2b7a3f23cb039b944
 
 	draw();
 
