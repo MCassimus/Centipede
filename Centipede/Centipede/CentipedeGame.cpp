@@ -21,6 +21,11 @@ bool CentipedeGame::update()
 {
 	frame = !frame;
 
+	for (int y = 0; y < 30; ++y)
+		for (int x = 0; x < 30; ++x)
+			for (int i = 0; i < map[frame][x][y].size(); ++i)
+				map[frame][x][y].at(i)->update();
+
 	draw();
 	return true;//return true while player alive
 }
@@ -30,9 +35,9 @@ void CentipedeGame::draw()
 {
 	window->clear();
 
-	for (int y = 0; y < 30; y++)
-		for (int x = 0; x < 30; x++)
-			for (int i = 0; i < map[frame][x][y].size(); i++)
+	for (int y = 0; y < 30; ++y)
+		for (int x = 0; x < 30; ++x)
+			for (int i = 0; i < map[frame][x][y].size(); ++i)
 				map[frame][x][y].at(i)->render();
 
 	window->display();
@@ -48,9 +53,16 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 }
 
 
-void CentipedeGame::resolveCollision()
+void CentipedeGame::resolveCollisions()
 {
-	return;	
+	std::vector<GameObject*> *gameObjects;
+	for (int y = 0; y < 30; ++y)
+		for (int x = 0; x < 30; ++x) {
+			gameObjects = &map[frame][x][y];
+			if (gameObjects->size() > 1)
+				for (int i = 0; i < gameObjects->size(); ++i)
+					map[frame][x][y].at(i)->collideWith(gameObjects);
+		}
 }
 
 
