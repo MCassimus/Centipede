@@ -39,14 +39,9 @@ void GameObject::setTexture(const char * filePath)
 }
 
 
-void update(float deltaTime)
-{
-	return;
-}
-
-
 void GameObject::render()
 {
+	object.setPosition(currentPosition.x * (window->getSize().x / 30), currentPosition.y * (window->getSize().y / 30));
 	window->draw(object);
 }
 

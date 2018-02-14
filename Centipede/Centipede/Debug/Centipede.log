@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  Spider.cpp
   Scorpion.cpp
   Player.cpp
@@ -16,3 +17,8 @@ c:\users\19rju01\desktop\centipede\centipede\centipede\main.cpp(30): warning C42
   Generating Code...
   Centipede.vcxproj -> C:\Users\19RJU01\Desktop\Centipede\Centipede\Debug\Centipede.exe
   Centipede.vcxproj -> C:\Users\19RJU01\Desktop\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
+=======
+﻿  Bullet.cpp
+  Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
+  Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
+>>>>>>> 4a04c069e206f1f93f2a4f0ecde2bf9bff802993

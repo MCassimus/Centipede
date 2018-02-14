@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include <iostream>
 #include "CentipedeGame.h"
 
 
@@ -11,7 +12,8 @@ Player::Player(sf::RenderWindow * renderWindow) : GameObject (renderWindow)
 
 void Player::update()
 {
-	sf::Vector2i mousePos = sf::Mouse::getPosition();
+	printf("update");
+	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
 	//current position based on mouse cursor, snap  grid through multiplication of 30
 	currentPosition = sf::Vector2u(mousePos.x / window->getSize().x * 30, mousePos.y / window->getSize().y * 30);
