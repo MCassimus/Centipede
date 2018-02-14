@@ -19,7 +19,10 @@ CentipedeGame::~CentipedeGame()
 
 bool CentipedeGame::update()
 {
+
 	frame = !frame;
+
+	resolveCollisions();
 
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)

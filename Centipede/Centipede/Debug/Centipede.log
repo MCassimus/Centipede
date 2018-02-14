@@ -1,25 +1,10 @@
 ﻿  main.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\main.cpp(27): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-  Player.cpp
-  GameObject.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(30): error C2440: 'return': cannot convert from 'const sf::Vector2u' to 'sf::Vector2<float>'
-  c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(30): note: Constructor for class 'sf::Vector2<float>' is declared 'explicit'
-c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(61): error C2511: 'void GameObject::setVelocity(sf::Vector2f)': overloaded member function not found in 'GameObject'
-  c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
-c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(62): error C2597: illegal reference to non-static member 'GameObject::velocity'
-c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(67): error C2511: 'void GameObject::addHealth(void)': overloaded member function not found in 'GameObject'
-  c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.h(4): note: see declaration of 'GameObject'
-c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(68): error C2597: illegal reference to non-static member 'GameObject::health'
-c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(68): error C3867: 'GameObject::health': non-standard syntax; use '&' to create a pointer to member
-c:\users\18mac03\documents\github\centipede\centipede\centipede\gameobject.cpp(68): error C2105: '++' needs l-value
-  CentipedeSegment.cpp
+c:\users\19crf01\documents\github\centipede\centipede\centipede\main.cpp(30): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
   CentipedeGame.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(35): warning C4018: '<': signed/unsigned mismatch
-c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(44): warning C4018: '<': signed/unsigned mismatch
+c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(29): warning C4018: '<': signed/unsigned mismatch
+c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(43): warning C4018: '<': signed/unsigned mismatch
+c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(52): warning C4018: '<': signed/unsigned mismatch
+c:\users\19crf01\documents\github\centipede\centipede\centipede\centipedegame.cpp(66): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-  Compiling...
-  Spider.cpp
-  Scorpion.cpp
-  Mushroom.cpp
-  Flea.cpp
-  Generating Code...
+  Centipede.vcxproj -> C:\Users\19crf01\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
+  Centipede.vcxproj -> C:\Users\19crf01\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
