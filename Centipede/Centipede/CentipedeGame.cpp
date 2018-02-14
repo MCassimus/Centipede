@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CentipedeGame.h"
 #include "Mushroom.h"
+#include "Player.h"
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[2][30][30] = {};
@@ -9,6 +10,7 @@ std::vector<GameObject *> CentipedeGame::map[2][30][30] = {};
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow)
 {
 	window = renderWindow;
+	reset();
 }
 
 
@@ -24,7 +26,7 @@ bool CentipedeGame::update()
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[frame][x][y].size(); ++i)
-				map[frame][x][y].at(i)->update();
+				dynamic_cast<Player *>(CentipedeGame::map[CentipedeGame::frame][x][y].at(i))->update();
 
 	draw();
 	return true;//return true while player alive
@@ -50,6 +52,13 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 		if (dynamic_cast<Mushroom *>(CentipedeGame::map[CentipedeGame::frame][x][y].at(i)) != nullptr)
 			return true;
 	return false;
+}
+
+
+//start a level
+void CentipedeGame::reset()
+{
+	placeObject(15, 30,  new Player(window));
 }
 
 
