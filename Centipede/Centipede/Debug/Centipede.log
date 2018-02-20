@@ -1,7 +1,21 @@
-﻿  CentipedeGame.cpp
+﻿  main.cpp
+  Scorpion.cpp
+  Player.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\player.cpp(39): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  Mushroom.cpp
+  GameObject.cpp
+  Bullet.cpp
+  Generating Code...
+  Compiling...
+  Spider.cpp
+  Flea.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\flea.cpp(26): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  CentipedeSegment.cpp
+  CentipedeGame.cpp
 c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(36): warning C4018: '<': signed/unsigned mismatch
 c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(50): warning C4018: '<': signed/unsigned mismatch
 c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(59): warning C4018: '<': signed/unsigned mismatch
 c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(81): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
