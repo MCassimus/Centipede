@@ -33,7 +33,6 @@ sf::Vector2i GameObject::getVelocity() const
 
 void GameObject::setTexture(const char * filePath)
 {
-	sf::Texture textureTemp;
 	if (!textureTemp.loadFromFile(filePath))
 		printf("Errors\n");
 	object.setTexture(textureTemp);
@@ -42,8 +41,6 @@ void GameObject::setTexture(const char * filePath)
 
 void GameObject::render()
 {
-	//object.setPosition(currentPosition.x * (window->getSize().x / 30), currentPosition.y * (window->getSize().y / 30));
-	//object.setPosition((sf::Vector2f)currentPosition);
 	window->draw(object);
 }
 

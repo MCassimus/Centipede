@@ -24,4 +24,5 @@ protected:
 	sf::Vector2i velocity;
 	sf::Vector2u currentPosition;
 	sf::RenderWindow * window = nullptr;
+	sf::Texture textureTemp;
 };

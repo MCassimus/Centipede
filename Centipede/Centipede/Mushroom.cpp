@@ -17,42 +17,20 @@ Mushroom::Mushroom(sf::RenderWindow* window):GameObject(window)
 
 void Mushroom::update()
 {
-	if (poisoned)
+	switch (health)
 	{
-		pointValue = 5;
-		switch (health)
-		{
-		case 1:
-			setTexture("Sprites\\Mushroom\\Poisoned1.png");
-			break;
-		case 2:
-			setTexture("Sprites\\Mushroom\\Poisoned2.png");
-			break;
-		case 3:
-			setTexture("Sprites\\Mushroom\\Poisoned3.png");
-			break;
-		case 4:
-			setTexture("Sprites\\Mushroom\\Poisoned4.png");
-			break;
-		}
-	}
-	else
-	{
-		switch (health)
-		{
-		case 1:
-			setTexture("Sprites\\Mushroom\\mushroom1.png");
-			break;
-		case 2:
-			setTexture("Sprites\\Mushroom\\mushroom2.png");
-			break;
-		case 3:
-			setTexture("Sprites\\Mushroom\\mushroom3.png");
-			break;
-		case 4:
-			setTexture("Sprites\\Mushroom\\mushroom4.png");
-			break;
-		}
+	case 1:
+		setTexture("Sprites\\Mushroom\\mushroom1.png");
+		break;
+	case 2:
+		setTexture("Sprites\\Mushroom\\mushroom2.png");
+		break;
+	case 3:
+		setTexture("Sprites\\Mushroom\\mushroom3.png");
+		break;
+	case 4:
+		setTexture("Sprites\\Mushroom\\mushroom4.png");
+		break;
 	}
 
 	render();
@@ -69,6 +47,7 @@ bool Mushroom::getPoisoned()
 void Mushroom::resetHeath()
 {
 	health = 4;
+	setTexture("Sprites\\Mushroom\\mushroom4");
 	return;
 }
 
