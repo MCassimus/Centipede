@@ -11,7 +11,7 @@ Player::Player()
 
 Player::Player(sf::RenderWindow * renderWindow) : GameObject (renderWindow)
 {
-	setTexture("../Sprites\\player.png");
+	setTexture("../Sprites/player.png");
 	originalDimensions = window->getSize();
 	interval = originalDimensions/static_cast<unsigned int>(30);
 }
