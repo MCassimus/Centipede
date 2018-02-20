@@ -5,6 +5,7 @@
 class Flea : public GameObject
 {
 public:
+	Flea();
 	Flea(sf::RenderWindow *);
 	~Flea();
 	void update();

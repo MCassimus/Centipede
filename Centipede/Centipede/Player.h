@@ -4,6 +4,7 @@
 class Player : public GameObject
 {
 public:
+	Player();
 	Player(sf::RenderWindow *);
 	void update();
 	~Player();

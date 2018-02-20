@@ -2,6 +2,10 @@
 #include "GameObject.h"
 
 
+GameObject::GameObject()
+{
+}
+
 GameObject::GameObject(sf::RenderWindow * renderWindow)
 {
 	window = renderWindow;

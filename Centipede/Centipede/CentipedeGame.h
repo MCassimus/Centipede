@@ -4,6 +4,7 @@
 #include <vector>
 #include "GameObject.h"
 #include "Player.h"
+#include "Flea.h"
 
 class CentipedeGame
 {
@@ -22,4 +23,5 @@ private:
 	static std::vector<GameObject *> map[30][30][2];
 	sf::RenderWindow * window = nullptr;
 	Player player;
+	Flea flea;
 };

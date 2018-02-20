@@ -3,6 +3,7 @@
 class GameObject
 {
 public:
+	GameObject();
 	GameObject(sf::RenderWindow *);
 	~GameObject();
 	int getPointValue() const;

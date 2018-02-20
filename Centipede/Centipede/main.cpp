@@ -6,11 +6,14 @@
 */
 
 #include "stdafx.h"
+#include <ctime>
 #include "CentipedeGame.h"
 
 
 int main()
 {
+	srand(static_cast<unsigned int>(time(NULL)));
+
 	sf::RenderWindow window(sf::VideoMode(16*30, 16*30), "Centipede");
 	CentipedeGame game(&window);	
 
