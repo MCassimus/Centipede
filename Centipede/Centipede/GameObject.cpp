@@ -34,7 +34,8 @@ sf::Vector2i GameObject::getVelocity() const
 void GameObject::setTexture(const char * filePath)
 {
 	sf::Texture textureTemp;
-	textureTemp.loadFromFile(filePath);
+	if (!textureTemp.loadFromFile(filePath))
+		printf("Errors\n");
 	object.setTexture(textureTemp);
 }
 
