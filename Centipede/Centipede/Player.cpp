@@ -12,13 +12,16 @@ Player::Player(sf::RenderWindow * renderWindow) : GameObject (renderWindow)
 
 void Player::update()
 {
-	printf("update");
-	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+	sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 
-	//current position based on mouse cursor, snap  grid through multiplication of 30
-	currentPosition = sf::Vector2u(mousePos.x / window->getSize().x * 30, mousePos.y / window->getSize().y * 30);
+	//std::cout << mousePos.x << ',' << mousePos.y << '\n';
 
-	printf("x : %i\n y : %i\n", currentPosition.x, currentPosition.y);
+	int intervalX = window->getSize().x/30;
+	int intervalY = window->getSize().y/30;
+
+	//std::cout << intervalX << '\n';
+
+	object.setPosition(mousePos.x-(mousePos.x%intervalX), mousePos.y-(mousePos.y%intervalY));
 }
 
 

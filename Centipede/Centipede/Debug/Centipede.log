@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-﻿  Spider.cpp
-  Scorpion.cpp
-  Player.cpp
-  Mushroom.cpp
-  GameObject.cpp
-  Flea.cpp
-  CentipedeSegment.cpp
-  CentipedeGame.cpp
-c:\users\19rju01\desktop\centipede\centipede\centipede\centipedegame.cpp(29): warning C4018: '<': signed/unsigned mismatch
-c:\users\19rju01\desktop\centipede\centipede\centipede\centipedegame.cpp(43): warning C4018: '<': signed/unsigned mismatch
-c:\users\19rju01\desktop\centipede\centipede\centipede\centipedegame.cpp(52): warning C4018: '<': signed/unsigned mismatch
-c:\users\19rju01\desktop\centipede\centipede\centipede\centipedegame.cpp(66): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-c:\users\19rju01\desktop\centipede\centipede\centipede\main.cpp(30): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-  Bullet.cpp
-  Generating Code...
-  Centipede.vcxproj -> C:\Users\19RJU01\Desktop\Centipede\Centipede\Debug\Centipede.exe
-  Centipede.vcxproj -> C:\Users\19RJU01\Desktop\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
-=======
-﻿  Bullet.cpp
+﻿  Player.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\player.cpp(24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
->>>>>>> 4a04c069e206f1f93f2a4f0ecde2bf9bff802993

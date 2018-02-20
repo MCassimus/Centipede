@@ -11,7 +11,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(240, 256), "Centipede");
+	sf::RenderWindow window(sf::VideoMode(16*30, 16*30), "Centipede");
 	CentipedeGame game(&window);	
 
 	sf::Event event;
@@ -27,7 +27,7 @@ int main()
 		if (event.type == sf::Event::Closed)
 			window.close();
 		else if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
-			window.setSize(sf::Vector2u(event.size.width, event.size.width * 1.066));
+			window.setSize(sf::Vector2u(event.size.width, event.size.width));
 	}
 
 	return 0;

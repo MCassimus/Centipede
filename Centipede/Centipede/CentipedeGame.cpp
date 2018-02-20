@@ -24,8 +24,8 @@ CentipedeGame::~CentipedeGame()
 
 bool CentipedeGame::update()
 {
-
-	std::cout << "new frame\n";
+	//system("cls");
+	//std::cout << "new frame\n";
 
 	//frame = !frame;
 
@@ -33,8 +33,8 @@ bool CentipedeGame::update()
 
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x) {
-			/*std::cout << "at coordinates (" << x << ", " << y << ") ";
-			std::cout << "i have " << map[frame][y][x].size() << " elements\n";*/
+			//std::cout << "at coordinates (" << x << ", " << y << ") ";
+			//std::cout << "i have " << map[frame][y][x].size() << " elements\n";
 			for (int i = 0; i < map[y][x][frame].size(); ++i) {
 				//std::cout << "updating element at coordinates (" << x << ", " << y << ", " << i << ")\n";
 				map[y][x][frame].at(i)->update();
@@ -44,7 +44,7 @@ bool CentipedeGame::update()
 
 	draw();
 
-	std::cout << "done drawing\n";
+	//std::cout << "done drawing\n";
 	return true;//return true while player alive
 }
 
