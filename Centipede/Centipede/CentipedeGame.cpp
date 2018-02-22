@@ -11,12 +11,8 @@ std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow)
 {
 	window = renderWindow;
-	placeObject(15, 29, &player);
 	std::cout << map[29][15][frame].size();
 	reset();
-
-	player = Player(window);
-	flea = Flea(window);
 }
 
 
@@ -66,8 +62,9 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
-	player = Player(window);
-	flea = Flea(window);
+	placeObject(15, 29, new Player(window));
+	placeObject(0, 0, new Flea(window));
+	placeObject(rand() % 29, rand() % 29, new Mushroom(window));
 }
 
 

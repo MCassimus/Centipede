@@ -1,4 +1,7 @@
-﻿  Player.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\player.cpp(39): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+﻿  CentipedeGame.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(32): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(46): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(55): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(78): warning C4018: '<': signed/unsigned mismatch
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
