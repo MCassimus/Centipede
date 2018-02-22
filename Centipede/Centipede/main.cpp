@@ -17,6 +17,9 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(16*30, 16*30), "Centipede");
 	CentipedeGame game(&window);	
 
+	window.setFramerateLimit(60);
+	window.setMouseCursorVisible(false);
+
 	sf::Event event;
 	while (window.isOpen())
 	{

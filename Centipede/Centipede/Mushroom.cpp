@@ -20,16 +20,16 @@ void Mushroom::update()
 	switch (health)
 	{
 	case 1:
-		setTexture("Sprites\\Mushroom\\mushroom1.png");
+		setTexture("../Sprites/Mushroom/mushroom1.png");
 		break;
 	case 2:
-		setTexture("Sprites\\Mushroom\\mushroom2.png");
+		setTexture("../Sprites/Mushroom/mushroom2.png");
 		break;
 	case 3:
-		setTexture("Sprites\\Mushroom\\mushroom3.png");
+		setTexture("../Sprites/Mushroom/mushroom3.png");
 		break;
 	case 4:
-		setTexture("Sprites\\Mushroom\\mushroom4.png");
+		setTexture("../Sprites/Mushroom/mushroom4.png");
 		break;
 	}
 
