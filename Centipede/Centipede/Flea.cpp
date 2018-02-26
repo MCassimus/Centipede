@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Flea.h"
+#include "CentipedeGame.h"
+
 
 Flea::Flea()
 {
@@ -9,6 +11,8 @@ Flea::Flea()
 Flea::Flea(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 {
 	setTexture("../Sprites/flea.png");
+	object.setScale(sf::Vector2f(.5,.5));
+	object.setColor(sf::Color::White);
 	currentPosition = sf::Vector2u(rand() % 29, 0);
 	velocity = sf::Vector2i(0, -1);
 	points = 200;

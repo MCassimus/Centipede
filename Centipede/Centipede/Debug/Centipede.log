@@ -1,3 +1,4 @@
-﻿  main.cpp
+﻿  Flea.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\flea.cpp(33): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
