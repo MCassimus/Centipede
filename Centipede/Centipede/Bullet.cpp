@@ -6,13 +6,15 @@
 Bullet::Bullet(sf::RenderWindow * renderWindow) :GameObject(window)
 {
 	window = renderWindow;
-	setVelocity(sf::Vector2i(1, 0));
+	health = 1;
+	setTexture("../Sprites/Bullet.png");
+	setVelocity(sf::Vector2i(0, -1));
 }
 
 
 void Bullet::update()
 {
-
+	currentPosition.y = currentPosition.y + velocity.y;
 	render();
 	return;
 }

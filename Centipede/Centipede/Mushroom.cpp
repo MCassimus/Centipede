@@ -47,6 +47,7 @@ bool Mushroom::getPoisoned()
 void Mushroom::resetHeath()
 {
 	health = 4;
+	poisoned = false;
 	setTexture("Sprites\\Mushroom\\mushroom4");
 	return;
 }

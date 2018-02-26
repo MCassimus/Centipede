@@ -8,6 +8,8 @@ public:
 	Scorpion(sf::RenderWindow *);
 	~Scorpion();
 	void update();
+	void collides(GameObject*);
 private:
 	int pointValue;
+	int scuttle; // bool for walking animation
 };
