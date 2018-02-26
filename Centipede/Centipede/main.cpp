@@ -14,10 +14,8 @@ int main()
 {
 	srand(static_cast<unsigned int>(time(NULL)));
 
-	const sf::Vector2u originalWindowDimensions(16*30, 16*30);
-
-	sf::RenderWindow window(sf::VideoMode(originalWindowDimensions.x, originalWindowDimensions.y), "Centipede");
-	CentipedeGame game(&window, originalWindowDimensions);	
+	sf::RenderWindow window(sf::VideoMode(16*30, 16*30), "Centipede");
+	CentipedeGame game(&window);	
 
 	window.setFramerateLimit(60);
 	window.setMouseCursorVisible(false);
