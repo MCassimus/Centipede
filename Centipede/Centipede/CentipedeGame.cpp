@@ -8,7 +8,7 @@ bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
 
 
-CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow)
+CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD)
 {
 	window = renderWindow;
 	std::cout << map[29][15][frame].size();
@@ -40,6 +40,19 @@ bool CentipedeGame::update()
 void CentipedeGame::draw()
 {
 	window->clear();
+
+	sf::VertexArray linePoints(sf::Lines);
+
+	for (int y = 0; y < originalWindowDimensions.y; y+=originalWindowDimensions.y/30) {
+		linePoints.append(sf::Vector2f(0, y));
+		linePoints.append(sf::Vector2f(originalWindowDimensions.x, y));
+	}
+	for (int x = 0; x < originalWindowDimensions.x; x+=originalWindowDimensions.x/30) {
+		linePoints.append(sf::Vector2f(x, 0));
+		linePoints.append(sf::Vector2f(x, originalWindowDimensions.y));
+	}
+
+	window->draw(linePoints);
 
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
