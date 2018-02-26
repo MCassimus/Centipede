@@ -13,7 +13,6 @@ Flea::Flea(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 	setTexture("../Sprites/flea.png");
 	object.setScale(sf::Vector2f(.5,.5));
 	object.setColor(sf::Color::White);
-	currentPosition = sf::Vector2u(rand() % 29, 0);
 	velocity = sf::Vector2i(0, -1);
 	points = 200;
 }
@@ -39,5 +38,5 @@ void Flea::update()
 
 	//check if bottom of screen
 	if (currentPosition.y == 30)
-		currentPosition = sf::Vector2u(rand() % 29, 0);
+		health = 0;
 }

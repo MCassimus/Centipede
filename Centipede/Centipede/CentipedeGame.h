@@ -15,14 +15,12 @@ public:
 	void draw();
 	static bool isMushroomCell(unsigned int, unsigned int);
 	void reset();
+	static void placeObject(unsigned int, unsigned int, GameObject *);
 private:
 	void resolveCollisions();
-	void placeObject(unsigned int, unsigned int, GameObject *);
 
 	static bool frame;
 	static std::vector<GameObject *> map[30][30][2];
 	sf::RenderWindow * window = nullptr;
 	const sf::Vector2u originalWindowDimensions;
-	Player player;
-	Flea flea;
 };
