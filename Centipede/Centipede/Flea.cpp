@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Flea.h"
 #include "CentipedeGame.h"
+#include "Mushroom.h"
 
 
 Flea::Flea()
@@ -36,6 +37,9 @@ void Flea::update()
 		frame = 0;
 	}
 
+	if (!CentipedeGame::isMushroomCell(currentPosition.x, currentPosition.y))
+		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window));
+	
 	//check if bottom of screen
 	if (currentPosition.y == 30)
 		health = 0;

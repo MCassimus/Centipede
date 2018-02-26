@@ -33,6 +33,8 @@ void Mushroom::update()
 		break;
 	}
 
+	object.setPosition(currentPosition.x * (window->getSize().x / 29), currentPosition.y * (window->getSize().y / 29));
+
 	render();
 	return;
 }
@@ -48,7 +50,7 @@ void Mushroom::resetHeath()
 {
 	health = 4;
 	poisoned = false;
-	setTexture("Sprites\\Mushroom\\mushroom4");
+	setTexture("../Sprites/Mushroom/mushroom4.png");
 	return;
 }
 

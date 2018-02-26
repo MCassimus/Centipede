@@ -103,7 +103,7 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 void CentipedeGame::reset()
 {
 	placeObject(15, 29, new Player(window));
-	placeObject(rand() % 29, rand() % 29, new Mushroom(window));
+	//placeObject(rand() % 29, rand() % 29, new Mushroom(window));
 }
 
 
