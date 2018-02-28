@@ -23,6 +23,7 @@ CentipedeGame::~CentipedeGame()
 
 bool CentipedeGame::update()
 {
+	system("pause");
 	static bool liveFlea = false;
 	//frame = !frame;
 
@@ -34,15 +35,14 @@ bool CentipedeGame::update()
 				map[y][x][frame].at(i)->update();
 
 	//remove items with 0 health
-	for (int y = 0; y < 30; ++y)
-		for (int x = 0; x < 30; ++x)
-			for (int i = 0; i < map[y][x][frame].size(); ++i)
+	for (int y = 0; y < 30; y++)
+		for (int x = 0; x < 30; x++)
+			for (int i = 0; i < map[y][x][frame].size(); i++)
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
 					//check if object removed is flea
 					if (liveFlea && dynamic_cast<Flea *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
-						liveFlea = false;
-
+						liveFlea = false; 
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
 
@@ -70,11 +70,14 @@ void CentipedeGame::draw()
 
 	sf::VertexArray linePoints(sf::Lines);
 
-	for (int y = 0; y < originalWindowDimensions.y; y+=originalWindowDimensions.y/30) {
+	for (int y = 0; y < originalWindowDimensions.y; y+=originalWindowDimensions.y/30) 
+	{
 		linePoints.append(sf::Vector2f(0, y));
 		linePoints.append(sf::Vector2f(originalWindowDimensions.x, y));
 	}
-	for (int x = 0; x < originalWindowDimensions.x; x+=originalWindowDimensions.x/30) {
+
+	for (int x = 0; x < originalWindowDimensions.x; x+=originalWindowDimensions.x/30) 
+	{
 		linePoints.append(sf::Vector2f(x, 0));
 		linePoints.append(sf::Vector2f(x, originalWindowDimensions.y));
 	}

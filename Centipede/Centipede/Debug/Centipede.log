@@ -1,4 +1,16 @@
-﻿  Mushroom.cpp
-c:\users\18mac03\documents\github\centipede\centipede\centipede\mushroom.cpp(36): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+﻿  CentipedeGame.cpp
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(34): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(40): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(73): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(75): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(76): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(76): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(79): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(82): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(89): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(98): warning C4018: '<': signed/unsigned mismatch
+c:\users\18mac03\documents\github\centipede\centipede\centipede\centipedegame.cpp(120): warning C4018: '<': signed/unsigned mismatch
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.exe
   Centipede.vcxproj -> C:\Users\18mac03\Documents\GitHub\Centipede\Centipede\Debug\Centipede.pdb (Partial PDB)
