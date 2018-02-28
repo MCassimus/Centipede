@@ -19,7 +19,10 @@ Scorpion::Scorpion(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 void Scorpion::update()
 {
 	currentPosition.x = currentPosition.x + velocity.x;
-	/*for()*/
+	
+	if (scuttle != 3)
+		scuttle++;
+
 	if (scuttle == 0)
 		setTexture("../Sprites/Scorpion/scorpionLeft1.png");
 	else if (scuttle==1)
@@ -28,7 +31,7 @@ void Scorpion::update()
 		setTexture("../Sprites/Scorpion/scorpionRight1.png");
 	else
 		setTexture("../Sprites/Scorpion/scorpionRight2.png");
-	render();
+	
 	return;
 }
 

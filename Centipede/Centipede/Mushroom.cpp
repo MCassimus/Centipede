@@ -35,7 +35,6 @@ void Mushroom::update()
 
 	object.setPosition(currentPosition.x * (window->getSize().x / 29), currentPosition.y * (window->getSize().y / 29));
 
-	render();
 	return;
 }
 

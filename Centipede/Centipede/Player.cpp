@@ -4,12 +4,8 @@
 #include "CentipedeGame.h"
 
 
-Player::Player()
-{
-}
 
-
-Player::Player(sf::RenderWindow * renderWindow) : GameObject (renderWindow)
+Player::Player(sf::RenderWindow * renderWindow) : GameObject (renderWindow), bullet(renderWindow)
 {
 	setTexture("../Sprites/player.png");
 	originalDimensions = window->getSize();
@@ -22,21 +18,28 @@ void Player::update()
 	sf::Vector2f mousePos(sf::Mouse::getPosition(*window));
 	float scalar = static_cast<float>(originalDimensions.x) / window->getSize().x;
 	mousePos *= scalar;
-	sf::Vector2i mousePosI(mousePos);
+	sf::Vector2u mousePosI(mousePos);
 
-	std::cout << "mouse position:" << mousePos.x << ", " <<
-		mousePos.y << std::endl;
+	mousePosI = getNearestCellPos(mousePosI);
 
-	std::cout << "window dimensions:" << window->getSize().x << ", " <<
-		window->getSize().y << std::endl;
+	if ((30 - (mousePosI.y / interval.y)) > 12) {
+		mousePosI.y = (30-12)*interval.y;
+	}
 
-	std::cout << "intervals:" << interval.x << ", " <<
-		interval.y << std::endl;
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		//set bullet position to my position
+	}
 
-	std::cout << "player position:" << mousePosI.x - (mousePosI.x%interval.x) << ", " <<
-		mousePos.y - (mousePosI.y%interval.y) << std::endl;
+	object.setPosition(static_cast<sf::Vector2f>(mousePosI));
 
-	object.setPosition(mousePos.x-(mousePosI.x%interval.x), mousePosI.y-(mousePosI.y%interval.y));
+	bullet.update();
+	if (bullet.isActive()) bullet.render();
+}
+
+sf::Vector2u Player::getNearestCellPos(sf::Vector2u position) {
+	position.x -= (position.x%interval.x);
+	position.y -= (position.y%interval.y);
+	return position;
 }
 
 
