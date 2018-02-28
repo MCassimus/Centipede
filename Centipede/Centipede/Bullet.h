@@ -8,6 +8,8 @@ public:
 	Bullet(sf::RenderWindow * renderWindow);
 	void update();
 	void collides(GameObject*);
+	bool isActive();
+	void goToPosition(sf::Vector2f);
 	~Bullet();
 };
 

@@ -6,16 +6,12 @@
 Bullet::Bullet(sf::RenderWindow * renderWindow) :GameObject(window)
 {
 	window = renderWindow;
-	health = 1;
-	setTexture("../Sprites/Bullet.png");
-	setVelocity(sf::Vector2i(0, -1));
+	setVelocity(sf::Vector2i(1, 0));
 }
 
 
 void Bullet::update()
 {
-	currentPosition.y = currentPosition.y + velocity.y;
-	render();
 	return;
 }
 
@@ -25,6 +21,10 @@ void Bullet::collides(GameObject*)
 	health = 0;
 	
 	return;
+}
+
+bool Bullet::isActive() {
+	return true;
 }
 
 

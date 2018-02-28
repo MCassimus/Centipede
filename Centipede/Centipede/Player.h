@@ -1,10 +1,10 @@
 #pragma once
 #include "GameObject.h"
+#include "Bullet.h"
 
 class Player : public GameObject
 {
 public:
-	Player();
 	Player(sf::RenderWindow *);
 	void update();
 	~Player();
@@ -13,4 +13,6 @@ protected:
 	sf::Vector2u currentPosition = sf::Vector2u(15, 30);
 	std::vector<sf::RectangleShape> bullets;
 	sf::Vector2u interval, originalDimensions;
+	sf::Vector2u getNearestCellPos(sf::Vector2u);
+	Bullet bullet;
 };
