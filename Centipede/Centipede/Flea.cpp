@@ -37,8 +37,8 @@ void Flea::update()
 		frame = 0;
 	}
 
-	if (!CentipedeGame::isMushroomCell(currentPosition.x, currentPosition.y))
-		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window));
+	//if (!CentipedeGame::isMushroomCell(currentPosition.x, currentPosition.y))
+		//CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window));
 	
 	//check if bottom of screen
 	if (currentPosition.y == 30)

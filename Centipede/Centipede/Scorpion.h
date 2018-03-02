@@ -12,4 +12,5 @@ public:
 private:
 	int pointValue;
 	int scuttle; // bool for walking animation
+	int frameMax = 5;
 };

@@ -3,6 +3,7 @@
 #include "CentipedeGame.h"
 #include "Mushroom.h"
 #include "Player.h"
+#include "Scorpion.h"
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
@@ -105,6 +106,7 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 void CentipedeGame::reset()
 {
 	placeObject(15, 29, new Player(window));
+	placeObject(15, 15, new Scorpion(window));
 	//placeObject(rand() % 29, rand() % 29, new Mushroom(window));
 }
 
