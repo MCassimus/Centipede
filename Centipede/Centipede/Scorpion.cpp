@@ -20,14 +20,8 @@ Scorpion::Scorpion(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 static int frame = 0;
 void Scorpion::update()
 {
-	/*sf::Vector2i objectPosition(getNearestCellPos(sf::Vector2i(object.getPosition().x, object.getPosition().y)));
-
-	if ((30 - (objectPosition.y / interval.y)) > 12) 
-		objectPosition.y = (30 - 12) * interval.y;*/
-
-	//object.setPosition(static_cast<sf::Vector2f>(objectPosition));
-
-	
+	currentPosition.x += velocity.x;
+	object.setPosition(static_cast<sf::Vector2f>(currentPosition));
 
 
 	if (frame++ >= frameMax)
