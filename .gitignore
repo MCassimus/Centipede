@@ -5,7 +5,6 @@ Centipede/Centipede/Debug/
 *.user
 *.ipch
 *.suo
-stdafx.*
 targetserver.*
 
 
