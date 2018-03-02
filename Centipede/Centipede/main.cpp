@@ -15,7 +15,7 @@ int main()
 
 	const sf::Vector2u winDim(16*30, 16*30);
 
-	srand(static_cast<unsigned int>(time(NULL)));
+	srand(time(0));
 
 	sf::RenderWindow window(sf::VideoMode(winDim.x, winDim.y), "Centipede");
 	CentipedeGame game(&window, winDim);
