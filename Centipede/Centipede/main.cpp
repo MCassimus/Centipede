@@ -12,11 +12,10 @@
 
 int main()
 {
+	srand(time(NULL));
 
 	const sf::Vector2u winDim(16*30, 16*30);
-
-	srand(time(0));
-
+	
 	sf::RenderWindow window(sf::VideoMode(winDim.x, winDim.y), "Centipede");
 	CentipedeGame game(&window, winDim);
 
@@ -33,7 +32,8 @@ int main()
 		if (event.type == sf::Event::Closed)
 			window.close();
 		if (event.type == sf::Event::KeyPressed)
-			window.close();
+			if(event.key.code == sf::Keyboard::Escape)
+				window.close();
 		else if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
 			window.setSize(sf::Vector2u(event.size.width, event.size.width));
 	}

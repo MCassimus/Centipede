@@ -21,12 +21,14 @@ void Player::update()
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		//set bullet position to my position
+		bullet.goToPosition(object.getPosition());
 	}
 
 	object.setPosition(static_cast<sf::Vector2f>(mousePosI));
 
 	bullet.update();
-	if (bullet.isActive()) bullet.render();
+	//if (bullet.isActive()) bullet.render();
+	bullet.render();
 }
 
 

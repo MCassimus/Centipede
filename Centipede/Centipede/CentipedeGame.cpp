@@ -66,22 +66,29 @@ bool CentipedeGame::update()
 }
 
 
+static bool grid = false;
 void CentipedeGame::draw()
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		grid = !grid;
+
 	window->clear();
 
-	sf::VertexArray linePoints(sf::Lines);
+	if (grid)
+	{
+		sf::VertexArray linePoints(sf::Lines);
 
-	for (int y = 0; y < originalWindowDimensions.y; y+=originalWindowDimensions.y/30) {
-		linePoints.append(sf::Vector2f(0, y));
-		linePoints.append(sf::Vector2f(originalWindowDimensions.x, y));
-	}
-	for (int x = 0; x < originalWindowDimensions.x; x+=originalWindowDimensions.x/30) {
-		linePoints.append(sf::Vector2f(x, 0));
-		linePoints.append(sf::Vector2f(x, originalWindowDimensions.y));
-	}
+		for (int y = 0; y < originalWindowDimensions.y; y+=originalWindowDimensions.y/30) {
+			linePoints.append(sf::Vector2f(0, y));
+			linePoints.append(sf::Vector2f(originalWindowDimensions.x, y));
+		}
+		for (int x = 0; x < originalWindowDimensions.x; x+=originalWindowDimensions.x/30) {
+			linePoints.append(sf::Vector2f(x, 0));
+			linePoints.append(sf::Vector2f(x, originalWindowDimensions.y));
+		}
 
-	window->draw(linePoints);
+		window->draw(linePoints);
+	}
 
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
@@ -107,9 +114,9 @@ void CentipedeGame::reset()
 {
 	placeObject(15, 29, new Player(window));
 	placeObject(15, 15, new Scorpion(window));
-	for (int y = 0; y < 30; ++y)
+	for (int y = 0; y < 29; ++y)
 		for (int x = 0; x < 30; ++x)
-			if(rand() % 4==1)
+			if(rand() % 6 == 1)
 				placeObject(x, y, new Mushroom(window, sf::Vector2f(GameObject::interval.x* x, GameObject::interval.y*y)));
 }
 
