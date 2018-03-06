@@ -18,7 +18,7 @@ Mushroom::Mushroom(sf::RenderWindow * window, sf::Vector2f position) : GameObjec
 	pointValue = 1;
 	poisoned = false;
 	health = 4;
-	object.setOrigin(-2, -2);
+	object.setOrigin(-4, -4);
 	object.setPosition(static_cast<sf::Vector2f>(getNearestCellPos(static_cast<sf::Vector2i>(position))));
 }
 
