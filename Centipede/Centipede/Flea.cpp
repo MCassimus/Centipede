@@ -36,6 +36,10 @@ void Flea::update()
 
 		//reset frame counter
 		frame = 0;
+	
+		if (rand() % 100 < 30 && currentPosition.y != 29)
+			CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, object.getPosition()));
+
 	}
 
 	//check if bottom of screen

@@ -57,7 +57,7 @@ bool CentipedeGame::update()
 
 	if (mushroomCount < 5 && !liveFlea)
 	{
- 		//placeObject(rand() % 29, 0, new Flea(window));
+ 		placeObject(rand() % 29, 0, new Flea(window));
 		liveFlea = true;
 	}
 
