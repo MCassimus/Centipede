@@ -107,7 +107,10 @@ void CentipedeGame::reset()
 {
 	placeObject(15, 29, new Player(window));
 	placeObject(15, 15, new Scorpion(window));
-	//placeObject(rand() % 29, rand() % 29, new Mushroom(window));
+	for (int y = 0; y < 30; ++y)
+		for (int x = 0; x < 30; ++x)
+			if(rand() % 4==1)
+				placeObject(x, y, new Mushroom(window, sf::Vector2f(GameObject::interval.x* x, GameObject::interval.y*y)));
 }
 
 

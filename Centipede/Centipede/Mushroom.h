@@ -11,7 +11,7 @@ public:
 	void update();
 	bool getPoisoned();
 	void resetHeath();
-	void collides(GameObject*);
+	void collideWith(GameObject*);
 private:
 	int pointValue;
 	bool poisoned;

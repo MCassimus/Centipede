@@ -19,7 +19,7 @@ public:
 	sf::Vector2i getNearestCellPos(sf::Vector2i);
 
 	static sf::Vector2u oWD;
-
+	static sf::Vector2u interval;
 protected:
 	void setPointValue(unsigned int);
 	void setVelocity(sf::Vector2i);
@@ -32,5 +32,5 @@ protected:
 	sf::Vector2u currentPosition;
 	sf::RenderWindow * window = nullptr;
 	sf::Texture textureTemp;
-	static sf::Vector2u interval;
+	
 };
