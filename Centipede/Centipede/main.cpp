@@ -36,8 +36,7 @@ int main()
 		if (event.type == sf::Event::Closed)
 			window.close();
 		if (event.type == sf::Event::KeyPressed)
-			if (event.key.code == sf::Keyboard::Escape)
-				window.close();
+			window.close();
 		else if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
 			window.setSize(sf::Vector2u(event.size.width, event.size.width));
 	}
