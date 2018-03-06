@@ -26,10 +26,7 @@ int main()
 	sf::Event event;
 	while (window.isOpen())
 	{
-
-		//events for window
 		window.pollEvent(event);
-
 
 		game.update();
 
