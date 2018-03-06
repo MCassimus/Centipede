@@ -11,5 +11,5 @@ public:
 	void update();
 private:
 	int points;
-	unsigned int delay = 2;
+	unsigned int delay = 6;
 };
