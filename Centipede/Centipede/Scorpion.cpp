@@ -50,7 +50,7 @@ void Scorpion::update()
 }
 
 
-void Scorpion::collides(GameObject* other)
+void Scorpion::collideWith(GameObject* other)
 {
 	if (dynamic_cast<Bullet*>(other) != nullptr)
 		health = 0;

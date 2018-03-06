@@ -57,7 +57,7 @@ void Mushroom::resetHeath()
 }
 
 
-void Mushroom::collides( GameObject* other ) //dynamic_cast returns null pointer if class
+void Mushroom::collideWith( GameObject* other ) //dynamic_cast returns null pointer if class
 {                                            //is not what it is asked to change it to
 	if (dynamic_cast<Spider*>(other) != nullptr)
 		health = 0;
