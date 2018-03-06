@@ -2,6 +2,7 @@
 #include "Scorpion.h"
 #include "GameObject.h"
 #include "Bullet.h"
+#include <iostream>
 
 
 Scorpion::Scorpion(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
@@ -20,16 +21,14 @@ Scorpion::Scorpion(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
 static unsigned int frame = 0;
 void Scorpion::update()
 {
-	if (currentPosition.x < 0 || currentPosition.x > 480)
-		velocity = velocity*-1;
-
+	
 
 	if (frame++ == frameMax)
 	{
 		object.setPosition(object.getPosition().x + velocity.x, object.getPosition().y );
 		object.setPosition(static_cast<sf::Vector2f>(getNearestCellPos(static_cast<sf::Vector2i>(object.getPosition()))));
 
-		if (scuttle++ > 3)
+		if (scuttle++ >= 3)
 			scuttle = 0;
 
 		if (scuttle == 0)
@@ -42,6 +41,9 @@ void Scorpion::update()
 			setTexture("../Sprites/Scorpion/scorpionRight2.png");
 
 		frame = 0;
+		if (object.getPosition().x >= window->getSize().x || object.getPosition().x < 0)
+			velocity = velocity*-1;
+		std::cout << object.getPosition().x << object.getPosition().y<<std::endl;
 	}
 
 	return;
