@@ -13,6 +13,7 @@ Player::Player(sf::RenderWindow * renderWindow) : GameObject (renderWindow), bul
 
 void Player::update()
 {
+
 	sf::Vector2i mousePosI(getNearestCellPos(getRelMousePos()));
 
 	if ((30 - (mousePosI.y / interval.y)) > 12) {

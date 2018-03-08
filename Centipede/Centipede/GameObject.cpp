@@ -80,7 +80,7 @@ void GameObject::setVelocity(sf::Vector2i newVel)
 
 void GameObject::addHealth(int health)
 {
-	
+	return;
 }
 
 sf::Vector2i GameObject::getNearestCellPos(sf::Vector2i position) {
@@ -98,6 +98,5 @@ sf::Vector2i GameObject::getRelMousePos() {
 
 void GameObject::setPixels()
 {
-
-	return;
+	object.setPosition(currentPosition.x * interval.x, currentPosition.y * interval.y);
 }

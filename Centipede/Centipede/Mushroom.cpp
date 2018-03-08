@@ -28,6 +28,7 @@ Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, 
 
 void Mushroom::update()
 {
+	setPixels();
 	switch (health)
 	{
 	case 1:

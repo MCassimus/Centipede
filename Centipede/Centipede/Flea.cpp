@@ -28,6 +28,7 @@ Flea::~Flea()
 static unsigned int frame = 0;
 void Flea::update()
 {
+	setPixels();
 	if (frame++ == delay)//if time to update
 	{
 		//apply velocity

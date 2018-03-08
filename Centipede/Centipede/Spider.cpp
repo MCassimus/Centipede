@@ -11,6 +11,7 @@ Spider::Spider(sf::RenderWindow * renderWindow, int x, int y) : GameObject(rende
 
 void Spider::update()
 {
+	setPixels();
 	//while spider exists
 	{
 		// if collision with mushroom

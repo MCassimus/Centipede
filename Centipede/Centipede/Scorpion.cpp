@@ -21,8 +21,7 @@ Scorpion::Scorpion(sf::RenderWindow * renderWindow, int x, int y) : GameObject(r
 static unsigned int frame = 0;
 void Scorpion::update()
 {
-	
-
+	setPixels();
 	if (frame++ == frameMax)
 	{
 		object.setPosition(object.getPosition().x + velocity.x, object.getPosition().y );

@@ -14,6 +14,7 @@ Bullet::Bullet(sf::RenderWindow * renderWindow) :GameObject(window)
 
 void Bullet::update()
 {
+	setPixels();
 	object.setPosition(object.getPosition().x, object.getPosition().y + velocity.y);
 	object.setPosition(static_cast<sf::Vector2f>(getNearestCellPos(static_cast<sf::Vector2i>(object.getPosition()))));
 }

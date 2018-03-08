@@ -16,5 +16,6 @@ CentipedeSegment::~CentipedeSegment()
 
 void CentipedeSegment::update()
 {
+	setPixels();
 	return;
 }
