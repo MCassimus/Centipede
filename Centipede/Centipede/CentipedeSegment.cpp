@@ -2,7 +2,7 @@
 #include "CentipedeSegment.h"
 
 
-CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
+CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
 {
 	pointValue = 10;
 	isHead = false;

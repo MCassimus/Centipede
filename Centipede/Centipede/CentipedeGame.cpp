@@ -62,7 +62,8 @@ bool CentipedeGame::update()
 
 	if (mushroomCount < 5 && !liveFlea)
 	{
- 		placeObject(rand() % 29, 0, new Flea(window));
+		int xpos = rand() % 29;
+ 		placeObject(xpos , 0, new Flea(window, xpos, 0));
 		liveFlea = true;
 	}
 	#pragma endregion
@@ -120,14 +121,14 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
-	placeObject(15, 29, new Player(window));//spawn player
-	placeObject(15, 15, new Scorpion(window));
+	placeObject(15, 29, new Player(window, 15, 29));//spawn player
+	placeObject(15, 15, new Scorpion(window, 15, 16));
 	
 	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)
 		for (int x = 0; x < 30; ++x)
 			if(rand() % 6 == 1)
-				placeObject(x, y, new Mushroom(window, sf::Vector2f(GameObject::interval.x* x, GameObject::interval.y*y)));
+				placeObject(x, y, new Mushroom(window, x, y));
 }
 
 

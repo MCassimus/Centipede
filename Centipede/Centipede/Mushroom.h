@@ -5,8 +5,8 @@
 class Mushroom: public GameObject
 {
 public:
-	Mushroom(sf::RenderWindow*);
-	Mushroom(sf::RenderWindow*, sf::Vector2f);
+	Mushroom(sf::RenderWindow*, int, int);
+	//Mushroom(sf::RenderWindow*, sf::Vector2f);
 	~Mushroom();
 	void update();
 	bool getPoisoned();

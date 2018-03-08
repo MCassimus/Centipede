@@ -5,7 +5,7 @@
 class Spider : public GameObject
 {
 public:
-	Spider(sf::RenderWindow *);
+	Spider(sf::RenderWindow *, int, int);
 	void update();
 	void setPointValue();
 	~Spider();
