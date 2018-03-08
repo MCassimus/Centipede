@@ -13,7 +13,7 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 {
 	GameObject::oWD = oWD;
 	window = renderWindow;
-	std::cout << map[29][15][frame].size();
+
 	reset();
 }
 
@@ -30,12 +30,15 @@ bool CentipedeGame::update()
 
 	resolveCollisions();
 
+	#pragma region updateObjects
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x) 
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 				map[y][x][frame].at(i)->update();
+	#pragma endregion	
 
 	//remove items with 0 health
+	#pragma region mapCleanup
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
@@ -47,8 +50,10 @@ bool CentipedeGame::update()
 
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
+	#pragma endregion
 
 	//check if flea needs to be spawned
+	#pragma region fleaCheck
 	int mushroomCount = 0;
 	for (int y = 28; y > 17; y--)
 		for (int x = 0; x < 29; x++)
@@ -60,6 +65,7 @@ bool CentipedeGame::update()
  		placeObject(rand() % 29, 0, new Flea(window));
 		liveFlea = true;
 	}
+	#pragma endregion
 
 	draw();
 	return true;//return true while player alive
@@ -69,6 +75,7 @@ bool CentipedeGame::update()
 static bool grid = false;
 void CentipedeGame::draw()
 {
+	//this is temp
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		grid = !grid;
 
@@ -90,6 +97,7 @@ void CentipedeGame::draw()
 		window->draw(linePoints);
 	}
 
+	//draw all objects in map
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
@@ -112,8 +120,10 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
-	placeObject(15, 29, new Player(window));
+	placeObject(15, 29, new Player(window));//spawn player
 	placeObject(15, 15, new Scorpion(window));
+	
+	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)
 		for (int x = 0; x < 30; ++x)
 			if(rand() % 6 == 1)
@@ -123,14 +133,12 @@ void CentipedeGame::reset()
 
 void CentipedeGame::resolveCollisions()
 {
-	std::vector<GameObject*> *gameObjects;
+	//if any index in map has more than 1 object in vector, resolve collisions
 	for (int y = 0; y < 30; ++y)
-		for (int x = 0; x < 30; ++x) {
-			gameObjects = &map[y][x][frame];
-			if (gameObjects->size() > 1)
-				for (int i = 0; i < gameObjects->size(); ++i)
-					map[y][x][frame].at(i)->collideWith(gameObjects);
-		}
+		for (int x = 0; x < 30; ++x) 
+			if (map[y][x][frame].size() > 1)
+				for (int i = 0; i < map[y][x][frame].size(); ++i)
+					map[y][x][frame].at(i)->collideWith(&map[y][x][frame]);
 }
 
 
