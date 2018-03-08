@@ -3,7 +3,7 @@
 #include "GameObject.h"
 
 
-Bullet::Bullet(sf::RenderWindow * renderWindow) :GameObject(window)
+Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(window, x, y)
 {
 	window = renderWindow;
 	setVelocity(sf::Vector2i(1, 0));
