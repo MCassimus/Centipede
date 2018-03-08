@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-Scorpion::Scorpion(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
+Scorpion::Scorpion(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
 {
 	pointValue = 1000;
 	health = 1;
@@ -54,9 +54,4 @@ void Scorpion::collideWith(GameObject* other)
 {
 	if (dynamic_cast<Bullet*>(other) != nullptr)
 		health = 0;
-}
-
-
-Scorpion::~Scorpion()
-{
 }

@@ -5,7 +5,7 @@
 class Scorpion: public GameObject
 {
 public:
-	Scorpion(sf::RenderWindow *);
+	Scorpion(sf::RenderWindow *, int, int);
 	~Scorpion();
 	void update();
 	void collideWith(GameObject*);

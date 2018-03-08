@@ -2,7 +2,7 @@
 #include "Spider.h"
 
 
-Spider::Spider(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
+Spider::Spider(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
 {
 	setTexture("spider.png");
 	pointValue = 0;

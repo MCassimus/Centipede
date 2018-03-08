@@ -9,7 +9,7 @@ Flea::Flea()
 }
 
 
-Flea::Flea(sf::RenderWindow * renderWindow) : GameObject(renderWindow)
+Flea::Flea(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
 {
 	setTexture("../Sprites/flea.png");
 	object.setScale(sf::Vector2f(.5,.5));
@@ -38,7 +38,7 @@ void Flea::update()
 		frame = 0;
 	
 		if (rand() % 100 < 30 && currentPosition.y != 29)
-			CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, object.getPosition()));
+			CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
 
 	}
 

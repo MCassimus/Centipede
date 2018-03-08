@@ -4,7 +4,7 @@ class GameObject
 {
 public:
 	GameObject();
-	GameObject(sf::RenderWindow *);
+	GameObject(sf::RenderWindow *, int, int);
 	~GameObject();
 	int getPointValue() const;
 	unsigned int getHealth() const;
@@ -24,6 +24,7 @@ protected:
 	void setPointValue(unsigned int);
 	void setVelocity(sf::Vector2i);
 	void addHealth(int);
+	void setPixels();
 
 	sf::Sprite object;
 	unsigned int health = 1;

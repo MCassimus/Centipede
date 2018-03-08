@@ -9,10 +9,11 @@ GameObject::GameObject()
 
 }
 
-GameObject::GameObject(sf::RenderWindow * renderWindow)
+GameObject::GameObject(sf::RenderWindow * renderWindow, int x, int y)
 {
 	window = renderWindow;
 	interval = oWD / static_cast<unsigned int>(30);
+	currentPosition = sf::Vector2u(x, y);
 }
 
 
@@ -93,4 +94,10 @@ sf::Vector2i GameObject::getRelMousePos() {
 	float scalar = static_cast<float>(oWD.x) / window->getSize().x;
 	mousePos *= scalar;
 	return sf::Vector2i(mousePos);
+}
+
+void GameObject::setPixels()
+{
+
+	return;
 }
