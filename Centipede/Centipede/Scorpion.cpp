@@ -2,7 +2,6 @@
 #include "Scorpion.h"
 #include "GameObject.h"
 #include "Bullet.h"
-#include <iostream>
 
 
 Scorpion::Scorpion(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
@@ -11,10 +10,11 @@ Scorpion::Scorpion(sf::RenderWindow * renderWindow, int x, int y) : GameObject(r
 	health = 1;
 	scuttle = 0;
 	object.setScale(sf::Vector2f(1.5, 1.5));
+
 	if (currentPosition.x < 10)
-		setVelocity(sf::Vector2i(1* interval.x, 0));
+		setVelocity(sf::Vector2i(1, 0));
 	else
-		setVelocity(sf::Vector2i(-1*interval.x, 0));
+		setVelocity(sf::Vector2i(-1, 0));
 }
 
 
@@ -24,7 +24,7 @@ void Scorpion::update()
 	setPixels();
 	if (frame++ == frameMax)
 	{
-		object.setPosition(object.getPosition().x + velocity.x, object.getPosition().y );
+		currentPosition.x += velocity.x;
 		object.setPosition(static_cast<sf::Vector2f>(getNearestCellPos(static_cast<sf::Vector2i>(object.getPosition()))));
 
 		if (scuttle++ >= 3)
@@ -32,20 +32,18 @@ void Scorpion::update()
 
 		if (scuttle == 0)
 			setTexture("../Sprites/Scorpion/scorpionLeft1.png");
-		else if (scuttle==1)
+		else if (scuttle == 1)
 			setTexture("../Sprites/Scorpion/scorpionLeft2.png");
-		else if (scuttle==2)
+		else if (scuttle == 2)
 			setTexture("../Sprites/Scorpion/scorpionRight1.png");
 		else
 			setTexture("../Sprites/Scorpion/scorpionRight2.png");
 
-		frame = 0;
-		if (object.getPosition().x >= window->getSize().x || object.getPosition().x < 0)
+		if (currentPosition.x == 0 || currentPosition.x == 29)
 			velocity = velocity*-1;
-		std::cout << object.getPosition().x << object.getPosition().y<<std::endl;
-	}
 
-	return;
+		frame = 0;
+	}
 }
 
 

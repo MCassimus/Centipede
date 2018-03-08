@@ -26,6 +26,7 @@ CentipedeGame::~CentipedeGame()
 bool CentipedeGame::update()
 {
 	static bool liveFlea = false;
+	static bool playerLife = true;
 	//frame = !frame;
 
 	resolveCollisions();
@@ -36,6 +37,19 @@ bool CentipedeGame::update()
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 				map[y][x][frame].at(i)->update();
 	#pragma endregion	
+
+	//moves objects to the coordinates of grid matching to coordinates stored in object
+	#pragma region moveMap
+	GameObject * goTemp = nullptr;
+	for (int y = 0; y < 30; y++)
+		for(int x = 0; x < 30; x++)
+			for (int i = 0; i < map[x][y][frame].size(); ++i)
+			{
+				goTemp = map[x][y][frame].at(i);
+				map[x][y][frame].erase(i + map[x][y][frame].begin());
+				placeObject(goTemp->getPosition().x, goTemp->getPosition().y, goTemp);
+			}
+	#pragma endregion
 
 	//remove items with 0 health
 	#pragma region mapCleanup
@@ -48,6 +62,11 @@ bool CentipedeGame::update()
 					if (liveFlea && dynamic_cast<Flea *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
 						liveFlea = false;
 
+					//player is no longer alive set bool to break loop
+					//if (dynamic_cast<Player *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
+					//if (dynamic_cast<Player *>(goTemp) != nullptr)
+
+					delete map[y][x][frame].at(i);
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
 	#pragma endregion
@@ -69,7 +88,20 @@ bool CentipedeGame::update()
 	#pragma endregion
 
 	draw();
-	return true;//return true while player alive
+	
+	//reset game on press of w key
+	//this really has no actually purpose except to look cool
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		//clear map
+		for (int y = 0; y < 30; y++)
+			for (int x = 0; x < 30; x++)
+				map[x][y][frame].clear();
+
+		reset();
+	}
+	
+	return playerLife;//return true while player alive
 }
 
 

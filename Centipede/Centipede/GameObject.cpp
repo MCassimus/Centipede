@@ -39,6 +39,11 @@ sf::Vector2i GameObject::getVelocity() const
 	return velocity;
 }
 
+sf::Vector2u GameObject::getPosition() const
+{
+	return currentPosition;
+}
+
 
 void GameObject::setTexture(const char * filePath)
 {

@@ -9,6 +9,7 @@ public:
 	int getPointValue() const;
 	unsigned int getHealth() const;
 	sf::Vector2i getVelocity() const;
+	sf::Vector2u getPosition() const;
 	void setTexture(const char *);
 	virtual void update() = 0;
 	void render();

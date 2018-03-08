@@ -21,12 +21,14 @@ void Player::update()
 	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
 	//	bullet.goToPosition(object.getPosition());//set bullet position to my position
 
+	//if no existing bullet and player requesting to fire bullet make bullet
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && bullet == nullptr)
 	{
 		bullet = new Bullet(window, currentPosition.x, currentPosition.y);
 		bullet->goToPosition(object.getPosition());
 	}
 
+	//if there is currently a bullet update
 	if (bullet != nullptr)
 	{
 		bullet->update();
@@ -34,6 +36,10 @@ void Player::update()
 	}
 
 	object.setPosition(static_cast<sf::Vector2f>(mousePosI));
+
+	//test player death
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			health = 0;
 
 	//if (bullet.isActive()) 
 	//	bullet.update();
