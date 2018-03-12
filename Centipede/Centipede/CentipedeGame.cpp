@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include <iostream>
 #include "CentipedeGame.h"
 #include "Mushroom.h"
 #include "Player.h"
@@ -26,10 +25,7 @@ CentipedeGame::~CentipedeGame()
 bool CentipedeGame::update()
 {
 	static bool liveFlea = false;
-	static bool playerLife = true;
-	//frame = !frame;
-
-	resolveCollisions();
+	frame = !frame;
 
 	#pragma region updateObjects
 	for (int y = 0; y < 30; ++y)
@@ -50,6 +46,7 @@ bool CentipedeGame::update()
 				placeObject(goTemp->getPosition().x, goTemp->getPosition().y, goTemp);
 			}
 	#pragma endregion
+	resolveCollisions();
 
 	//remove items with 0 health
 	#pragma region mapCleanup
@@ -62,10 +59,6 @@ bool CentipedeGame::update()
 					if (liveFlea && dynamic_cast<Flea *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
 						liveFlea = false;
 
-					//player is no longer alive set bool to break loop
-					//if (dynamic_cast<Player *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
-					//if (dynamic_cast<Player *>(goTemp) != nullptr)
-
 					delete map[y][x][frame].at(i);
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
@@ -74,7 +67,7 @@ bool CentipedeGame::update()
 	//check if flea needs to be spawned
 	#pragma region fleaCheck
 	int mushroomCount = 0;
-	for (int y = 28; y > 17; y--)
+	for (int y = 28; y > 17; y--)//check mushrooms in player position
 		for (int x = 0; x < 29; x++)
 			if (isMushroomCell(x, y))
 				mushroomCount++;
@@ -101,7 +94,7 @@ bool CentipedeGame::update()
 		reset();
 	}
 	
-	return playerLife;//return true while player alive
+	return true;//return true while player alive
 }
 
 
@@ -153,13 +146,19 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
+	int yRandPos;
+	int xRandPos;
+
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
-	placeObject(15, 15, new Scorpion(window, 15, 16));
+	
+	xRandPos = rand() % 30 < 15 ? 0 : 29;
+	yRandPos = rand() % 17;
+	placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));
 	
 	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)
 		for (int x = 0; x < 30; ++x)
-			if(rand() % 6 == 1)
+			if(rand() % (rand() % 35 + 1) == 1)
 				placeObject(x, y, new Mushroom(window, x, y));
 }
 

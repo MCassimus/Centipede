@@ -25,7 +25,6 @@ void Scorpion::update()
 	if (frame++ == frameMax)
 	{
 		currentPosition.x += velocity.x;
-		object.setPosition(static_cast<sf::Vector2f>(getNearestCellPos(static_cast<sf::Vector2i>(object.getPosition()))));
 
 		if (scuttle++ >= 3)
 			scuttle = 0;

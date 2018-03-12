@@ -15,7 +15,7 @@ Flea::Flea(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWin
 	object.setScale(sf::Vector2f(.5,.5));
 	object.setOrigin(-6, -10);
 	object.setPosition(sf::Vector2f(0, 0));
-	velocity = sf::Vector2i(0, interval.y);
+	velocity = sf::Vector2i(0, 1);
 	points = 200;
 }
 
@@ -32,18 +32,16 @@ void Flea::update()
 	if (frame++ == delay)//if time to update
 	{
 		//apply velocity
-		object.setPosition(object.getPosition().x, object.getPosition().y + velocity.y);
-		object.setPosition(static_cast<sf::Vector2f>(getNearestCellPos(static_cast<sf::Vector2i>(object.getPosition()))));
+		currentPosition.y += velocity.y;
 
 		//reset frame counter
 		frame = 0;
 	
-		if (rand() % 100 < 30 && currentPosition.y != 29)
+		if (rand() % 100 < 30 && currentPosition.y != 30 && !CentipedeGame::isMushroomCell(currentPosition.x, currentPosition.y))
 			CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
 
+		//check if bottom of screen
+		if (currentPosition.y == 30)
+			currentPosition = sf::Vector2u(rand() % 30, 0);
 	}
-
-	//check if bottom of screen
-	if (currentPosition.y >= window->getSize().y)
-		health = 0;
 }
