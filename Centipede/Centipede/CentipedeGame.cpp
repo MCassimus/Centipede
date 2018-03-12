@@ -25,7 +25,8 @@ CentipedeGame::~CentipedeGame()
 bool CentipedeGame::update()
 {
 	static bool liveFlea = false;
-	frame = !frame;
+	static bool liveScorpion = false;
+	//frame = !frame;
 
 	#pragma region updateObjects
 	for (int y = 0; y < 30; ++y)
@@ -79,6 +80,16 @@ bool CentipedeGame::update()
 		liveFlea = true;
 	}
 	#pragma endregion
+
+	//Scorpion spawning
+	if (!liveScorpion && rand() % 100 < 5)
+	{
+		int xRandPos = rand() % 30 < 15 ? 0 : 29;
+		int yRandPos = rand() % 17;
+		placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));
+		liveScorpion = true;
+	}
+
 
 	draw();
 	
@@ -151,9 +162,9 @@ void CentipedeGame::reset()
 
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
 	
-	xRandPos = rand() % 30 < 15 ? 0 : 29;
+	/*xRandPos = rand() % 30 < 15 ? 0 : 29;
 	yRandPos = rand() % 17;
-	placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));
+	placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));*/
 	
 	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)
@@ -168,9 +179,11 @@ void CentipedeGame::resolveCollisions()
 	//if any index in map has more than 1 object in vector, resolve collisions
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x) 
-			if (map[y][x][frame].size() > 1)
+			if (map[y][x][frame].size() > 1)//at coord
 				for (int i = 0; i < map[y][x][frame].size(); ++i)
-					map[y][x][frame].at(i)->collideWith(&map[y][x][frame]);
+					for (int j = 0; j < map[y][x][frame].size(); ++j)
+						if(i != j)
+							map[y][x][frame].at(i)->collideWith(map[y][x][frame].at(j));
 }
 
 

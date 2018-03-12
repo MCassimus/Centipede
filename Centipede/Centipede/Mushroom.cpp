@@ -44,6 +44,9 @@ void Mushroom::update()
 		setTexture("../Sprites/Mushroom/mushroom4.png");
 		break;
 	}	
+
+	if (poisoned)
+		object.setColor(sf::Color::Magenta);
 }
 
 

@@ -10,11 +10,7 @@ Scorpion::Scorpion(sf::RenderWindow * renderWindow, int x, int y) : GameObject(r
 	health = 1;
 	scuttle = 0;
 	object.setScale(sf::Vector2f(1.5, 1.5));
-
-	if (currentPosition.x < 10)
-		setVelocity(sf::Vector2i(1, 0));
-	else
-		setVelocity(sf::Vector2i(-1, 0));
+	velocity = sf::Vector2i(x < 15 ? 1 : -1, 0);
 }
 
 
@@ -39,7 +35,7 @@ void Scorpion::update()
 			setTexture("../Sprites/Scorpion/scorpionRight2.png");
 
 		if (currentPosition.x == 0 || currentPosition.x == 29)
-			velocity = velocity*-1;
+			health = 0;//kill if offscreen
 
 		frame = 0;
 	}
