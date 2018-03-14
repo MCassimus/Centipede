@@ -13,8 +13,8 @@ public:
 	void setTexture(const char *);
 	virtual void update() = 0;
 	void render();
-	void collideWith(GameObject *);
-	void collideWith(std::vector<GameObject *> *);
+	virtual void collideWith(GameObject *);
+	virtual void collideWith(std::vector<GameObject *> *);
 
 	sf::Vector2i getRelMousePos();
 	sf::Vector2i getNearestCellPos(sf::Vector2i);
