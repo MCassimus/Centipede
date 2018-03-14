@@ -59,6 +59,8 @@ bool CentipedeGame::update()
 					//check if object removed is flea
 					if (liveFlea && dynamic_cast<Flea *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
 						liveFlea = false;
+					if (liveScorpion && dynamic_cast<Scorpion *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
+						liveScorpion = false;
 
 					delete map[y][x][frame].at(i);
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
