@@ -55,6 +55,7 @@ void GameObject::setTexture(const char * filePath)
 
 void GameObject::render()
 {
+	//setPixels();
 	window->draw(object);
 }
 
