@@ -54,6 +54,9 @@ bool CentipedeGame::update()
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
+			{
+				if(dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
+					printf("%i\n", map[y][x][frame].at(i)->getHealth());
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
 					//check if object removed is flea
@@ -65,6 +68,7 @@ bool CentipedeGame::update()
 					delete map[y][x][frame].at(i);
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
+			}
 	#pragma endregion
 
 	//check if flea needs to be spawned
