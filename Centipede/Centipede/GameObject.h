@@ -9,10 +9,10 @@ public:
 	int getPointValue() const;
 	unsigned int getHealth() const;
 	sf::Vector2i getVelocity() const;
-	sf::Vector2u getPosition() const;
+	sf::Vector2i getPosition() const;
 	void setTexture(const char *);
 	virtual void update() = 0;
-	void render();
+	virtual void render();
 	virtual void collideWith(GameObject *);
 	virtual void collideWith(std::vector<GameObject *> *);
 
@@ -20,7 +20,7 @@ public:
 	sf::Vector2i getNearestCellPos(sf::Vector2i);
 
 	static sf::Vector2u oWD;
-	static sf::Vector2u interval;
+	static sf::Vector2i interval;
 protected:
 	void setPointValue(unsigned int);
 	void setVelocity(sf::Vector2i);
@@ -31,7 +31,7 @@ protected:
 	unsigned int health = 1;
 	unsigned int pointValue;
 	sf::Vector2i velocity;
-	sf::Vector2u currentPosition;
+	sf::Vector2i currentPosition;
 	sf::RenderWindow * window = nullptr;
 	sf::Texture textureTemp;
 };

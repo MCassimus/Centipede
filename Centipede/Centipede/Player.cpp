@@ -7,23 +7,31 @@
 Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y), bullet(renderWindow, x, y)
 {
 	setTexture("../Sprites/player.png");
+	health = 3;
 }
 
 
 void Player::update()
 {
 
-	sf::Vector2i mousePosI(getNearestCellPos(getRelMousePos()));
-	mousePosI /= static_cast<int>(interval.x);
+	currentPosition = getNearestCellPos(getRelMousePos());
+	currentPosition /= static_cast<int>(interval.x);
 
-	if ((30 - mousePosI.y) > 12)
-		mousePosI.y = 30-12;
+	if ((30 - currentPosition.y) > 12)
+		currentPosition.y = 30-12;
+	if (currentPosition.y > 29)
+		currentPosition.y = 29;
+	if (currentPosition.x < 0)
+		currentPosition.x = 0;
+	if (currentPosition.x > 29)
+		currentPosition.x = 29;
+
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet.isActive())
-		bullet.goToPosition(static_cast<sf::Vector2i>(mousePosI));
+		bullet.goToPosition(currentPosition);
 
 
-	object.setPosition(static_cast<sf::Vector2f>(mousePosI*static_cast<int>(interval.x)));
+	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
 
 	//test player death
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -32,7 +40,7 @@ void Player::update()
 	if (bullet.isActive()) {
 		bullet.update();
 		bullet.render();
-		std::cout << "render!!\n";
+		//std::cout << "render!!\n";
 	}
 }
 

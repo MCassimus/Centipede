@@ -11,6 +11,7 @@ public:
 	void collides(GameObject*);
 	bool isActive();
 	void goToPosition(sf::Vector2i);
+	void render();
 private:
 	bool activity;
 };

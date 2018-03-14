@@ -16,8 +16,7 @@ void Bullet::update()
 {
 	currentPosition.x += velocity.x;
 	currentPosition.y += velocity.y;
-	object.setPosition(static_cast<sf::Vector2f>(currentPosition*interval.x));
-	std::cout << object.getPosition().x << ',' << object.getPosition().y << std::endl;
+	std::cout << currentPosition.x << ',' << currentPosition.y << std::endl;
 }
 
 
@@ -34,4 +33,10 @@ void Bullet::goToPosition(sf::Vector2i newPos)
 {
 	object.setPosition(static_cast<sf::Vector2f>(newPos));
 	activity = true;
+}
+
+void Bullet::render() {
+	GameObject::render();
+	std::cout << "a bullet should be rendered!!!!!!!!!!!\n";
+	std::cout << object.getPosition().x << ',' << object.getPosition().y << std::endl;
 }
