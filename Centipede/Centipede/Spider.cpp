@@ -14,7 +14,7 @@ Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameO
 
 void Spider::update()
 {
-	
+	setPointValue();
 	
 
 	return;
