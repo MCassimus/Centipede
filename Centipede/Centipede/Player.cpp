@@ -4,46 +4,44 @@
 
 
 
-Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y)//, bullet(renderWindow)
+Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y), bullet(renderWindow, x, y)
 {
 	setTexture("../Sprites/player.png");
+	health = 3;
 }
 
 
 void Player::update()
 {
 
-	sf::Vector2i mousePosI(getNearestCellPos(getRelMousePos()));
+	currentPosition = getNearestCellPos(getRelMousePos());
+	currentPosition /= static_cast<int>(interval.x);
 
-	if ((30 - (mousePosI.y / interval.y)) > 12)
-		mousePosI.y = (30-12)*interval.y;
+	if ((30 - currentPosition.y) > 12)
+		currentPosition.y = 30-12;
+	if (currentPosition.y > 29)
+		currentPosition.y = 29;
+	if (currentPosition.x < 0)
+		currentPosition.x = 0;
+	if (currentPosition.x > 29)
+		currentPosition.x = 29;
 
-	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
-	//	bullet.goToPosition(object.getPosition());//set bullet position to my position
 
-	//if no existing bullet and player requesting to fire bullet make bullet
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && bullet == nullptr)
-	{
-		bullet = new Bullet(window, currentPosition.x, currentPosition.y);
-		bullet->goToPosition(object.getPosition());
-	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet.isActive())
+		bullet.goToPosition(currentPosition);
 
-	//if there is currently a bullet update
-	if (bullet != nullptr)
-	{
-		bullet->update();
-		bullet->render();
-	}
 
-	object.setPosition(static_cast<sf::Vector2f>(mousePosI));
+	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
 
 	//test player death
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			health = 0;
+		health = 0;
 
-	//if (bullet.isActive()) 
-	//	bullet.update();
-	//	bullet.render();
+	if (bullet.isActive()) {
+		bullet.update();
+		bullet.render();
+		//std::cout << "render!!\n";
+	}
 }
 
 

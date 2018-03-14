@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include <iostream>
 #include "CentipedeGame.h"
 #include "Mushroom.h"
 #include "Player.h"
@@ -26,10 +25,8 @@ CentipedeGame::~CentipedeGame()
 bool CentipedeGame::update()
 {
 	static bool liveFlea = false;
-	static bool playerLife = true;
+	static bool liveScorpion = false;
 	//frame = !frame;
-
-	resolveCollisions();
 
 	#pragma region updateObjects
 	for (int y = 0; y < 30; ++y)
@@ -50,31 +47,34 @@ bool CentipedeGame::update()
 				placeObject(goTemp->getPosition().x, goTemp->getPosition().y, goTemp);
 			}
 	#pragma endregion
+	resolveCollisions();
 
 	//remove items with 0 health
 	#pragma region mapCleanup
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
+			{
+				if(dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
+					printf("%i\n", map[y][x][frame].at(i)->getHealth());
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
 					//check if object removed is flea
 					if (liveFlea && dynamic_cast<Flea *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
 						liveFlea = false;
-
-					//player is no longer alive set bool to break loop
-					//if (dynamic_cast<Player *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
-					//if (dynamic_cast<Player *>(goTemp) != nullptr)
+					if (liveScorpion && dynamic_cast<Scorpion *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
+						liveScorpion = false;
 
 					delete map[y][x][frame].at(i);
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
+			}
 	#pragma endregion
 
 	//check if flea needs to be spawned
 	#pragma region fleaCheck
 	int mushroomCount = 0;
-	for (int y = 28; y > 17; y--)
+	for (int y = 28; y > 17; y--)//check mushrooms in player position
 		for (int x = 0; x < 29; x++)
 			if (isMushroomCell(x, y))
 				mushroomCount++;
@@ -86,6 +86,16 @@ bool CentipedeGame::update()
 		liveFlea = true;
 	}
 	#pragma endregion
+
+	//Scorpion spawning
+	if (!liveScorpion && rand() % 100 < 5)
+	{
+		int xRandPos = rand() % 30 < 15 ? 0 : 29;
+		int yRandPos = rand() % 17;
+		placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));
+		liveScorpion = true;
+	}
+
 
 	draw();
 	
@@ -101,7 +111,7 @@ bool CentipedeGame::update()
 		reset();
 	}
 	
-	return playerLife;//return true while player alive
+	return true;//return true while player alive
 }
 
 
@@ -153,13 +163,19 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
+	int yRandPos;
+	int xRandPos;
+
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
-	placeObject(15, 15, new Scorpion(window, 15, 16));
+	
+	/*xRandPos = rand() % 30 < 15 ? 0 : 29;
+	yRandPos = rand() % 17;
+	placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));*/
 	
 	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)
 		for (int x = 0; x < 30; ++x)
-			if(rand() % 6 == 1)
+			if(rand() % (rand() % 35 + 1) == 1)
 				placeObject(x, y, new Mushroom(window, x, y));
 }
 
@@ -169,9 +185,11 @@ void CentipedeGame::resolveCollisions()
 	//if any index in map has more than 1 object in vector, resolve collisions
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x) 
-			if (map[y][x][frame].size() > 1)
+			if (map[y][x][frame].size() > 1)//at coord
 				for (int i = 0; i < map[y][x][frame].size(); ++i)
-					map[y][x][frame].at(i)->collideWith(&map[y][x][frame]);
+					for (int j = 0; j < map[y][x][frame].size(); ++j)
+						if(i != j)
+							map[y][x][frame].at(i)->collideWith(map[y][x][frame].at(j));
 }
 
 

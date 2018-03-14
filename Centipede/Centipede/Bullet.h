@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include <iostream>
 
 
 class Bullet: public GameObject
@@ -9,7 +10,9 @@ public:
 	void update();
 	void collides(GameObject*);
 	bool isActive();
-	void goToPosition(sf::Vector2f);
-	~Bullet();
+	void goToPosition(sf::Vector2i);
+	void render();
+private:
+	bool activity;
 };
 
