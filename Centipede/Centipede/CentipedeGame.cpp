@@ -6,6 +6,7 @@
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
+unsigned int CentipedeGame::clock = 0;
 
 
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD)
@@ -107,6 +108,8 @@ bool CentipedeGame::update()
 		reset();
 	}
 	
+	++clock;
+
 	return true;//return true while player alive
 }
 

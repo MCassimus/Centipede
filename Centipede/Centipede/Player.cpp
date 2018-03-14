@@ -28,7 +28,7 @@ void Player::update()
 
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet.isActive())
-		bullet.goToPosition(currentPosition);
+		bullet.shootFrom(currentPosition);
 
 
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
@@ -37,14 +37,18 @@ void Player::update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		health = 0;
 
-	if (bullet.isActive()) {
+	if (bullet.isActive())
 		bullet.update();
-		bullet.render();
-		//std::cout << "render!!\n";
-	}
 }
 
 
 Player::~Player()
 {
+}
+
+void Player::render() {
+	GameObject::render();
+	if (bullet.isActive()) {
+		bullet.render();
+	}
 }

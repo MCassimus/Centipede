@@ -66,10 +66,10 @@ void GameObject::collideWith(GameObject *)
 }
 
 
-void GameObject::collideWith(std::vector<GameObject *> *)
-{
-	return;
-}
+//void GameObject::collideWith(std::vector<GameObject *> *)
+//{
+//	return;
+//}
 
 
 void GameObject::setPointValue(unsigned int newPointValue)

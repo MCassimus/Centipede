@@ -14,7 +14,7 @@ public:
 	virtual void update() = 0;
 	virtual void render();
 	virtual void collideWith(GameObject *);
-	virtual void collideWith(std::vector<GameObject *> *);
+	//virtual void collideWith(std::vector<GameObject *> *);
 
 	sf::Vector2i getRelMousePos();
 	sf::Vector2i getNearestCellPos(sf::Vector2i);

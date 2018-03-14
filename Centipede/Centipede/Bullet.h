@@ -8,11 +8,10 @@ class Bullet: public GameObject
 public:
 	Bullet(sf::RenderWindow * renderWindow, int, int);
 	void update();
-	void collides(GameObject*);
+	void collideWith(GameObject*);
 	bool isActive();
-	void goToPosition(sf::Vector2i);
-	void render();
+	void shootFrom(sf::Vector2i);
 private:
 	bool activity;
+	int delay = 1;
 };
-

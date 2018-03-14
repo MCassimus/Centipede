@@ -16,6 +16,7 @@ public:
 	static bool isMushroomCell(unsigned int, unsigned int);
 	void reset();
 	static void placeObject(unsigned int, unsigned int, GameObject *);
+	static unsigned int clock;
 private:
 	void resolveCollisions();
 

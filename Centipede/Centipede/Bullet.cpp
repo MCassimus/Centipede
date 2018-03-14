@@ -1,26 +1,33 @@
 #include "stdafx.h"
 #include "Bullet.h"
 #include "GameObject.h"
+#include "CentipedeGame.h"
 
 
 Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(window, x, y)
 {
 	window = renderWindow;
 	setVelocity(sf::Vector2i(0, -1));
-	object.setTextureRect(sf::IntRect(50, 50, 100, 100));
-	object.setColor(sf::Color::Red);
+	setTexture("../Sprites/bullet.png");
 }
 
 
 void Bullet::update()
 {
-	currentPosition.x += velocity.x;
-	currentPosition.y += velocity.y;
-	std::cout << currentPosition.x << ',' << currentPosition.y << std::endl;
+	
+	if (CentipedeGame::clock % delay == 0) {
+		currentPosition.x += velocity.x;
+		currentPosition.y += velocity.y;
+	}
+	if (currentPosition.y < 0) {
+		activity = false;
+	}
+	else
+		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, this);
 }
 
 
-void Bullet::collides(GameObject*)
+void Bullet::collideWith(GameObject*)
 {
 	activity = false;
 }
@@ -29,14 +36,9 @@ bool Bullet::isActive() {
 	return activity;
 }
 
-void Bullet::goToPosition(sf::Vector2i newPos)
+void Bullet::shootFrom(sf::Vector2i newPos)
 {
-	object.setPosition(static_cast<sf::Vector2f>(newPos));
+	currentPosition.x = newPos.x;
+	currentPosition.y = newPos.y-1;
 	activity = true;
-}
-
-void Bullet::render() {
-	GameObject::render();
-	std::cout << "a bullet should be rendered!!!!!!!!!!!\n";
-	std::cout << object.getPosition().x << ',' << object.getPosition().y << std::endl;
 }
