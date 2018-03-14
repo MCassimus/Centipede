@@ -10,7 +10,5 @@ public:
 	~Player();
 protected:
 	int health = 3;
-	sf::Vector2u currentPosition = sf::Vector2u(15, 30);
-	//std::vector<sf::RectangleShape> bullets;
 	Bullet bullet;
 };

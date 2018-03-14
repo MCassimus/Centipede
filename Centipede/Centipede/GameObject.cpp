@@ -2,7 +2,7 @@
 #include "GameObject.h"
 
 sf::Vector2u GameObject::oWD = sf::Vector2u(0,0);
-sf::Vector2u GameObject::interval = sf::Vector2u(0, 0);
+sf::Vector2i GameObject::interval = sf::Vector2i(0, 0);
 
 GameObject::GameObject()
 {
@@ -12,8 +12,8 @@ GameObject::GameObject()
 GameObject::GameObject(sf::RenderWindow * renderWindow, int x, int y)
 {
 	window = renderWindow;
-	interval = oWD / static_cast<unsigned int>(30);
-	currentPosition = sf::Vector2u(x, y);
+	interval = static_cast<sf::Vector2i>(oWD / static_cast<unsigned int>(30));
+	currentPosition = sf::Vector2i(x, y);
 }
 
 
@@ -39,7 +39,7 @@ sf::Vector2i GameObject::getVelocity() const
 	return velocity;
 }
 
-sf::Vector2u GameObject::getPosition() const
+sf::Vector2i GameObject::getPosition() const
 {
 	return currentPosition;
 }
@@ -55,7 +55,7 @@ void GameObject::setTexture(const char * filePath)
 
 void GameObject::render()
 {
-	//setPixels();
+	setPixels();
 	window->draw(object);
 }
 

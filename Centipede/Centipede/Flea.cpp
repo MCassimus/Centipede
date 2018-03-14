@@ -42,6 +42,6 @@ void Flea::update()
 
 		//check if bottom of screen
 		if (currentPosition.y == 30)
-			currentPosition = sf::Vector2u(rand() % 30, 0);
+			currentPosition = sf::Vector2i(rand() % 30, 0);
 	}
 }

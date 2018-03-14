@@ -16,8 +16,7 @@ void Bullet::update()
 {
 	currentPosition.x += velocity.x;
 	currentPosition.y += velocity.y;
-	object.setPosition(static_cast<sf::Vector2f>(currentPosition*interval.x));
-	std::cout << object.getPosition().x << ',' << object.getPosition().y << std::endl;
+	std::cout << currentPosition.x << ',' << currentPosition.y << std::endl;
 }
 
 
