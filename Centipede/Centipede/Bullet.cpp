@@ -34,3 +34,9 @@ void Bullet::goToPosition(sf::Vector2i newPos)
 	object.setPosition(static_cast<sf::Vector2f>(newPos));
 	activity = true;
 }
+
+void Bullet::render() {
+	GameObject::render();
+	std::cout << "a bullet should be rendered!!!!!!!!!!!\n";
+	std::cout << object.getPosition().x << ',' << object.getPosition().y << std::endl;
+}

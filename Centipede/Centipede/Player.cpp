@@ -7,6 +7,7 @@
 Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y), bullet(renderWindow, x, y)
 {
 	setTexture("../Sprites/player.png");
+	health = 3;
 }
 
 
@@ -39,7 +40,7 @@ void Player::update()
 	if (bullet.isActive()) {
 		bullet.update();
 		bullet.render();
-		std::cout << "render!!\n";
+		//std::cout << "render!!\n";
 	}
 }
 

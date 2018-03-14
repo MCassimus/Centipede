@@ -9,6 +9,5 @@ public:
 	void update();
 	~Player();
 protected:
-	int health = 3;
 	Bullet bullet;
 };
