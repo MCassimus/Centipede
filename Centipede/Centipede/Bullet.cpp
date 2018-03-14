@@ -6,37 +6,32 @@
 Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(window, x, y)
 {
 	window = renderWindow;
-	setVelocity(sf::Vector2i(1, 0));
-	object.setTextureRect(sf::IntRect(5, 5, 10, 10));
+	setVelocity(sf::Vector2i(0, -1));
+	object.setTextureRect(sf::IntRect(50, 50, 100, 100));
 	object.setColor(sf::Color::Red);
 }
 
 
 void Bullet::update()
 {
-	setPixels();
-	object.setPosition(object.getPosition().x, object.getPosition().y + velocity.y);
-	object.setPosition(static_cast<sf::Vector2f>(getNearestCellPos(static_cast<sf::Vector2i>(object.getPosition()))));
+	currentPosition.x += velocity.x;
+	currentPosition.y += velocity.y;
+	object.setPosition(static_cast<sf::Vector2f>(currentPosition*interval.x));
+	std::cout << object.getPosition().x << ',' << object.getPosition().y << std::endl;
 }
 
 
 void Bullet::collides(GameObject*)
 {
-	health = 0;
-	
-	return;
+	activity = false;
 }
 
 bool Bullet::isActive() {
-	return true;
+	return activity;
 }
 
-void Bullet::goToPosition(sf::Vector2f newPos)
+void Bullet::goToPosition(sf::Vector2i newPos)
 {
-	object.setPosition(newPos);
-}
-
-
-Bullet::~Bullet()
-{
+	object.setPosition(static_cast<sf::Vector2f>(newPos));
+	activity = true;
 }
