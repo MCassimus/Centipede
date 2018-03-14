@@ -34,5 +34,4 @@ protected:
 	sf::Vector2i currentPosition;
 	sf::RenderWindow * window = nullptr;
 	sf::Texture textureTemp;
-	
 };
