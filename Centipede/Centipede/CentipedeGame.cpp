@@ -3,6 +3,7 @@
 #include "Mushroom.h"
 #include "Player.h"
 #include "Scorpion.h"
+#include "CentipedeSegment.h"
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
@@ -34,6 +35,7 @@ CentipedeGame::~CentipedeGame()
 bool CentipedeGame::update()
 {
 	static bool liveFlea = false;
+	static bool playerLife = true;
 	static bool liveScorpion = false;
 	//frame = !frame;
 
@@ -65,8 +67,8 @@ bool CentipedeGame::update()
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 			{
-				if(dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
-					printf("%i\n", map[y][x][frame].at(i)->getHealth());
+				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr && map[y][x][frame].at(i)->getHealth() == 0)
+					playerLife = false;
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
 					//check if object removed is flea
@@ -123,7 +125,7 @@ bool CentipedeGame::update()
 	
 	++clock;
 
-	return true;//return true while player alive
+	return playerLife;//return true while player alive
 }
 
 
@@ -176,9 +178,10 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 void CentipedeGame::reset()
 {
 	int yRandPos;
-	int xRandPos;
+	int xRandPos = rand() % 30;
 
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
+	placeObject(xRandPos, 0, new CentipedeSegment(window, xRandPos, 0));
 	
 	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)

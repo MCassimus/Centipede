@@ -9,6 +9,7 @@ public:
 	Flea(sf::RenderWindow *, int, int);
 	~Flea();
 	void update();
+	void collideWith(GameObject * other);
 private:
 	int points;
 	unsigned int delay = 6;

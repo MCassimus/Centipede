@@ -45,3 +45,10 @@ void Flea::update()
 			currentPosition = sf::Vector2i(rand() % 30, 0);
 	}
 }
+
+
+void Flea::collideWith(GameObject * other)
+{
+	if (dynamic_cast<Bullet *>(other) != nullptr)
+		health = 0;
+}
