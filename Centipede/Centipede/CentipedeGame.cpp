@@ -20,6 +20,14 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 
 CentipedeGame::~CentipedeGame()
 {
+	for (int y = 0; y < 30; y++)
+		for (int x = 0; x < 30; x++)
+			for (int i = 0; i < map[x][y][frame].size(); ++i)
+			{
+				delete map[x][y][frame].at(i);
+				map[x][y][frame].erase(i + map[x][y][frame].begin());
+			}
+				
 }
 
 
@@ -48,6 +56,7 @@ bool CentipedeGame::update()
 				placeObject(goTemp->getPosition().x, goTemp->getPosition().y, goTemp);
 			}
 	#pragma endregion
+
 	resolveCollisions();
 
 	//remove items with 0 health
@@ -170,10 +179,6 @@ void CentipedeGame::reset()
 	int xRandPos;
 
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
-	
-	/*xRandPos = rand() % 30 < 15 ? 0 : 29;
-	yRandPos = rand() % 17;
-	placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));*/
 	
 	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)

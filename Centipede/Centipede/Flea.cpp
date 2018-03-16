@@ -11,7 +11,7 @@ Flea::Flea()
 
 Flea::Flea(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
 {
-	setTexture("../Sprites/flea.png");
+ 	setTexture("../Sprites/flea.png");
 	object.setScale(sf::Vector2f(.5,.5));
 	object.setOrigin(-6, -10);
 	object.setPosition(sf::Vector2f(0, 0));
