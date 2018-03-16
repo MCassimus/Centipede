@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameObject.h"
+#include <iostream>
 
 sf::Vector2u GameObject::oWD = sf::Vector2u(0,0);
 sf::Vector2i GameObject::interval = sf::Vector2i(0, 0);
@@ -14,6 +15,12 @@ GameObject::GameObject(sf::RenderWindow * renderWindow, int x, int y)
 	window = renderWindow;
 	interval = static_cast<sf::Vector2i>(oWD / static_cast<unsigned int>(30));
 	currentPosition = sf::Vector2i(x, y);
+}
+
+GameObject::GameObject(sf::RenderWindow * renderWindow)
+{
+	window = renderWindow;
+	interval = static_cast<sf::Vector2i>(oWD / static_cast<unsigned int>(30));
 }
 
 
@@ -105,4 +112,8 @@ sf::Vector2i GameObject::getRelMousePos() {
 void GameObject::setPixels()
 {
 	object.setPosition(currentPosition.x * interval.x, currentPosition.y * interval.y);
+}
+
+void GameObject::die(GameObject *myself) {
+	delete myself;
 }

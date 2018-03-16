@@ -4,41 +4,50 @@
 #include "CentipedeGame.h"
 
 
-Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(window, x, y)
+Bullet::Bullet(sf::RenderWindow * renderWindow) : GameObject(window)
 {
 	window = renderWindow;
 	setVelocity(sf::Vector2i(0, -1));
 	setTexture("../Sprites/bullet.png");
+
+	health = 0;
+	std::cout << "ajsdlfkjsal\n";
 }
 
 
 void Bullet::update()
 {
-	
-	if (CentipedeGame::clock % delay == 0) {
-		currentPosition.x += velocity.x;
-		currentPosition.y += velocity.y;
+	if (health > 0) {
+
+		std::cout << CentipedeGame::clock << std::endl;
+		if (CentipedeGame::clock % delay == 0) {
+			currentPosition.x += velocity.x;
+			currentPosition.y += velocity.y;
+		}
+		if (currentPosition.y < 0) {
+			health = false;
+		}
 	}
-	if (currentPosition.y < 0) {
-		activity = false;
-	}
-	else
-		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, this);
 }
 
 
-void Bullet::collideWith(GameObject*)
+void Bullet::collideWith(GameObject *other)
 {
-	activity = false;
+	health = 0;
 }
 
-bool Bullet::isActive() {
-	return activity;
+bool Bullet::isAlive() {
+	return health > 0;
 }
 
-void Bullet::shootFrom(sf::Vector2i newPos)
+void Bullet::shootFrom(sf::Vector2i pos)
 {
-	currentPosition.x = newPos.x;
-	currentPosition.y = newPos.y-1;
-	activity = true;
+	currentPosition.x = pos.x;
+	currentPosition.y = pos.y - 1;
+	health = 1;
+	CentipedeGame::placeObject(currentPosition.x, currentPosition.y, this);
+}
+
+void Bullet::die(GameObject*) {
+	//do nothing
 }

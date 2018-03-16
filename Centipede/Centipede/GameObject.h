@@ -4,6 +4,7 @@ class GameObject
 {
 public:
 	GameObject();
+	GameObject(sf::RenderWindow *);
 	GameObject(sf::RenderWindow *, int, int);
 	~GameObject();
 	int getPointValue() const;
@@ -21,6 +22,8 @@ public:
 
 	static sf::Vector2u oWD;
 	static sf::Vector2i interval;
+
+	virtual void die(GameObject*);
 protected:
 	void setPointValue(unsigned int);
 	void setVelocity(sf::Vector2i);

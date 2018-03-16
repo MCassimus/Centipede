@@ -7,8 +7,7 @@ class Player : public GameObject
 public:
 	Player(sf::RenderWindow *, int, int);
 	void update();
-	void render();
 	~Player();
 protected:
-	Bullet bullet;
+	Bullet *bullet;
 };
