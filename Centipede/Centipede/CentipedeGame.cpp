@@ -67,8 +67,13 @@ bool CentipedeGame::update()
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 			{
+<<<<<<< HEAD
 				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr && map[y][x][frame].at(i)->getHealth() == 0)
 					playerLife = false;
+=======
+				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
+					;//printf("%i\n", map[y][x][frame].at(i)->getHealth());
+>>>>>>> d072f5bd8390f3d11179ff3e19e539fe6827663e
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
 					//check if object removed is flea
@@ -77,7 +82,7 @@ bool CentipedeGame::update()
 					if (liveScorpion && dynamic_cast<Scorpion *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
 						liveScorpion = false;
 
-					delete map[y][x][frame].at(i);
+					map[y][x][frame].at(i) ->die(map[y][x][frame].at(i));
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
 			}
