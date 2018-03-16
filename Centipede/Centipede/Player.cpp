@@ -4,10 +4,11 @@
 
 
 
-Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y), bullet(renderWindow, x, y)
+Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y)
 {
 	setTexture("../Sprites/player.png");
 	health = 3;
+	bullet = new Bullet(renderWindow);
 }
 
 
@@ -27,8 +28,8 @@ void Player::update()
 		currentPosition.x = 29;
 
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet.isActive())
-		bullet.shootFrom(currentPosition);
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet->isAlive())
+		bullet->shootFrom(currentPosition);
 
 
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
@@ -36,19 +37,9 @@ void Player::update()
 	//test player death
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		health = 0;
-
-	if (bullet.isActive())
-		bullet.update();
 }
 
 
 Player::~Player()
 {
-}
-
-void Player::render() {
-	GameObject::render();
-	if (bullet.isActive()) {
-		bullet.render();
-	}
 }

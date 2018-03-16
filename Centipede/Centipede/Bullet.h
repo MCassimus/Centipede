@@ -6,12 +6,12 @@
 class Bullet: public GameObject
 {
 public:
-	Bullet(sf::RenderWindow * renderWindow, int, int);
+	Bullet(sf::RenderWindow * renderWindow);
 	void update();
 	void collideWith(GameObject*);
-	bool isActive();
+	bool isAlive();
 	void shootFrom(sf::Vector2i);
+	void die(GameObject*);
 private:
-	bool activity;
-	int delay = 1;
+	int delay = 2;
 };
