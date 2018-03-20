@@ -8,6 +8,7 @@ public:
 	Player(sf::RenderWindow *, int, int);
 	void update();
 	~Player();
+	char* getType();
 protected:
 	Bullet *bullet;
 };

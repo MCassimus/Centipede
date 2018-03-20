@@ -117,3 +117,7 @@ void GameObject::setPixels()
 void GameObject::die(GameObject *myself) {
 	delete myself;
 }
+
+char* GameObject::getType() {
+	return "GameObject";
+}
