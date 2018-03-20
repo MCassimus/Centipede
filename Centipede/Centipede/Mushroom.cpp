@@ -15,17 +15,6 @@ Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, 
 }
 
 
-//Mushroom::Mushroom(sf::RenderWindow * window, sf::Vector2f position) : GameObject(window, )
-//{
-//	pointValue = 1;
-//	poisoned = false;
-//	health = 4;
-//	object.setOrigin(-2, -2);
-//	object.setPosition(static_cast<sf::Vector2f>(getNearestCellPos(static_cast<sf::Vector2i>(position))));
-//	object.setScale(1.25, 1.25);
-//}
-
-
 void Mushroom::update()
 {
 	setPixels();
@@ -47,6 +36,9 @@ void Mushroom::update()
 
 	if (poisoned)
 		object.setColor(sf::Color::Magenta);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		health = 0;
 }
 
 
