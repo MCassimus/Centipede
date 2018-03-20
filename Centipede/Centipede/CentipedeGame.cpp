@@ -23,10 +23,10 @@ CentipedeGame::~CentipedeGame()
 {
 	for (int y = 0; y < 30; y++)
 		for (int x = 0; x < 30; x++)
-			for (int i = 0; i < map[x][y][frame].size(); ++i)
+			for (int i = 0; i < map[y][x][frame].size(); ++i)
 			{
-				delete map[x][y][frame].at(i);
-				map[x][y][frame].erase(i + map[x][y][frame].begin());
+				delete map[y][x][frame].at(i);
+				map[y][x][frame].erase(i + map[y][x][frame].begin());
 			}
 				
 }
@@ -37,7 +37,6 @@ bool CentipedeGame::update()
 	static bool liveFlea = false;
 	static bool playerLife = true;
 	static bool liveScorpion = false;
-	//frame = !frame;
 
 	#pragma region updateObjects
 	for (int y = 0; y < 30; ++y)
@@ -46,18 +45,22 @@ bool CentipedeGame::update()
 				map[y][x][frame].at(i)->update();
 	#pragma endregion	
 
-	//moves objects to the coordinates of grid matching to coordinates stored in object
+	frame = !frame;
+
+	//migrates map from frame a to frame b
 	#pragma region moveMap
-	GameObject * goTemp = nullptr;
-	for (int y = 0; y < 30; y++)
-		for(int x = 0; x < 30; x++)
-			for (int i = 0; i < map[x][y][frame].size(); ++i)
+	for (int y = 0; y < 30; ++y)
+		for (int x = 0; x < 30; ++x)
+			for (int i = 0; i < map[y][x][!frame].size(); ++i)
 			{
-				goTemp = map[x][y][frame].at(i);
-				map[x][y][frame].erase(i + map[x][y][frame].begin());
-				placeObject(goTemp->getPosition().x, goTemp->getPosition().y, goTemp);
+				placeObject(map[y][x][!frame].at(i)->getPosition().x, map[y][x][!frame].at(i)->getPosition().y, map[y][x][!frame].at(i));
 			}
 	#pragma endregion
+
+	for (int y = 0; y < 30; y++)
+		for (int x = 0; x < 30; x++) {
+			map[y][x][!frame].clear();
+		}
 
 	resolveCollisions();
 
@@ -67,14 +70,6 @@ bool CentipedeGame::update()
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 			{
-				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr && map[y][x][frame].at(i)->getHealth() == 0)
-					playerLife = false;
-				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
-					;//printf("%i\n", map[y][x][frame].at(i)->getHealth());
-				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr && map[y][x][frame].at(i)->getHealth() == 0) {
-					playerLife = false;
-					throw "Game Over!\n";
-				}
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
 					//check if object removed is flea
@@ -95,7 +90,7 @@ bool CentipedeGame::update()
 	for (int y = 28; y > 17; y--)//check mushrooms in player position
 		for (int x = 0; x < 29; x++)
 			if (isMushroomCell(x, y))
-				mushroomCount++;
+				++mushroomCount;
 
 	if (mushroomCount < 5 && !liveFlea)
 	{
@@ -124,7 +119,7 @@ bool CentipedeGame::update()
 		//clear map
 		for (int y = 0; y < 30; y++)
 			for (int x = 0; x < 30; x++)
-				map[x][y][frame].clear();
+				map[y][x][frame].clear();
 
 		reset();
 	}

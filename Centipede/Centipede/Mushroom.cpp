@@ -17,8 +17,6 @@ Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, 
 
 void Mushroom::update()
 {
-	if (health < 0)
-		health = 0;
 
 	setPixels();
 	switch (health)
@@ -69,8 +67,12 @@ void Mushroom::collideWith( GameObject* other ) //dynamic_cast returns null poin
 	{
 		printf("collide with bullet\n");
 		printf("Mushroom health is %i\n", health);
-		health--;
+		if (health > 0) --health;
 	}
+}
+
+char* Mushroom::getType() {
+	return "Mushroom";
 }
 
 
