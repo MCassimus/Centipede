@@ -2,8 +2,6 @@
 #include "Player.h"
 #include "CentipedeGame.h"
 
-
-
 Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y)
 {
 	setTexture("../Sprites/player.png");
@@ -27,9 +25,11 @@ void Player::update()
 	if (currentPosition.x > 29)
 		currentPosition.x = 29;
 
+	std::cout << "Player is being updated now!----------------------------\n";
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet->isAlive())
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet->isAlive()) {
 		bullet->shootFrom(currentPosition);
+	}
 
 
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
@@ -37,6 +37,10 @@ void Player::update()
 	//test player death
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		health = 0;
+}
+
+char* Player::getType() {
+	return "Player";
 }
 
 

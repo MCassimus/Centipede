@@ -24,6 +24,9 @@ public:
 	static sf::Vector2i interval;
 
 	virtual void die(GameObject*);
+
+	virtual char* getType();
+
 protected:
 	void setPointValue(unsigned int);
 	void setVelocity(sf::Vector2i);
