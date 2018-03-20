@@ -13,5 +13,5 @@ public:
 	void shootFrom(sf::Vector2i);
 	void die(GameObject*);
 private:
-	int delay = 2;
+	int delay = 1;
 };

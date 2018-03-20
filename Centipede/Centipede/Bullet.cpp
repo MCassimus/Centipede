@@ -19,13 +19,13 @@ void Bullet::update()
 {
 	if (health > 0) {
 
-		std::cout << CentipedeGame::clock << std::endl;
-		if (CentipedeGame::clock % delay == 0) {
+		//std::cout << CentipedeGame::clock << std::endl;
+		if (currentPosition.y == 0) {
+			health = 0;
+		}
+		else if (CentipedeGame::clock % delay == 0) {
 			currentPosition.x += velocity.x;
 			currentPosition.y += velocity.y;
-		}
-		if (currentPosition.y < 0) {
-			health = false;
 		}
 	}
 }
