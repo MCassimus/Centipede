@@ -6,14 +6,15 @@
 class Bullet: public GameObject
 {
 public:
-	Bullet(sf::RenderWindow * renderWindow);
+	Bullet(sf::RenderWindow * renderWindow, int, int);
+	~Bullet();
 	void update();
 	void collideWith(GameObject*);
-	bool isAlive();
-	void shootFrom(sf::Vector2i);
-	void die(GameObject*);
-	char* getType();
-
+	//bool isAlive();
+	//void shootFrom(sf::Vector2i);
+	//void die(GameObject*);
+	//char* getType();
+	static bool liveBullet;
 private:
 	int delay = 1;
 };
