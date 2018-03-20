@@ -12,10 +12,10 @@ CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y
 	setTexture("../Sprites/centipedeSegment.png");
 
 	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
-	if (velocity.x < 0)
+	/*if (velocity.x < 0)
 		object.rotate(90);
 	else
-		object.rotate(-90);
+		object.rotate(-90);*/
 }
 
 
@@ -26,18 +26,23 @@ CentipedeSegment::~CentipedeSegment()
 
 void CentipedeSegment::update()
 {
-	if (CentipedeGame::clock % 2 == 0)
+	static bool movedDown = false;
+
+	if (CentipedeGame::clock % 8 == 0)
 	{
-		if (currentPosition.x == 0 || currentPosition.x == 29)
+		//if edge of screen 
+		if (!movedDown && currentPosition.x == 0 || currentPosition.x == 29)
 		{
-			velocity.x *= -1;
+			//flip velocity and move down a row
 			currentPosition.y++;
-			//object.setScale(-object.getScale());
-			//object.rotate(180);
+			velocity.x *= -1;
 		}
 
+		//apply velocity
 		currentPosition.x += velocity.x;
 		currentPosition.y += velocity.y;
+
+			
 
 		//system("pause");
 
@@ -63,7 +68,7 @@ void CentipedeSegment::update()
 		//if(velocity.y != 0 && currentPosition.y == 17)
 		//	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
 		//
-		//printf("%i %i\n", currentPosition.x, currentPosition.y);
+		printf("%i %i\n", currentPosition.x, currentPosition.y);
 	}
 
 	if (isHead)
