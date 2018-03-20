@@ -16,5 +16,9 @@ private:
 	Player *player;
 	int pointValue; 
 	int distanceFromPlayer;
-	bool takeHealth();
+	int scuttle; //for animation
+	unsigned int frameMax = 40;
+	sf::Vector2i velocity[6];
+	int count; //for direction change
+	bool lastDir;
 };
