@@ -25,7 +25,7 @@ void Player::update()
 	if (currentPosition.x > 29)
 		currentPosition.x = 29;
 
-	std::cout << "Player is being updated now!----------------------------\n";
+	//std::cout << "Player is being updated now!----------------------------\n";
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet->isAlive()) {
 		bullet->shootFrom(currentPosition);
