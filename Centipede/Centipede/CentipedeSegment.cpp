@@ -69,7 +69,7 @@ void CentipedeSegment::update()
 		//if(velocity.y != 0 && currentPosition.y == 17)
 		//	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
 		//
-		printf("%i %i\n", currentPosition.x, currentPosition.y);
+		//printf("%i %i\n", currentPosition.x, currentPosition.y);
 	}
 
 	if (isHead)
