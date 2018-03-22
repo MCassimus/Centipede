@@ -14,6 +14,5 @@ public:
 	void collideWith(GameObject*);
 	char* getType();
 private:
-	int pointValue;
 	bool poisoned;
 };

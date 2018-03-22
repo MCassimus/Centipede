@@ -31,7 +31,6 @@ GameObject::~GameObject()
 
 int GameObject::getPointValue()
 {
-	std::cout << getType() << " is worth " << pointValue << std::endl;
 	return pointValue;
 }
 

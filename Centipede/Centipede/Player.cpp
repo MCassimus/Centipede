@@ -6,13 +6,11 @@ Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (rend
 {
 	setTexture("../Sprites/player.png");
 	health = 3;
-	/*bullet = new Bullet(renderWindow);*/
 }
 
 
 void Player::update()
 {
-
 	currentPosition = getNearestCellPos(getRelMousePos());
 	currentPosition /= static_cast<int>(interval.x);
 
@@ -25,28 +23,15 @@ void Player::update()
 	if (currentPosition.x > 29)
 		currentPosition.x = 29;
 
-	//std::cout << "Player is being updated now!----------------------------\n";
-
-	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet->isAlive()) {
-		bullet->shootFrom(currentPosition);
-	}*/
-
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Bullet::liveBullet)
 	{
 		bullet = new Bullet(window, currentPosition.x, currentPosition.y);
 		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, bullet);
 	}
 
-	if (!Bullet::liveBullet)
-		bullet == nullptr;
-		
-
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
-
-	//test player death
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		health = 0;
 }
+
 
 char* Player::getType() {
 	return "Player";

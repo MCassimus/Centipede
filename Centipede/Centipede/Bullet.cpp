@@ -14,7 +14,7 @@ Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(rende
 	setTexture("../Sprites/bullet.png");
 	object.setOrigin(-4, -4);
 	liveBullet = true;
-	pointValue = 40000000;
+	pointValue = 0;
 }
 
 
@@ -28,14 +28,6 @@ void Bullet::update()
 {
 	if(CentipedeGame::clock % delay == 0)
 		currentPosition.y += velocity.y;
-
-	printf("bullet pos %i %i\n", currentPosition.x, currentPosition.y);
-
-	if (currentPosition.x <= 0 && currentPosition.x >= 29 && currentPosition.y <= 0 && currentPosition.y >= 29)
-	{
-		health = 0;
-		liveBullet = false;
-	}
 }
 
 
