@@ -12,6 +12,7 @@ public:
 	bool getPoisoned();
 	void resetHeath();
 	void collideWith(GameObject*);
+	char* getType();
 private:
 	int pointValue;
 	bool poisoned;

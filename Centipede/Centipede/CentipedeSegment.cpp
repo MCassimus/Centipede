@@ -8,6 +8,7 @@ CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y
 {
 	pointValue = 10;
 	isHead = true;
+	health = 2;
 
 	setTexture("../Sprites/centipedeSegment.png");
 
@@ -68,7 +69,7 @@ void CentipedeSegment::update()
 		//if(velocity.y != 0 && currentPosition.y == 17)
 		//	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
 		//
-		printf("%i %i\n", currentPosition.x, currentPosition.y);
+		//printf("%i %i\n", currentPosition.x, currentPosition.y);
 	}
 
 	if (isHead)
@@ -83,4 +84,7 @@ void CentipedeSegment::collideWith(GameObject * other)
 		if (dynamic_cast<Mushroom *>(other)->getPoisoned())
 			velocity = sf::Vector2i(0, 1);
 	}*/
+
+	if (dynamic_cast<Bullet *>(other) != nullptr)
+		health --;
 }

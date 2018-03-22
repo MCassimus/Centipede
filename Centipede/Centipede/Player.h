@@ -10,5 +10,5 @@ public:
 	~Player();
 	char* getType();
 protected:
-	Bullet *bullet;
+	Bullet * bullet = nullptr;
 };

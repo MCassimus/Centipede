@@ -6,7 +6,7 @@ Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (rend
 {
 	setTexture("../Sprites/player.png");
 	health = 3;
-	bullet = new Bullet(renderWindow);
+	/*bullet = new Bullet(renderWindow);*/
 }
 
 
@@ -27,10 +27,22 @@ void Player::update()
 
 	//std::cout << "Player is being updated now!----------------------------\n";
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet->isAlive()) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet->isAlive()) {
 		bullet->shootFrom(currentPosition);
+	}*/
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Bullet::liveBullet)
+	{
+		bullet = new Bullet(window, currentPosition.x, currentPosition.y);
+		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, bullet);
 	}
 
+	if (!Bullet::liveBullet)
+		bullet == nullptr;
+
+	if (bullet == nullptr)
+		printf("thing");
+		
 
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
 
