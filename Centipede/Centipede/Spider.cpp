@@ -144,6 +144,7 @@ void Spider::update()
 				setVelocity(velocity[5]);
 			}
 		}
+
 		if (getVelocity() == velocity[5])
 		{
 			lastDir = 1;
@@ -176,6 +177,7 @@ void Spider::update()
 				setVelocity(velocity[2]);
 			}
 		}
+
 		if (getVelocity() == velocity[0])
 		{
 			count++;
@@ -203,6 +205,7 @@ void Spider::update()
 				count = 0;
 			}
 		}
+
 		if (getVelocity() == velocity[3])
 		{
 			count++;
