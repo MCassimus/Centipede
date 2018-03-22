@@ -207,6 +207,8 @@ void CentipedeGame::resolveCollisions()
 
 void CentipedeGame::placeObject(unsigned int x, unsigned int y, GameObject * object)
 {
-	if(x < 30 && y < 30)//keep object in bounds of array
+	if (x < 30 && y < 30)//keep object in bounds of array
 		map[y][x][frame].push_back(object);
+	else
+		object->die(object);
 }

@@ -36,11 +36,12 @@ void Bullet::update()
 
 void Bullet::collideWith(GameObject * other)
 {
-	if (dynamic_cast<Mushroom *>(other) != nullptr)
-	{
-		health = 0;
-		liveBullet = false;
-	}
+	health = 0;
+}
+
+void Bullet::die(GameObject *self) {
+	liveBullet = false;
+	delete self;
 }
 
 //#include "stdafx.h"
@@ -117,7 +118,3 @@ void Bullet::collideWith(GameObject * other)
 //	return "Bullet";
 //}
 //
-//void Bullet::die(GameObject*) {
-//	//do nothing
-//	delete this;
-//}
