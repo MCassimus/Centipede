@@ -8,15 +8,11 @@ CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y
 {
 	pointValue = 10;
 	isHead = true;
-	health = 2;
+	health = 1;
 
 	setTexture("../Sprites/centipedeSegment.png");
 
 	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
-	/*if (velocity.x < 0)
-		object.rotate(90);
-	else
-		object.rotate(-90);*/
 }
 
 
