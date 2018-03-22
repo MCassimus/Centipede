@@ -39,9 +39,6 @@ void Player::update()
 
 	if (!Bullet::liveBullet)
 		bullet == nullptr;
-
-	if (bullet == nullptr)
-		printf("thing");
 		
 
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));

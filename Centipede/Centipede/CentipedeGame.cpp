@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Scorpion.h"
 #include "CentipedeSegment.h"
+#include "Spider.h"
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
@@ -183,6 +184,17 @@ void CentipedeGame::reset()
 
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
 	placeObject(xRandPos, 0, new CentipedeSegment(window, xRandPos, 0));
+
+	Player * player = nullptr;
+
+	//find player
+	for (int y = 0; y < 30; ++y)
+		for (int x = 0; x < 30; ++x)
+			for (int i = 0; i < map[y][x][frame].size(); ++i)
+				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
+					player = dynamic_cast<Player *>(map[y][x][frame].at(i));
+
+	placeObject(0, 20, new Spider(window, 0, 20, *player));
 	
 	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)

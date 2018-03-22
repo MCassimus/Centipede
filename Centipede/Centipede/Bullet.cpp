@@ -118,5 +118,3 @@ char* Bullet::getType() {
 //	currentPosition.y = pos.y/* - 1*/;
 //	CentipedeGame::placeObject(currentPosition.x, currentPosition.y, this);
 //}
-//
-//
