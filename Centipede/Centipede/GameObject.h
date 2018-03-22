@@ -7,7 +7,7 @@ public:
 	GameObject(sf::RenderWindow *);
 	GameObject(sf::RenderWindow *, int, int);
 	~GameObject();
-	int getPointValue() const;
+	virtual int getPointValue();
 	unsigned int getHealth() const;
 	sf::Vector2i getVelocity() const;
 	sf::Vector2i getPosition() const;

@@ -13,7 +13,7 @@ public:
 	//bool isAlive();
 	//void shootFrom(sf::Vector2i);
 	unsigned int die(bool&);
-	//char* getType();
+	char* getType();
 	static bool liveBullet;
 private:
 	int delay = 1;

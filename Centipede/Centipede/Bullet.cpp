@@ -13,6 +13,7 @@ Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(rende
 	setVelocity(sf::Vector2i(0, -1));
 	setTexture("../Sprites/bullet.png");
 	liveBullet = true;
+	pointValue = 40000000;
 }
 
 Bullet::~Bullet()
@@ -42,6 +43,10 @@ void Bullet::collideWith(GameObject * other)
 unsigned int Bullet::die(bool &readyToDie) {
 	liveBullet = false;
 	return GameObject::die(readyToDie);
+}
+
+char* Bullet::getType() {
+	return "Bullet";
 }
 
 //#include "stdafx.h"
@@ -114,7 +119,4 @@ unsigned int Bullet::die(bool &readyToDie) {
 //	CentipedeGame::placeObject(currentPosition.x, currentPosition.y, this);
 //}
 //
-//char* Bullet::getType() {
-//	return "Bullet";
-//}
 //

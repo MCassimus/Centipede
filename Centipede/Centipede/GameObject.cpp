@@ -29,8 +29,9 @@ GameObject::~GameObject()
 }
 
 
-int GameObject::getPointValue() const
+int GameObject::getPointValue()
 {
+	std::cout << getType() << " is worth " << pointValue << std::endl;
 	return pointValue;
 }
 
@@ -116,8 +117,7 @@ void GameObject::setPixels()
 
 unsigned int GameObject::die(bool &readyToDie) {
 	readyToDie = true;
-	std::cout << getType() << " is worth " << pointValue << std::endl;
-	return pointValue;
+	return getPointValue();
 }
 
 char* GameObject::getType() {
