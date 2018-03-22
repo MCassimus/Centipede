@@ -22,7 +22,7 @@ Bullet::~Bullet()
 
 void Bullet::update()
 {
-	if(CentipedeGame::clock % 2 == 0)
+	if(CentipedeGame::clock % delay == 0)
 		currentPosition.y += velocity.y;
 
 	printf("bullet pos %i %i\n", currentPosition.x, currentPosition.y);
@@ -39,9 +39,9 @@ void Bullet::collideWith(GameObject * other)
 	health = 0;
 }
 
-void Bullet::die(GameObject *self) {
+unsigned int Bullet::die(bool &readyToDie) {
 	liveBullet = false;
-	delete self;
+	return GameObject::die(readyToDie);
 }
 
 //#include "stdafx.h"

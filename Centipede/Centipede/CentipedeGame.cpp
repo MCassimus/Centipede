@@ -7,7 +7,7 @@
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
-unsigned int CentipedeGame::clock = 0;
+unsigned int CentipedeGame::clock = 0, CentipedeGame::score = 0;
 
 
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD)
@@ -78,7 +78,7 @@ bool CentipedeGame::update()
 					if (liveScorpion && dynamic_cast<Scorpion *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
 						liveScorpion = false;
 
-					map[y][x][frame].at(i) ->die(map[y][x][frame].at(i));
+					kill(map[y][x][frame].at(i));
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
 			}
@@ -210,5 +210,14 @@ void CentipedeGame::placeObject(unsigned int x, unsigned int y, GameObject * obj
 	if (x < 30 && y < 30)//keep object in bounds of array
 		map[y][x][frame].push_back(object);
 	else
-		object->die(object);
+		CentipedeGame::kill(object);
+}
+
+void CentipedeGame::kill(GameObject *thing) {
+	bool readyToDie;
+	score += thing->die(readyToDie);
+	if (readyToDie)
+		delete thing;
+
+	std::cout << "score is now " << score << std::endl;
 }

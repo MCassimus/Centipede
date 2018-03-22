@@ -114,8 +114,10 @@ void GameObject::setPixels()
 	object.setPosition(currentPosition.x * interval.x, currentPosition.y * interval.y);
 }
 
-void GameObject::die(GameObject *myself) {
-	delete myself;
+unsigned int GameObject::die(bool &readyToDie) {
+	readyToDie = true;
+	std::cout << getType() << " is worth " << pointValue << std::endl;
+	return pointValue;
 }
 
 char* GameObject::getType() {

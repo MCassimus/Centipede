@@ -17,6 +17,7 @@ public:
 	void reset();
 	static void placeObject(unsigned int, unsigned int, GameObject *);
 	static unsigned int clock;
+	static void kill(GameObject*);
 private:
 	void resolveCollisions();
 
@@ -24,4 +25,5 @@ private:
 	static std::vector<GameObject *> map[30][30][2];
 	sf::RenderWindow * window = nullptr;
 	const sf::Vector2u originalWindowDimensions;
+	static unsigned int score;
 };

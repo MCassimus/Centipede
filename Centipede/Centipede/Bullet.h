@@ -12,7 +12,7 @@ public:
 	void collideWith(GameObject*);
 	//bool isAlive();
 	//void shootFrom(sf::Vector2i);
-	void die(GameObject*);
+	unsigned int die(bool&);
 	//char* getType();
 	static bool liveBullet;
 private:

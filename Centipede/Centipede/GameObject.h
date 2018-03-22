@@ -23,7 +23,7 @@ public:
 	static sf::Vector2u oWD;
 	static sf::Vector2i interval;
 
-	virtual void die(GameObject*);
+	virtual unsigned int die(bool&);
 
 	virtual char* getType();
 
