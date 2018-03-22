@@ -10,7 +10,6 @@ public:
 	void update();
 	void collideWith(GameObject*);
 private:
-	int pointValue;
 	int scuttle; // for walking animation
 	
 	unsigned int frameMax = 40;

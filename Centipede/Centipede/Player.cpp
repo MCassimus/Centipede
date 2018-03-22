@@ -25,23 +25,11 @@ void Player::update()
 	if (currentPosition.x > 29)
 		currentPosition.x = 29;
 
-	//std::cout << "Player is being updated now!----------------------------\n";
-
-	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !bullet->isAlive()) {
-		bullet->shootFrom(currentPosition);
-	}*/
-
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Bullet::liveBullet)
 	{
 		bullet = new Bullet(window, currentPosition.x, currentPosition.y);
 		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, bullet);
 	}
-
-	if (!Bullet::liveBullet)
-		bullet == nullptr;
-
-	if (bullet == nullptr)
-		printf("thing");
 		
 
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
