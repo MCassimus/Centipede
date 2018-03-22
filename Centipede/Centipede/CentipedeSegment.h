@@ -10,7 +10,6 @@ public:
 	void update();
 	void collideWith(GameObject *);
 private:
-	int pointValue;
-	int dir;
+	bool isPoisoned;
 	bool isHead;
 };

@@ -8,15 +8,12 @@ CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y
 {
 	pointValue = 10;
 	isHead = true;
-	health = 2;
+	health = 1;
+	isPoisoned = false;
 
 	setTexture("../Sprites/centipedeSegment.png");
 
 	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
-	/*if (velocity.x < 0)
-		object.rotate(90);
-	else
-		object.rotate(-90);*/
 }
 
 
@@ -28,38 +25,46 @@ CentipedeSegment::~CentipedeSegment()
 void CentipedeSegment::update()
 {
 	static bool movedDown = false;
-
 	if (CentipedeGame::clock % 8 == 0)
 	{
-		//if edge of screen 
-		if (!movedDown && currentPosition.x == 0 || currentPosition.x == 29)
+		if (!movedDown)
 		{
-			//flip velocity and move down a row
-			currentPosition.y++;
+
+			if (CentipedeGame::isMushroomCell(currentPosition.x + velocity.x, currentPosition.y + velocity.y) || currentPosition.x == 0 || currentPosition.x == 29)
+			{
+				currentPosition.y++;
+				movedDown = true;
+			}
+		}
+		else
+			movedDown = false;
+
+
+		if (movedDown && !isPoisoned)
+		{
 			velocity.x *= -1;
+			//movedDown = false;
+		}
+		else
+		{
+			//apply velocity
+			currentPosition.x += velocity.x;
+			currentPosition.y += velocity.y;
 		}
 
-		//apply velocity
-		currentPosition.x += velocity.x;
-		currentPosition.y += velocity.y;
-
-			
-
-		//system("pause");
-
-		////if at edge of screen flip dir and go down
-		//if (currentPosition.x == 0 || currentPosition.x == 29)
+			////if edge of screen 
+		//if (!movedDown && currentPosition.x == 0 || currentPosition.x == 29)
 		//{
-		//	currentPosition.y += 1;
+		//	//flip velocity and move down a row
+		//	currentPosition.y++;
 		//	velocity.x *= -1;
-		//	object.setScale(-object.getScale());
 		//}
-		////check mushroom collision from next cell
-		//else if (CentipedeGame::isMushroomCell(currentPosition.x + velocity.x, currentPosition.y + velocity.y))
+
+		////test if can move
+		//if (CentipedeGame::isMushroomCell(currentPosition.x + velocity.x, currentPosition.y + velocity.y))
 		//{
-		//	currentPosition.y += 1;
-		//	velocity.x *= -1;
-		//	object.setScale(-object.getScale());
+		//	currentPosition.y++;
+		//	movedDown = true;
 		//}
 
 		////apply velocity
@@ -68,8 +73,6 @@ void CentipedeSegment::update()
 
 		//if(velocity.y != 0 && currentPosition.y == 17)
 		//	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
-		//
-		//printf("%i %i\n", currentPosition.x, currentPosition.y);
 	}
 
 	if (isHead)
@@ -79,12 +82,6 @@ void CentipedeSegment::update()
 
 void CentipedeSegment::collideWith(GameObject * other)
 {
-	/*if (dynamic_cast<Mushroom *>(other) != nullptr)
-	{
-		if (dynamic_cast<Mushroom *>(other)->getPoisoned())
-			velocity = sf::Vector2i(0, 1);
-	}*/
-
 	if (dynamic_cast<Bullet *>(other) != nullptr)
 		health --;
 }
