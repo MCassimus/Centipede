@@ -11,11 +11,11 @@ std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
 unsigned int CentipedeGame::clock = 0, CentipedeGame::score = 0;
 
 
-CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD)
+CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD), linePoints(sf::Lines, 30 * 30)
 {
 	GameObject::oWD = oWD;
 	window = renderWindow;
-
+	generateGrid();
 	reset();
 }
 
@@ -141,20 +141,7 @@ void CentipedeGame::draw()
 	window->clear();
 
 	if (grid)
-	{
-		sf::VertexArray linePoints(sf::Lines);
-
-		for (int y = 0; y < originalWindowDimensions.y; y+=originalWindowDimensions.y/30) {
-			linePoints.append(sf::Vector2f(0, y));
-			linePoints.append(sf::Vector2f(originalWindowDimensions.x, y));
-		}
-		for (int x = 0; x < originalWindowDimensions.x; x+=originalWindowDimensions.x/30) {
-			linePoints.append(sf::Vector2f(x, 0));
-			linePoints.append(sf::Vector2f(x, originalWindowDimensions.y));
-		}
-
 		window->draw(linePoints);
-	}
 
 	//draw all objects in map
 	for (int y = 0; y < 30; ++y)
@@ -180,10 +167,9 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 void CentipedeGame::reset()
 {
 	int yRandPos;
-	int xRandPos = rand() % 30;
 
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
-	placeObject(xRandPos, 0, new CentipedeSegment(window, xRandPos, 0));
+	placeObject(5, 0, new CentipedeSegment(window, 5, 0));
 
 	Player * player = nullptr;
 
@@ -232,4 +218,19 @@ void CentipedeGame::kill(GameObject *thing) {
 		delete thing;
 
 	std::cout << "score is now " << score << std::endl;
+}
+
+void CentipedeGame::generateGrid() {
+	int scalar = originalWindowDimensions.x / 30;
+	sf::Color col(20, 20, 20);
+
+	for (int i = 0, index = 0; i < 30; ++i, index += 4) {
+		linePoints[index + 0] = sf::Vector2f(0, i*scalar);
+		linePoints[index + 1] = sf::Vector2f(originalWindowDimensions.x, i*scalar);
+		linePoints[index + 2] = sf::Vector2f(i*scalar, 0);
+		linePoints[index + 3] = sf::Vector2f(i*scalar, originalWindowDimensions.y);
+
+		for (int offset = 0; offset < 4; ++offset)
+			linePoints[index + offset].color = col;
+	}
 }

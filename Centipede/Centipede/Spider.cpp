@@ -241,8 +241,6 @@ void Spider::update()
 
 		frame = 0;
 	}
-
-	printf("%i\n", health);
 }
 
 

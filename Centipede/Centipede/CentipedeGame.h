@@ -17,9 +17,13 @@ public:
 	void reset();
 	static void placeObject(unsigned int, unsigned int, GameObject *);
 	static unsigned int clock;
-	static void kill(GameObject*);
 private:
 	void resolveCollisions();
+	void generateGrid();
+	void renderScore();
+
+	static void kill(GameObject*);
+	sf::VertexArray linePoints;
 
 	static bool frame;
 	static std::vector<GameObject *> map[30][30][2];
