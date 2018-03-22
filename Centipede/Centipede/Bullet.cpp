@@ -3,8 +3,8 @@
 #include "CentipedeGame.h"
 #include "Mushroom.h"
 
-
 bool Bullet::liveBullet = false;
+
 
 Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x, y)
 {
@@ -12,14 +12,17 @@ Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(rende
 	health = 1;
 	setVelocity(sf::Vector2i(0, -1));
 	setTexture("../Sprites/bullet.png");
+	object.setOrigin(-4, -4);
 	liveBullet = true;
 	pointValue = 0;
 }
+
 
 Bullet::~Bullet()
 {
 	liveBullet = false;
 }
+
 
 void Bullet::update()
 {
@@ -27,15 +30,18 @@ void Bullet::update()
 		currentPosition.y += velocity.y;
 }
 
+
 void Bullet::collideWith(GameObject * other)
 {
 	health = 0;
 }
 
+
 unsigned int Bullet::die(bool &readyToDie) {
 	liveBullet = false;
 	return GameObject::die(readyToDie);
 }
+
 
 char* Bullet::getType() {
 	return "Bullet";
