@@ -30,6 +30,12 @@ void Player::update()
 		bullet = new Bullet(window, currentPosition.x, currentPosition.y);
 		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, bullet);
 	}
+<<<<<<< HEAD
+=======
+
+	if (!Bullet::liveBullet)
+		bullet == nullptr;
+>>>>>>> 086c59b6712fc1979af6081b6ed62a04f6a813b5
 		
 
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));

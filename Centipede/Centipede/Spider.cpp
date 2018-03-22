@@ -6,20 +6,20 @@ Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameO
 {
 	currentPosition.x = x;
 	currentPosition.y = y;
-	setTexture("spider.png");
+	setTexture("../Sprites/Spider/spider0.png");
 	pointValue = 0;
 	player = &p;
 	scuttle = 0;
-	velocity[0] = sf::Vector2i(0, -1);
-	velocity[1] = sf::Vector2i(1, -1);
-	velocity[2] = sf::Vector2i(1, 1);
-	velocity[3] = sf::Vector2i(0, 1);
-	velocity[4] = sf::Vector2i(-1, 1);
-	velocity[5] = sf::Vector2i(-1, -1);
+	velocities[0] = sf::Vector2i(0, -1);
+	velocities[1] = sf::Vector2i(1, -1);
+	velocities[2] = sf::Vector2i(1, 1);
+	velocities[3] = sf::Vector2i(0, 1);
+	velocities[4] = sf::Vector2i(-1, 1);
+	velocities[5] = sf::Vector2i(-1, -1);
 	if (x < 15)
-		setVelocity(velocity[2]);
+		setVelocity(velocities[2]);
 	else
-		setVelocity(velocity[4]);
+		setVelocity(velocities[4]);
 	count = 0;
 }
 
@@ -44,25 +44,26 @@ void Spider::update()
 		else
 			setTexture("../Sprites/Spider/Spider3.png");
 
-		if (getVelocity() == velocity[2])
+		#pragma region toomuch
+		if (getVelocity() == velocities[2])
 		{
 			lastDir = 0;
 			count++;
 			
 			if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[1]);
+				setVelocity(velocities[1]);
 				count = 0;
 			}
 			else if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[0]);
+				setVelocity(velocities[0]);
 				count = 0;
 			}
 
 			if (count >= 5)
 			{
-				setVelocity(velocity[1]);
+				setVelocity(velocities[1]);
 				count = 0;
 			}
 
@@ -74,29 +75,29 @@ void Spider::update()
 			else if (currentPosition.y > 30)
 			{
 				count = 0;
-				setVelocity(velocity[1]);
+				setVelocity(velocities[1]);
 			}
 		}
 
-		if (getVelocity() == velocity[1])
+		if (getVelocity() == velocities[1])
 		{
 			lastDir = 0;
 			count++;
 
 			if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[2]);
+				setVelocity(velocities[2]);
 				count = 0;
 			}
 			else if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[3]);
+				setVelocity(velocities[3]);
 				count = 0;
 			}
 
 			if (count >= 5)
 			{
-				setVelocity(velocity[2]);
+				setVelocity(velocities[2]);
 				count = 0;
 			}
 			if (currentPosition.x > 30)//bouderys
@@ -107,29 +108,29 @@ void Spider::update()
 			else if (currentPosition.y < 17)
 			{
 				count = 0;
-				setVelocity(velocity[2]);
+				setVelocity(velocities[2]);
 			}
 		}
 		
-		if (getVelocity() == velocity[4])
+		if (getVelocity() == velocities[4])
 		{
 			lastDir = 1;
 			count++;
 
 			if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[5]);
+				setVelocity(velocities[5]);
 				count = 0;
 			}
 			else if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[0]);
+				setVelocity(velocities[0]);
 				count = 0;
 			}
 
 			if (count >= 5)
 			{
-				setVelocity(velocity[5]);
+				setVelocity(velocities[5]);
 				count = 0;
 			}
 			
@@ -141,29 +142,29 @@ void Spider::update()
 			else if (currentPosition.y > 30)
 			{
 				count = 0;
-				setVelocity(velocity[5]);
+				setVelocity(velocities[5]);
 			}
 		}
 
-		if (getVelocity() == velocity[5])
+		if (getVelocity() == velocities[5])
 		{
 			lastDir = 1;
 			count++;
 
 			if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[4]);
+				setVelocity(velocities[4]);
 				count = 0;
 			}
 			else if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[3]);
+				setVelocity(velocities[3]);
 				count = 0;
 			}
 
 			if (count >= 5)
 			{
-				setVelocity(velocity[4]);
+				setVelocity(velocities[4]);
 				count = 0;
 			}
 			if (currentPosition.x < 0)//bouderys
@@ -174,69 +175,74 @@ void Spider::update()
 			else if (currentPosition.y < 17)
 			{
 				count = 0;
-				setVelocity(velocity[2]);
+				setVelocity(velocities[2]);
 			}
 		}
 
-		if (getVelocity() == velocity[0])
+		if (getVelocity() == velocities[0])
 		{
 			count++;
 
 			if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[3]);
+				setVelocity(velocities[3]);
 				count = 0;
 			}
 			else if (rand() % 6 == 1)
 			{
 				if(lastDir==0)
-					setVelocity(velocity[2]);
+					setVelocity(velocities[2]);
 				else
-					setVelocity(velocity[4]);
+					setVelocity(velocities[4]);
 				count = 0;
 			}
 
 			if (count >= 5)
 			{
 				if (lastDir == 0)
-					setVelocity(velocity[2]);
+					setVelocity(velocities[2]);
 				else
-					setVelocity(velocity[4]);
+					setVelocity(velocities[4]);
 				count = 0;
 			}
 		}
 
-		if (getVelocity() == velocity[3])
+		if (getVelocity() == velocities[3])
 		{
 			count++;
 
 			if (rand() % 6 == 1)
 			{
-				setVelocity(velocity[0]);
+				setVelocity(velocities[0]);
 				count = 0;
 			}
 			else if (rand() % 6 == 1)
 			{
 				if (lastDir == 0)
-					setVelocity(velocity[1]);
+					setVelocity(velocities[1]);
 				else
-					setVelocity(velocity[5]);
+					setVelocity(velocities[5]);
 				count = 0;
 			}
 
 			if (count >= 5)
 			{
 				if (lastDir == 0)
-					setVelocity(velocity[1]);
+					setVelocity(velocities[1]);
 				else
-					setVelocity(velocity[5]);
+					setVelocity(velocities[5]);
 				count = 0;
 			}
 		}
+		#pragma endregion
+
+		currentPosition.x += velocity.x;
+		currentPosition.y += velocity.y;
 
 		frame = 0;
 	}
-	return;
+
+	printf("%i\n", health);
 }
 
 
@@ -277,13 +283,12 @@ void Spider::findDistancePlayer()
 }
 
 
-void Spider::colideWith(GameObject* other)
+void Spider::collideWith(GameObject* other)
 {
 	if (dynamic_cast<Bullet*>(other) != nullptr)
 		health = 0;
 	else if (dynamic_cast<Player*>(other) != nullptr)
 		health = 0;
-	return;
 }
 
 
