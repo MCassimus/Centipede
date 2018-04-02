@@ -20,7 +20,6 @@ public:
 private:
 	void resolveCollisions();
 	void generateGrid();
-	void renderScore();
 
 	static void kill(GameObject*);
 	sf::VertexArray linePoints;
@@ -30,4 +29,10 @@ private:
 	sf::RenderWindow * window = nullptr;
 	const sf::Vector2u originalWindowDimensions;
 	static unsigned int score;
+
+	sf::Font arcadeFont;
+	sf::Text scoreDisplay;
+
+	sf::RenderTexture playerArea;
+	sf::RenderTexture scoreArea;
 };

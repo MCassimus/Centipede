@@ -13,7 +13,7 @@ public:
 	sf::Vector2i getPosition() const;
 	void setTexture(const char *);
 	virtual void update() = 0;
-	virtual void render();
+	virtual void render(sf::RenderTexture &);
 	virtual void collideWith(GameObject *);
 	//virtual void collideWith(std::vector<GameObject *> *);
 
