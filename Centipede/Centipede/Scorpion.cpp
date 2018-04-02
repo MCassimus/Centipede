@@ -20,7 +20,16 @@ void Scorpion::update()
 	setPixels();
 	if (frame++ == frameMax)
 	{
-		currentPosition.x += velocity.x;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))//you see nothing
+			currentPosition.y--;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))//you see nothing
+			currentPosition.y++;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))//you see nothing
+			currentPosition.x--;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))//you see nothing
+			currentPosition.x++;
+		else
+			currentPosition.x += velocity.x;
 
 		if (scuttle++ >= 3)
 			scuttle = 0;
