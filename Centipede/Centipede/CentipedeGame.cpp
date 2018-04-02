@@ -53,15 +53,12 @@ bool CentipedeGame::update()
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][!frame].size(); ++i)
-			{
 				placeObject(map[y][x][!frame].at(i)->getPosition().x, map[y][x][!frame].at(i)->getPosition().y, map[y][x][!frame].at(i));
-			}
 	#pragma endregion
 
 	for (int y = 0; y < 30; y++)
-		for (int x = 0; x < 30; x++) {
+		for (int x = 0; x < 30; x++) 
 			map[y][x][!frame].clear();
-		}
 
 	resolveCollisions();
 

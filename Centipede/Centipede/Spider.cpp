@@ -6,6 +6,7 @@ Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameO
 {
 	currentPosition.x = x;
 	currentPosition.y = y;
+	object.setOrigin(0, -4);
 	setTexture("../Sprites/Spider/spider0.png");
 	pointValue = 0;
 	player = &p;

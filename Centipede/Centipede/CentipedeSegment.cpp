@@ -9,10 +9,7 @@ CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y
 	pointValue = 10;
 	isHead = true;
 	health = 1;
-<<<<<<< HEAD
 	isPoisoned = false;
-=======
->>>>>>> 70ede530241c33f50bd1631bea5643689db75825
 
 	setTexture("../Sprites/centipedeSegment.png");
 
