@@ -35,7 +35,10 @@ void Scorpion::update()
 			setTexture("../Sprites/Scorpion/scorpionRight2.png");
 
 		if (currentPosition.x == 0 || currentPosition.x == 29)
+		{
+			pointValue = 0;
 			health = 0;//kill if offscreen
+		}
 
 		frame = 0;
 	}
