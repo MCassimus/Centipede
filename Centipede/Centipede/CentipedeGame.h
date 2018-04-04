@@ -35,4 +35,7 @@ private:
 
 	sf::RenderTexture playerArea;
 	sf::RenderTexture scoreArea;
+
+	sf::Sprite playerAreaSprite;
+	sf::Sprite scoreAreaSprite;
 };
