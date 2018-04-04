@@ -9,7 +9,11 @@ public:
 	~CentipedeSegment();
 	void update();
 	void collideWith(GameObject *);
+	bool canMoveTo(int, int);
+
+	void updateVelocityTo(int x, int y);
 private:
 	bool isPoisoned;
 	bool isHead;
+	bool movingDown, movingRight;
 };

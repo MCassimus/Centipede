@@ -2,6 +2,7 @@
 #include "CentipedeSegment.h"
 #include "CentipedeGame.h"
 #include "Mushroom.h"
+#include <math.h>
 
 
 CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
@@ -9,14 +10,13 @@ CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y
 	pointValue = 10;
 	isHead = true;
 	health = 1;
-<<<<<<< HEAD
 	isPoisoned = false;
-=======
->>>>>>> 70ede530241c33f50bd1631bea5643689db75825
 
 	setTexture("../Sprites/centipedeSegment.png");
 
-	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
+	velocity = sf::Vector2i(1, 0);
+
+	movingDown = movingRight = true;
 }
 
 
@@ -24,59 +24,52 @@ CentipedeSegment::~CentipedeSegment()
 {
 }
 
+bool CentipedeSegment::canMoveTo(int x, int y) {
+	return !CentipedeGame::isMushroomCell(x, y) && x >= 0 && x <= 29 && y >= 0 && y <= 29;
+}
+
 
 void CentipedeSegment::update()
 {
-	static bool movedDown = false;
-	if (CentipedeGame::clock % 8 == 0)
-	{
-		if (!movedDown)
-		{
 
-			if (CentipedeGame::isMushroomCell(currentPosition.x + velocity.x, currentPosition.y + velocity.y) || currentPosition.x == 0 || currentPosition.x == 29)
-			{
-				currentPosition.y++;
-				movedDown = true;
+	if (CentipedeGame::clock % 8 == 0) {
+
+		//update position
+		currentPosition.x += velocity.x;
+		currentPosition.y += velocity.y;
+
+		//update velocity for next movement
+
+		if (velocity.y != 0) { //i changed rows
+
+			if (velocity.y > 0)
+				movingDown = true;
+			else
+				movingDown = false;
+
+			velocity.y = 0; //velocity.x and velocity.y are mutually exclusive
+
+			velocity.x = pow(-1, movingRight);
+			movingRight = !movingRight; //flip x directions
+		}
+
+		if (!canMoveTo(currentPosition.x + velocity.x, currentPosition.y + velocity.y)){
+			if (currentPosition.y == 0) { //top
+				velocity.y = 1; // will cause movingDown to be true next cycle
 			}
-		}
-		else
-			movedDown = false;
+			else if (currentPosition.y == 29) { //bottom
+				velocity.y = -1; //will cause movingDown to be false next cycle
+			}
+			else { //side or mushroom
+				velocity.y = pow(-1, !movingDown);
+			}
 
-
-		if (movedDown && !isPoisoned)
-		{
-			velocity.x *= -1;
-			//movedDown = false;
-		}
-		else
-		{
-			//apply velocity
-			currentPosition.x += velocity.x;
-			currentPosition.y += velocity.y;
+			velocity.x = 0; //velocity.x and velocity.y are mutually exclusive
 		}
 
-			////if edge of screen 
-		//if (!movedDown && currentPosition.x == 0 || currentPosition.x == 29)
-		//{
-		//	//flip velocity and move down a row
-		//	currentPosition.y++;
-		//	velocity.x *= -1;
-		//}
-
-		////test if can move
-		//if (CentipedeGame::isMushroomCell(currentPosition.x + velocity.x, currentPosition.y + velocity.y))
-		//{
-		//	currentPosition.y++;
-		//	movedDown = true;
-		//}
-
-		////apply velocity
-		//currentPosition.x += velocity.x;
-		//currentPosition.y += velocity.y;
-
-		//if(velocity.y != 0 && currentPosition.y == 17)
-		//	velocity = sf::Vector2i(rand() % 2 == 1 ? -1 : 1, 0);
 	}
+
+	
 
 	if (isHead)
 		setTexture("../Sprites/centipedeHead.png");
