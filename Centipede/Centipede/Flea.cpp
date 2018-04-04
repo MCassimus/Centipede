@@ -41,8 +41,11 @@ void Flea::update()
 			CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
 
 		//check if bottom of screen
-		if (currentPosition.y == 30)
-			currentPosition = sf::Vector2i(rand() % 30, 0);
+		if (currentPosition.y == 29)
+		{
+			points = 0;
+			health = 0;
+		}
 	}
 }
 

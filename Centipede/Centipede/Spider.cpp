@@ -29,6 +29,7 @@ static unsigned int frame = 0;
 void Spider::update()
 {
 	setPointValue();
+	std::cout << pointValue<<"\n";
 	if (frame++ == frameMax)
 	{
 		if (scuttle++ >= 4)
@@ -247,22 +248,10 @@ void Spider::update()
 
 void Spider::setPointValue()
 {
-	if (distanceFromPlayer > 4) //if more than 4 levels away
-		pointValue = 900;
-	else if (distanceFromPlayer < 4 || distanceFromPlayer == 4) //no more than 4 levels
-		pointValue = 600;
-	else if (distanceFromPlayer == 1) //no more than 1 level away 
-		pointValue = 300;
-
-	return;
-}
-
-
-void Spider::findDistancePlayer()
-{
 	if(((player->getPosition().x <= currentPosition.x + 1)&&(player->getPosition().x >= currentPosition.x -1)))
 		if (((player->getPosition().y <= currentPosition.y + 1) && (player->getPosition().y >= currentPosition.y - 1)))
 		{
+			std::cout << "three hundo \n";
 			pointValue = 300;
 			return;
 		}
@@ -270,12 +259,14 @@ void Spider::findDistancePlayer()
 	else if (((player->getPosition().x <= currentPosition.x + 4) && (player->getPosition().x >= currentPosition.x - 4)))
 		if (((player->getPosition().y <= currentPosition.y + 4) && (player->getPosition().y >= currentPosition.y - 4)))
 		{
+			std::cout << "six hundo \n";
 			pointValue = 600;
 			return;
 		}
 		
 	else
 	{
+		std::cout << "nine hundo \n";
 		pointValue = 900;
 		return;
 	}
