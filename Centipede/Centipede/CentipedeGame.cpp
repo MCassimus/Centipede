@@ -9,6 +9,7 @@
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
 unsigned int CentipedeGame::clock = 0, CentipedeGame::score = 0;
+int CentipedeGame::playerLives = -1;
 
 
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD), linePoints(sf::Lines, 30 * 30)
@@ -24,7 +25,7 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	playerAreaSprite.setTexture(playerArea.getTexture());
 	scoreAreaSprite.setTexture(scoreArea.getTexture());
 
-	playerAreaSprite.move(0, scoreAreaSprite.getTexture()->getSize().y);
+	playerAreaSprite.move(0, renderWindow->getSize().x * .05);
 
 	arcadeFont.loadFromFile("../ARCADECLASSIC.TTF");
 	scoreDisplay.setFont(arcadeFont);
@@ -40,15 +41,13 @@ CentipedeGame::~CentipedeGame()
 			{
 				delete map[y][x][frame].at(i);
 				map[y][x][frame].erase(i + map[y][x][frame].begin());
-			}
-				
+			}		
 }
 
 
 bool CentipedeGame::update()
 {
 	static bool liveFlea = false;
-	static bool playerLife = true;
 	static bool liveScorpion = false;
 
 	#pragma region updateObjects
@@ -94,6 +93,13 @@ bool CentipedeGame::update()
 			}
 	#pragma endregion
 
+	//update player health
+	for (int y = 0; y < 30; ++y)
+		for (int x = 0; x < 30; ++x)
+			for (int i = 0; i < map[y][x][frame].size(); ++i)
+				if (dynamic_cast<Player *> (map[y][x][frame].at(i)) != nullptr)
+					playerLives = map[y][x][frame].at(i)->getHealth();
+
 	//check if flea needs to be spawned
 	#pragma region fleaCheck
 	int mushroomCount = 0;
@@ -123,7 +129,7 @@ bool CentipedeGame::update()
 	
 	++clock;
 
-	return playerLife;//return true while player alive
+	return playerLives > 0;//return true while player alive
 }
 
 
@@ -141,8 +147,8 @@ void CentipedeGame::draw()
 	//update score and draw to render texture
 	scoreDisplay.setFillColor(sf::Color::Red);
 	scoreDisplay.setString("Score " + std::to_string(score));
-	scoreDisplay.setOrigin(scoreDisplay.getLocalBounds().width / 2, scoreDisplay.getLocalBounds().height / 2);
-	scoreDisplay.setPosition(window->getSize().x / 2, 0);
+	scoreDisplay.setOrigin(scoreDisplay.getLocalBounds().width / 2, scoreDisplay.getLocalBounds().height/ 2);
+	scoreDisplay.setPosition(scoreAreaSprite.getTexture()->getSize().x / 2, 0);
 	scoreArea.draw(scoreDisplay);
 
 	if(grid)
@@ -156,9 +162,7 @@ void CentipedeGame::draw()
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 				map[y][x][frame].at(i)->render(playerArea);
-
-	window->setSize(sf::Vector2u(playerAreaSprite.getTexture()->getSize().x, playerAreaSprite.getTexture()->getSize().y + scoreAreaSprite.getTexture()->getSize().y));
-
+	
 	window->draw(playerAreaSprite);
 	window->draw(scoreAreaSprite);
 	window->display();
