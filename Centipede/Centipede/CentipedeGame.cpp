@@ -21,17 +21,21 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
 	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
 
+	playerAreaSprite.setTexture(playerArea.getTexture());
+	scoreAreaSprite.setTexture(scoreArea.getTexture());
+
+	playerAreaSprite.move(0, scoreAreaSprite.getTexture()->getSize().y);
+
 	arcadeFont.loadFromFile("../ARCADECLASSIC.TTF");
 	scoreDisplay.setFont(arcadeFont);
 	scoreDisplay.setCharacterSize(18);
-	scoreDisplay.setString("Score - ");
 }
 
 
 CentipedeGame::~CentipedeGame()
 {
 	for (int y = 0; y < 30; y++)
-		for (int x = 0; x < 30; x++)
+		for (int x = 0; x < 30; x++)                                
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 			{
 				delete map[y][x][frame].at(i);
@@ -130,15 +134,19 @@ void CentipedeGame::draw()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		grid = !grid;
 
-	window->clear();
+	//window->clear();
 	scoreArea.clear();
 	playerArea.clear();
 
+	//update score and draw to render texture
 	scoreDisplay.setFillColor(sf::Color::Red);
 	scoreDisplay.setString("Score " + std::to_string(score));
 	scoreDisplay.setOrigin(scoreDisplay.getLocalBounds().width / 2, scoreDisplay.getLocalBounds().height / 2);
 	scoreDisplay.setPosition(window->getSize().x / 2, 0);
 	scoreArea.draw(scoreDisplay);
+
+	if(grid)
+		playerArea.draw(linePoints);
 
 	playerArea.display();
 	scoreArea.display();
@@ -149,15 +157,10 @@ void CentipedeGame::draw()
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 				map[y][x][frame].at(i)->render(playerArea);
 
-	sf::Sprite gameArea(playerArea.getTexture());
-	sf::Sprite pointArea(scoreArea.getTexture());
+	window->setSize(sf::Vector2u(playerAreaSprite.getTexture()->getSize().x, playerAreaSprite.getTexture()->getSize().y + scoreAreaSprite.getTexture()->getSize().y));
 
-	gameArea.move(0, pointArea.getTexture()->getSize().y);
-
-	window->setSize(sf::Vector2u(gameArea.getTexture()->getSize().x, gameArea.getTexture()->getSize().y + pointArea.getTexture()->getSize().y));
-
-	window->draw(pointArea);
-	window->draw(gameArea);
+	window->draw(playerAreaSprite);
+	window->draw(scoreAreaSprite);
 	window->display();
 }
 
