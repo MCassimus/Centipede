@@ -60,10 +60,10 @@ void GameObject::setTexture(const char * filePath)
 }
 
 
-void GameObject::render()
+void GameObject::render(sf::RenderTexture & playerArea)
 {
 	setPixels();
-	window->draw(object);
+	playerArea.draw(object);
 }
 
 

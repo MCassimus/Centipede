@@ -17,6 +17,14 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	window = renderWindow;
 	generateGrid();
 	reset();
+
+	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
+	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
+
+	arcadeFont.loadFromFile("../ARCADECLASSIC.TTF");
+	scoreDisplay.setFont(arcadeFont);
+	scoreDisplay.setCharacterSize(18);
+	scoreDisplay.setString("Score - ");
 }
 
 
@@ -53,15 +61,12 @@ bool CentipedeGame::update()
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][!frame].size(); ++i)
-			{
 				placeObject(map[y][x][!frame].at(i)->getPosition().x, map[y][x][!frame].at(i)->getPosition().y, map[y][x][!frame].at(i));
-			}
 	#pragma endregion
 
 	for (int y = 0; y < 30; y++)
-		for (int x = 0; x < 30; x++) {
+		for (int x = 0; x < 30; x++) 
 			map[y][x][!frame].clear();
-		}
 
 	resolveCollisions();
 
@@ -109,21 +114,8 @@ bool CentipedeGame::update()
 		placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));
 		liveScorpion = true;
 	}
-
-
-	draw();
 	
-	//reset game on press of w key
-	//this really has no actually purpose except to look cool
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		//clear map
-		for (int y = 0; y < 30; y++)
-			for (int x = 0; x < 30; x++)
-				map[y][x][frame].clear();
-
-		reset();
-	}
+	draw();
 	
 	++clock;
 
@@ -139,16 +131,33 @@ void CentipedeGame::draw()
 		grid = !grid;
 
 	window->clear();
+	scoreArea.clear();
+	playerArea.clear();
 
-	if (grid)
-		window->draw(linePoints);
+	scoreDisplay.setFillColor(sf::Color::Red);
+	scoreDisplay.setString("Score " + std::to_string(score));
+	scoreDisplay.setOrigin(scoreDisplay.getLocalBounds().width / 2, scoreDisplay.getLocalBounds().height / 2);
+	scoreDisplay.setPosition(window->getSize().x / 2, 0);
+	scoreArea.draw(scoreDisplay);
+
+	playerArea.display();
+	scoreArea.display();
 
 	//draw all objects in map
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
-				map[y][x][frame].at(i)->render();
+				map[y][x][frame].at(i)->render(playerArea);
 
+	sf::Sprite gameArea(playerArea.getTexture());
+	sf::Sprite pointArea(scoreArea.getTexture());
+
+	gameArea.move(0, pointArea.getTexture()->getSize().y);
+
+	window->setSize(sf::Vector2u(gameArea.getTexture()->getSize().x, gameArea.getTexture()->getSize().y + pointArea.getTexture()->getSize().y));
+
+	window->draw(pointArea);
+	window->draw(gameArea);
 	window->display();
 }
 
