@@ -41,10 +41,10 @@ void Scorpion::update()
 			currentPosition.x += velocity.x;
 		}
 
-		if (scuttle++ >= 3)
+		if (scuttle++ >= 3)//dancing
 			scuttle = 0;
 
-		if (scuttle == 0)
+		if (scuttle == 0)                                     //dancing
 			setTexture("../Sprites/Scorpion/scorpionLeft1.png");
 		else if (scuttle == 1)
 			setTexture("../Sprites/Scorpion/scorpionLeft2.png");

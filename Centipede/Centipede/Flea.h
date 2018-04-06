@@ -11,6 +11,5 @@ public:
 	void update();
 	void collideWith(GameObject * other);
 private:
-	int points;
 	unsigned int delay = 6;
 };
