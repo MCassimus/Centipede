@@ -37,4 +37,5 @@ private:
 	sf::RenderTexture scoreArea;
 	sf::Sprite playerAreaSprite;
 	sf::Sprite scoreAreaSprite;
+	sf::Sprite startingScreen;
 };
