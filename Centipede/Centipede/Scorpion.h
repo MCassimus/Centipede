@@ -9,6 +9,7 @@ public:
 	~Scorpion();
 	void update();
 	void collideWith(GameObject*);
+	char* getType() { return "Scorpion"; }
 private:
 	int scuttle; // for walking animation
 	

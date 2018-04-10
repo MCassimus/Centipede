@@ -17,9 +17,14 @@ public:
 	void reset();
 	static void placeObject(unsigned int, unsigned int, GameObject *);
 	static unsigned int clock;
+
+	unsigned int getCountOf(char*, unsigned int, unsigned int, unsigned int, unsigned int);
+
 private:
 	void resolveCollisions();
 	void generateGrid();
+
+	void manageCentipedePopulation();
 
 	static void kill(GameObject*);
 	sf::VertexArray linePoints;
@@ -38,4 +43,6 @@ private:
 
 	sf::Sprite playerAreaSprite;
 	sf::Sprite scoreAreaSprite;
+
+	bool activeCentipede = false;
 };

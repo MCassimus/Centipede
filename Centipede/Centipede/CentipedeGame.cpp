@@ -5,6 +5,7 @@
 #include "Scorpion.h"
 #include "CentipedeSegment.h"
 #include "Spider.h"
+#include <iostream>
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
@@ -47,9 +48,12 @@ CentipedeGame::~CentipedeGame()
 
 bool CentipedeGame::update()
 {
+
 	static bool liveFlea = false;
 	static bool playerLife = true;
 	static bool liveScorpion = false;
+
+	std::cout << "-----New frame, clock = " << clock << "-----\n";
 
 	#pragma region updateObjects
 	for (int y = 0; y < 30; ++y)
@@ -67,6 +71,8 @@ bool CentipedeGame::update()
 			for (int i = 0; i < map[y][x][!frame].size(); ++i)
 				placeObject(map[y][x][!frame].at(i)->getPosition().x, map[y][x][!frame].at(i)->getPosition().y, map[y][x][!frame].at(i));
 	#pragma endregion
+
+	//clear the old map
 
 	for (int y = 0; y < 30; y++)
 		for (int x = 0; x < 30; x++) 
@@ -111,13 +117,17 @@ bool CentipedeGame::update()
 	#pragma endregion
 
 	//Scorpion spawning
-	if (!liveScorpion && rand() % 100 < 5)
+	if (!liveScorpion && rand() % 1000 < 5)
 	{
 		int xRandPos = rand() % 30 < 15 ? 0 : 29;
 		int yRandPos = rand() % 17;
 		placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));
 		liveScorpion = true;
 	}
+
+	//Centipede spawning
+
+	manageCentipedePopulation();
 	
 	draw();
 	
@@ -181,7 +191,6 @@ void CentipedeGame::reset()
 	int yRandPos;
 
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
-	placeObject(5, 0, new CentipedeSegment(window, 5, 0));
 
 	Player * player = nullptr;
 
@@ -244,5 +253,36 @@ void CentipedeGame::generateGrid() {
 
 		for (int offset = 0; offset < 4; ++offset)
 			linePoints[index + offset].color = col;
+	}
+}
+
+unsigned int CentipedeGame::getCountOf(char* type, unsigned int startX = 0, unsigned int startY = 0, unsigned int endX = 30, unsigned int endY = 30) {
+	unsigned int count = 0;
+	for (int y = startY; y < endY; ++y)//check mushrooms in player position
+		for (int x = startX; x < endX; ++x)
+			for (int i = 0; i < CentipedeGame::map[y][x][CentipedeGame::frame].size(); i++)
+				if (!std::strcmp(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)->getType(), type))
+					++count;
+
+	return count;
+}
+
+void CentipedeGame::manageCentipedePopulation() {
+	if (activeCentipede) {
+		//check if centipede has died
+		activeCentipede = getCountOf("CentipedeSegment", 0, 0, 30, 30) > 0;
+	}
+	else {
+
+		CentipedeSegment *last = nullptr, *current = nullptr;
+		for (int i = 0, x; i < 5; ++i) {
+			x = 5 - i;
+
+			current = new CentipedeSegment(window, x, 0, last);
+			placeObject(x, 0, current);
+			last = current;
+		}
+		activeCentipede = true;
+		//begin spawning centipede
 	}
 }
