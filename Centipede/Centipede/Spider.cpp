@@ -256,7 +256,6 @@ void Spider::setPointValue()//finds the distance between spider and player for p
 	if(((player->getPosition().x <= currentPosition.x + 1)&&(player->getPosition().x >= currentPosition.x -1)) && 
 		((player->getPosition().y <= currentPosition.y + 1) && (player->getPosition().y >= currentPosition.y - 1)))
 	{
-			std::cout << "three hundo \n";
 			pointValue = 300;
 			return;
 	}
@@ -264,14 +263,12 @@ void Spider::setPointValue()//finds the distance between spider and player for p
 	else if (((player->getPosition().x <= currentPosition.x + 4) && (player->getPosition().x >= currentPosition.x - 4)) &&
 		((player->getPosition().y <= currentPosition.y + 4) && (player->getPosition().y >= currentPosition.y - 4)))
 	{
-			std::cout << "six hundo \n";
 			pointValue = 600;
 			return;
 	}
 		
 	else
 	{
-		std::cout << "nine hundo \n";
 		pointValue = 900;
 		return;
 	}

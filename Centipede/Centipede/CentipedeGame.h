@@ -38,10 +38,15 @@ private:
 
 	sf::Font arcadeFont;
 	sf::Text scoreDisplay;
+	
+	sf::Texture lifeTexture;
+	sf::Sprite lives[6];
 	sf::RenderTexture playerArea;
 	sf::RenderTexture scoreArea;
 	sf::Sprite playerAreaSprite;
 	sf::Sprite scoreAreaSprite;
+
+	void drawLives();
 
 	bool activeCentipede = false;
 };
