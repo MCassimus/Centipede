@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Flea.h"
+#include <fstream>
 
 class CentipedeGame
 {
@@ -49,4 +50,8 @@ private:
 	void drawLives();
 
 	bool activeCentipede = false;
+
+	std::ifstream lives_in_file;
+	std::ofstream lives_out_file;
+
 };
