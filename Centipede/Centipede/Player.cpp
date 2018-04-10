@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "CentipedeGame.h"
+#include "CentipedeSegment.h"
+#include "Scorpion.h"
+#include "Spider.h";
 
 Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y)
 {
@@ -40,4 +43,16 @@ char* Player::getType() {
 
 Player::~Player()
 {
+}
+
+void Player::collideWith(GameObject * other)
+{
+	if (dynamic_cast<CentipedeSegment *>(other) != nullptr)
+		health--;
+	else if (dynamic_cast<Flea *>(other) != nullptr)
+		health--;
+	else if (dynamic_cast<Scorpion *>(other) != nullptr)
+		health--;
+	else if (dynamic_cast<Spider *>(other) != nullptr)
+		health--;
 }

@@ -9,6 +9,7 @@ public:
 	void update();
 	~Player();
 	char* getType();
+	void collideWith(GameObject *);
 protected:
 	Bullet * bullet = nullptr;
 };

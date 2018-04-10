@@ -16,7 +16,7 @@ Flea::Flea(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWin
 	object.setOrigin(-6, -10);
 	object.setPosition(sf::Vector2f(0, 0));
 	velocity = sf::Vector2i(0, 1);
-	points = 200;
+	pointValue = 200;
 }
 
 
@@ -37,12 +37,16 @@ void Flea::update()
 		//reset frame counter
 		frame = 0;
 	
+		//places flea at random x cordinate at y==0
 		if (rand() % 100 < 30 && currentPosition.y != 30 && !CentipedeGame::isMushroomCell(currentPosition.x, currentPosition.y))
 			CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
 
 		//check if bottom of screen
-		if (currentPosition.y == 30)
-			currentPosition = sf::Vector2i(rand() % 30, 0);
+		if (currentPosition.y == 29)
+		{
+			pointValue = 0;
+			health = 0;
+		}
 	}
 }
 
