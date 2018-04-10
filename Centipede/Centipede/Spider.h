@@ -12,8 +12,7 @@ public:
 	void collideWith(GameObject*);
 	~Spider();
 private: 
-	Player *player;
-	int pointValue; 
+	Player *player; 
 	int scuttle; //for animation
 	unsigned int frameMax = 40;
 	sf::Vector2i velocities[6];

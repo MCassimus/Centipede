@@ -17,7 +17,7 @@ Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, 
 
 void Mushroom::update()
 {
-	switch (health)
+	switch (health)//changes texture based on health
 	{
 	case 1:
 		setTexture("../Sprites/Mushroom/mushroom1.png");
@@ -41,13 +41,13 @@ void Mushroom::update()
 }
 
 
-bool Mushroom::getPoisoned()
+bool Mushroom::getPoisoned()//for centipede 
 {
 	return poisoned;
 }
 
 
-void Mushroom::resetHeath()
+void Mushroom::resetHeath()//for end of level
 {
 	health = 4;
 	poisoned = false;

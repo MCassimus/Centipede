@@ -5,10 +5,10 @@
 #include <math.h>
 
 
-CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
+CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y, CentipedeSegment* _next) : GameObject(renderWindow, x,  y)
 {
 	pointValue = 10;
-	isHead = true;
+	isHead = false;
 	health = 1;
 	isPoisoned = false;
 
@@ -17,6 +17,8 @@ CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y
 	velocity = sf::Vector2i(1, 0);
 
 	movingDown = movingRight = true;
+
+	next = _next;
 }
 
 
@@ -31,6 +33,12 @@ bool CentipedeSegment::canMoveTo(int x, int y) {
 
 void CentipedeSegment::update()
 {
+	std::cout << (next == nullptr) << std::endl;
+
+	if (!isHead && next == nullptr) {
+		setTexture("../Sprites/centipedeHead.png");
+		isHead = true;
+	}
 
 	if (CentipedeGame::clock % 8 == 0) {
 
@@ -69,15 +77,25 @@ void CentipedeSegment::update()
 
 	}
 
-	
-
-	if (isHead)
-		setTexture("../Sprites/centipedeHead.png");
 }
 
 
 void CentipedeSegment::collideWith(GameObject * other)
 {
 	if (dynamic_cast<Bullet *>(other) != nullptr)
-		health --;
+		health = 0;
+}
+
+void CentipedeSegment::setNext(GameObject * _next) {
+	next = next;
+}
+
+unsigned int CentipedeSegment::die(bool &readyToDie) {
+	readyToDie = true;
+
+	CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
+
+	std::cout << "rip centipede segment_______________________________________\n";
+
+	return pointValue;
 }

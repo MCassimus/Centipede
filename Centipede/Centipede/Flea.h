@@ -10,7 +10,7 @@ public:
 	~Flea();
 	void update();
 	void collideWith(GameObject * other);
+	char* getType() { return "Flea"; }
 private:
-	int points;
 	unsigned int delay = 6;
 };
