@@ -15,12 +15,14 @@ GameObject::GameObject(sf::RenderWindow * renderWindow, int x, int y)
 	window = renderWindow;
 	interval = static_cast<sf::Vector2i>(oWD / static_cast<unsigned int>(30));
 	currentPosition = sf::Vector2i(x, y);
+	soundPlayer.setBuffer(soundClip);
 }
 
 GameObject::GameObject(sf::RenderWindow * renderWindow)
 {
 	window = renderWindow;
 	interval = static_cast<sf::Vector2i>(oWD / static_cast<unsigned int>(30));
+	soundPlayer.setBuffer(soundClip);
 }
 
 

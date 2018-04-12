@@ -15,6 +15,9 @@ Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(rende
 	object.setOrigin(-4, -4);
 	liveBullet = true;
 	pointValue = 0;
+
+	soundClip.loadFromFile("../Audio/bulletFire.ogg");
+	soundPlayer.play();
 }
 
 
