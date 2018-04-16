@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Spider.h"
+#include "CentipedeGame.h"
 
 
 Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameObject(renderWindow, x,  y)
@@ -24,14 +25,18 @@ Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameO
 	else
 		setVelocity(velocities[4]);
 	count = 0;
+
+	soundClip.loadFromFile("../Audio/spider.ogg");
+	soundPlayer.play();
+	soundPlayer.setLoop(true);
+	soundPlayer.setVolume(20);
 }
 
 
-static unsigned int frame = 0;
 void Spider::update()
 {
 	setPointValue();
-	if (frame++ == frameMax)
+	if (CentipedeGame::clock % delay == 0)
 	{
 		if (scuttle++ >= 4)//dancing
 			scuttle = 0;
@@ -245,8 +250,6 @@ void Spider::update()
 
 		currentPosition.x += velocity.x;
 		currentPosition.y += velocity.y;
-
-		frame = 0;
 	}
 }
 

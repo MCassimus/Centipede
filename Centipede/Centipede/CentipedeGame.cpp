@@ -20,6 +20,9 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	generateGrid();
 	reset();
 
+	
+
+
 	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
 	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
 
