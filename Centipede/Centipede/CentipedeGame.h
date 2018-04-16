@@ -51,7 +51,7 @@ private:
 
 	bool activeCentipede = false;
 
-	std::ifstream lives_in_file;
-	std::ofstream lives_out_file;
+	std::ifstream score_in_file;
+	std::ofstream score_out_file;
 
 };
