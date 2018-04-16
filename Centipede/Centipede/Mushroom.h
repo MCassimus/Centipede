@@ -11,7 +11,7 @@ public:
 	~Mushroom();
 	void update();
 	bool getPoisoned();
-	void resetHeath();
+	bool resetHeath();
 	void collideWith(GameObject*);
 	char* getType();
 private:

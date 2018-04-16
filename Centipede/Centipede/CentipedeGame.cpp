@@ -142,11 +142,15 @@ bool CentipedeGame::update()
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		for (int y = 0; y < 30; ++y)
-			for (int x = 0; x < 30; ++x)
+		for (int x = 0; x < 30; ++x)
+			for (int y = 0; y < 30; ++y)
 				for (int i = 0; i < map[y][x][frame].size(); ++i)
 					if (dynamic_cast<Mushroom *> (map[y][x][frame].at(i)) != nullptr)
-						dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->resetHeath();
+						while (dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->getHealth() < 4)
+						{
+							dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->resetHeath();
+							draw();
+						}
 
 	//Centipede spawning
 

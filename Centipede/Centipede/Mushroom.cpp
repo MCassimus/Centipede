@@ -47,7 +47,7 @@ bool Mushroom::getPoisoned()//for centipede
 }
 
 
-void Mushroom::resetHeath()//for end of level
+bool Mushroom::resetHeath()//for end of level
 {
 		if (health < 4 && soundPlayer.getStatus() == sf::Sound::Stopped)
 		{
@@ -70,10 +70,11 @@ void Mushroom::resetHeath()//for end of level
 
 			//play sound
 			soundPlayer.play();
+			return true;//not done w/ reset
 	}
 
 	poisoned = false;
-	return true;
+	return false;//done reset
 }
 
 
