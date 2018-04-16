@@ -11,7 +11,9 @@ public:
 	void collideWith(GameObject *);
 	bool canMoveTo(int, int);
 
-	void setNext(GameObject*);
+	void setAsHead();
+
+	void calculateVelocity();
 
 	char* getType() { return "CentipedeSegment"; }
 
@@ -19,7 +21,6 @@ public:
 
 private:
 	bool isPoisoned;
-	bool isHead;
 	bool movingDown, movingRight;
-	GameObject * next;
+	CentipedeSegment * previous;
 };
