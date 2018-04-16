@@ -138,6 +138,13 @@ bool CentipedeGame::update()
 		liveScorpion = true;
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		for (int y = 0; y < 30; ++y)
+			for (int x = 0; x < 30; ++x)
+				for (int i = 0; i < map[y][x][frame].size(); ++i)
+					if (dynamic_cast<Mushroom *> (map[y][x][frame].at(i)) != nullptr)
+						dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->resetHeath();
+
 	//Centipede spawning
 
 	manageCentipedePopulation();

@@ -4,7 +4,6 @@
 #include "Scorpion.h"
 #include "Bullet.h"
 
-
 Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, x, y)
 {
 	pointValue = 5;
@@ -12,6 +11,7 @@ Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, 
 	health = 4;
 	object.setOrigin(-2, -2);
 	object.setScale(1.25, 1.25);
+	soundClip.loadFromFile("../Audio/mushroomReset.ogg");
 }
 
 
@@ -49,9 +49,31 @@ bool Mushroom::getPoisoned()//for centipede
 
 void Mushroom::resetHeath()//for end of level
 {
-	health = 4;
+		if (health < 4 && soundPlayer.getStatus() == sf::Sound::Stopped)
+		{
+			//set texture
+			switch (health++)//changes texture based on health
+			{
+			case 1:
+				setTexture("../Sprites/Mushroom/mushroom1.png");
+				break;
+			case 2:
+				setTexture("../Sprites/Mushroom/mushroom2.png");
+				break;
+			case 3:
+				setTexture("../Sprites/Mushroom/mushroom3.png");
+				break;
+			case 4:
+				setTexture("../Sprites/Mushroom/mushroom4.png");
+				break;
+			}
+
+			//play sound
+			soundPlayer.play();
+	}
+
 	poisoned = false;
-	setTexture("../Sprites/Mushroom/mushroom4.png");
+	return true;
 }
 
 
