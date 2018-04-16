@@ -14,7 +14,7 @@ public:
 private: 
 	Player *player; 
 	int scuttle; //for animation
-	unsigned int frameMax = 40;
+	unsigned int delay = 15;
 	sf::Vector2i velocities[6];
 	int count; //for direction change
 	bool lastDir;
