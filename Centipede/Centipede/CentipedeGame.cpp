@@ -20,6 +20,9 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	generateGrid();
 	reset();
 
+	
+
+
 	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
 	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
 
@@ -297,12 +300,12 @@ void CentipedeGame::manageCentipedePopulation() {
 
 		CentipedeSegment *last = nullptr, *current = nullptr;
 		for (int i = 0, x; i < 5; ++i) {
-			x = 5 - i;
 
-			current = new CentipedeSegment(window, x, 0, last);
-			placeObject(x, 0, current);
+			current = new CentipedeSegment(window, i, 0, last);
+			placeObject(i, 0, current);
 			last = current;
 		}
+		current->setAsHead();
 		activeCentipede = true;
 		//begin spawning centipede
 	}
