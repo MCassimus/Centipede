@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
+
 class GameObject
 {
 public:
@@ -40,4 +42,7 @@ protected:
 	sf::Vector2i currentPosition;
 	sf::RenderWindow * window = nullptr;
 	sf::Texture textureTemp;
+
+	sf::Sound soundPlayer;
+	sf::SoundBuffer soundClip;
 };

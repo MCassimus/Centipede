@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Flea.h"
+#include <fstream>
 
 class CentipedeGame
 {
@@ -38,6 +39,9 @@ private:
 
 	sf::Font arcadeFont;
 	sf::Text scoreDisplay;
+	
+	sf::Texture lifeTexture;
+	sf::Sprite lives[6];
 	sf::RenderTexture playerArea;
 	sf::RenderTexture scoreArea;
 	sf::Sprite playerAreaSprite;
@@ -46,6 +50,15 @@ private:
 	sf::Sprite startingScreen;
 =======
 
+	void drawLives();
+
 	bool activeCentipede = false;
+<<<<<<< HEAD
 >>>>>>> 2f0cc4332c3ffd1b41e9d1fa34e33744329fe40c
+=======
+
+	std::ifstream lives_in_file;
+	std::ofstream lives_out_file;
+
+>>>>>>> 9203cc4b9c9caafa0fc35495220938fa9965cac7
 };

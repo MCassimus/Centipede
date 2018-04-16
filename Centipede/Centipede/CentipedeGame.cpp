@@ -34,6 +34,13 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	arcadeFont.loadFromFile("../ARCADECLASSIC.TTF");
 	scoreDisplay.setFont(arcadeFont);
 	scoreDisplay.setCharacterSize(18);
+	
+	lifeTexture.loadFromFile("../Sprites/player.png");
+	for (int i = 0; i < 6; i++)
+	{
+		lives[i].setTexture(lifeTexture);
+		lives[i].setPosition(10 + 20 * i, 0);
+	}
 }
 
 
@@ -162,7 +169,10 @@ void CentipedeGame::draw()
 	scoreDisplay.setString("Score " + std::to_string(score));
 	scoreDisplay.setOrigin(scoreDisplay.getLocalBounds().width / 2, scoreDisplay.getLocalBounds().height/ 2);
 	scoreDisplay.setPosition(scoreAreaSprite.getTexture()->getSize().x / 2, 0);
+
 	scoreArea.draw(scoreDisplay);
+	//draw lives
+	drawLives();
 
 	if(grid)
 		playerArea.draw(linePoints);
@@ -292,4 +302,12 @@ void CentipedeGame::manageCentipedePopulation() {
 		activeCentipede = true;
 		//begin spawning centipede
 	}
+}
+
+
+void CentipedeGame::drawLives()
+{
+	for(int i=0; i < playerLives; i++)
+		scoreArea.draw(lives[i]);
+	return;
 }

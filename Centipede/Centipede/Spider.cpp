@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Spider.h"
+#include "CentipedeGame.h"
 
 
 Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameObject(renderWindow, x,  y)
@@ -24,14 +25,18 @@ Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameO
 	else
 		setVelocity(velocities[4]);
 	count = 0;
+
+	soundClip.loadFromFile("../Audio/spider.ogg");
+	soundPlayer.play();
+	soundPlayer.setLoop(true);
+	soundPlayer.setVolume(20);
 }
 
 
-static unsigned int frame = 0;
 void Spider::update()
 {
 	setPointValue();
-	if (frame++ == frameMax)
+	if (CentipedeGame::clock % delay == 0)
 	{
 		if (scuttle++ >= 4)//dancing
 			scuttle = 0;
@@ -245,8 +250,6 @@ void Spider::update()
 
 		currentPosition.x += velocity.x;
 		currentPosition.y += velocity.y;
-
-		frame = 0;
 	}
 }
 
@@ -256,7 +259,6 @@ void Spider::setPointValue()//finds the distance between spider and player for p
 	if(((player->getPosition().x <= currentPosition.x + 1)&&(player->getPosition().x >= currentPosition.x -1)) && 
 		((player->getPosition().y <= currentPosition.y + 1) && (player->getPosition().y >= currentPosition.y - 1)))
 	{
-			std::cout << "three hundo \n";
 			pointValue = 300;
 			return;
 	}
@@ -264,14 +266,12 @@ void Spider::setPointValue()//finds the distance between spider and player for p
 	else if (((player->getPosition().x <= currentPosition.x + 4) && (player->getPosition().x >= currentPosition.x - 4)) &&
 		((player->getPosition().y <= currentPosition.y + 4) && (player->getPosition().y >= currentPosition.y - 4)))
 	{
-			std::cout << "six hundo \n";
 			pointValue = 600;
 			return;
 	}
 		
 	else
 	{
-		std::cout << "nine hundo \n";
 		pointValue = 900;
 		return;
 	}
