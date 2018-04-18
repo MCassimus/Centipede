@@ -41,7 +41,7 @@ void Spider::update()
 		if (scuttle++ >= 4)//dancing
 			scuttle = 0;
 
-		if (scuttle == 0)                                   //dancing
+		if (scuttle == 0)//dancing
 			setTexture("../Sprites/Spider/Spider0.png");
 		else if (scuttle == 1)
 			setTexture("../Sprites/Spider/Spider1.png");
