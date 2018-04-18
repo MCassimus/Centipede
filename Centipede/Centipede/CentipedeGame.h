@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Flea.h"
+#include "CentipedeManager.h"
 #include <fstream>
 
 class CentipedeGame
@@ -46,19 +47,15 @@ private:
 	sf::RenderTexture scoreArea;
 	sf::Sprite playerAreaSprite;
 	sf::Sprite scoreAreaSprite;
-<<<<<<< HEAD
 	sf::Sprite startingScreen;
-=======
 
 	void drawLives();
 
 	bool activeCentipede = false;
-<<<<<<< HEAD
->>>>>>> 2f0cc4332c3ffd1b41e9d1fa34e33744329fe40c
-=======
 
 	std::ifstream score_in_file;
 	std::ofstream score_out_file;
 
->>>>>>> 9203cc4b9c9caafa0fc35495220938fa9965cac7
+	//CentipedeManager centMan;
+
 };

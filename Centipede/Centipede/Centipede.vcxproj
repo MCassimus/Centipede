@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CentipedeGame.h" />
+    <ClInclude Include="CentipedeManager.h" />
     <ClInclude Include="CentipedeSegment.h" />
     <ClInclude Include="Flea.h" />
     <ClInclude Include="GameObject.h" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CentipedeManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CentipedeGame.cpp" />
     <ClCompile Include="CentipedeSegment.cpp" />

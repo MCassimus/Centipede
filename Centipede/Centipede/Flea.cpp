@@ -37,16 +37,13 @@ void Flea::update()
 		//reset frame counter
 		frame = 0;
 	
-<<<<<<< HEAD
 		//this just fills the entire screen with fleas
 		//if (rand() % 40)
 		//	CentipedeGame::placeObject(rand() % 30, rand() % 30,
 		//		new Flea(window, rand() % 30,rand() % 30));
 
 
-=======
 		//places flea at random x cordinate at y==0
->>>>>>> 2f0cc4332c3ffd1b41e9d1fa34e33744329fe40c
 		if (rand() % 100 < 30 && currentPosition.y != 30 && !CentipedeGame::isMushroomCell(currentPosition.x, currentPosition.y))
 			CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
 
