@@ -20,9 +20,6 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	generateGrid();
 	reset();
 
-	
-
-
 	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
 	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
 
@@ -141,6 +138,8 @@ bool CentipedeGame::update()
 		liveScorpion = true;
 	}
 
+	//this should be happening when player dies
+	#pragma region rebuildMushroom
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		for (int x = 0; x < 30; ++x)
 			for (int y = 0; y < 30; ++y)
@@ -148,12 +147,12 @@ bool CentipedeGame::update()
 					if (dynamic_cast<Mushroom *> (map[y][x][frame].at(i)) != nullptr)
 						while (dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->getHealth() < 4)
 						{
-							dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->resetHeath();
 							draw();
+							dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->resetHeath();
 						}
+	#pragma endregion
 
 	//Centipede spawning
-
 	manageCentipedePopulation();
 	
 	draw();
@@ -295,6 +294,7 @@ unsigned int CentipedeGame::getCountOf(char* type, unsigned int startX = 0, unsi
 	return count;
 }
 
+
 void CentipedeGame::manageCentipedePopulation() {
 	if (activeCentipede) {
 		//check if centipede has died
@@ -320,5 +320,4 @@ void CentipedeGame::drawLives()
 {
 	for(int i=0; i < playerLives; i++)
 		scoreArea.draw(lives[i]);
-	return;
 }
