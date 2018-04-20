@@ -311,7 +311,6 @@ void CentipedeGame::manageCentipedePopulation() {
 		}
 		current->setAsHead();
 		activeCentipede = true;
-		//begin spawning centipede
 	}
 }
 

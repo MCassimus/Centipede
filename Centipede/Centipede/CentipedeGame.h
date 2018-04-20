@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Flea.h"
+#include "CentipedeManager.h"
 #include <fstream>
 
 class CentipedeGame
@@ -51,7 +52,9 @@ private:
 
 	bool activeCentipede = false;
 
-
 	std::ifstream score_in_file;
 	std::ofstream score_out_file;
+
+	//CentipedeManager centMan;
+
 };
