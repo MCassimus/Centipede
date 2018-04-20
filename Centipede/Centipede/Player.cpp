@@ -55,4 +55,6 @@ void Player::collideWith(GameObject * other)
 		health--;
 	else if (dynamic_cast<Spider *>(other) != nullptr)
 		health--;
+
+	//play a death anim here
 }
