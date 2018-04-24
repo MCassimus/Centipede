@@ -19,7 +19,7 @@ public:
 	void reset();
 	static void placeObject(unsigned int, unsigned int, GameObject *);
 
-	template <typename type> static void spawnObject(unsigned int, unsigned int);
+	//template <typename type> static void spawnObject(unsigned int, unsigned int);
 	
 
 	static unsigned int clock;
@@ -65,11 +65,9 @@ private:
 	CentipedeManager centMan;
 };
 
-template<typename type>
-inline void CentipedeGame::spawnObject(unsigned int x, unsigned int y)
-{
-	this;
-
-	if (isInBounds(x, y))
-		map[y][x][frame].push_back(type(playerArea, x, y));
-}
+//template<typename type>
+//inline void CentipedeGame::spawnObject(unsigned int x, unsigned int y)
+//{
+//	if (isInBounds(x, y))
+//		map[y][x][frame].push_back(type(playerArea, x, y));
+//}

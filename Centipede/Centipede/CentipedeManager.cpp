@@ -30,11 +30,11 @@ bool CentipedeManager::beginSpawn(unsigned int frame, unsigned int _speed) {
 	return status;
 }
 
-void CentipedeManager::update() {
-	if (!done && CentipedeGame::clock % speed) {
-		CentipedeGame::spawnObject<CentipedeSegment>(entryX, 0);
-	}
-}
+//void CentipedeManager::update() {
+//	if (!done && CentipedeGame::clock % speed) {
+//		CentipedeGame::spawnObject<CentipedeSegment>(entryX, 0);
+//	}
+//}
 
 void CentipedeManager::placeSegment() {
 }
