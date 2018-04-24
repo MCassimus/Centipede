@@ -18,6 +18,10 @@ public:
 	static bool isMushroomCell(unsigned int, unsigned int);
 	void reset();
 	static void placeObject(unsigned int, unsigned int, GameObject *);
+
+	template <typename type> static void spawnObject(unsigned int, unsigned int);
+	
+
 	static unsigned int clock;
 
 	unsigned int getCountOf(char*, unsigned int, unsigned int, unsigned int, unsigned int);
@@ -27,6 +31,7 @@ private:
 	void generateGrid();
 
 	void manageCentipedePopulation();
+	static bool isInBounds(unsigned int x, unsigned int y) { return x < 30 && y < 30; }
 
 	static void kill(GameObject*);
 	sf::VertexArray linePoints;
@@ -56,6 +61,14 @@ private:
 	std::ifstream score_in_file;
 	std::ofstream score_out_file;
 
-	//CentipedeManager centMan;
-
+	CentipedeManager centMan;
 };
+
+template<typename type>
+inline void CentipedeGame::spawnObject(unsigned int x, unsigned int y)
+{
+	this;
+
+	if (isInBounds(x, y))
+		map[y][x][frame].push_back(type(playerArea, x, y));
+}

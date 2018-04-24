@@ -1,6 +1,5 @@
 #pragma once
 
-#include "CentipedeGame.h"
 #include "CentipedeSegment.h"
 
 class CentipedeManager {
@@ -9,8 +8,13 @@ public:
 
 	void calculateEntryX();
 
-private:
-	unsigned int entryTime;
-	unsigned int entryX;
-};
+	bool beginSpawn(unsigned int, unsigned int);
 
+private:
+	void placeSegment();
+
+	void update();
+
+	unsigned int entryTime, haveSpawned, entryX, speed;
+	bool done;
+};

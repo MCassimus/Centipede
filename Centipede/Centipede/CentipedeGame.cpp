@@ -1,17 +1,19 @@
+#pragma once
+
 #include "stdafx.h"
+#include <iostream>
 #include "CentipedeGame.h"
 #include "Mushroom.h"
 #include "Player.h"
 #include "Scorpion.h"
 #include "CentipedeSegment.h"
 #include "Spider.h"
-#include <iostream>
+
 
 bool CentipedeGame::frame = false;
 std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
 unsigned int CentipedeGame::clock = 0, CentipedeGame::score = 0;
 int CentipedeGame::playerLives = -1;
-
 
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD), linePoints(sf::Lines, 30 * 30)
 {
@@ -19,9 +21,6 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	window = renderWindow;
 	generateGrid();
 	reset();
-
-	
-
 
 	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
 	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
@@ -259,6 +258,11 @@ void CentipedeGame::placeObject(unsigned int x, unsigned int y, GameObject * obj
 	else
 		CentipedeGame::kill(object);
 }
+
+//template <typename type> void CentipedeGame::spawnObject(unsigned int x, unsigned int y) {
+//	if (isInBounds(x,y))
+//		map[y][x][frame].push_back(type(playerArea, x, y));
+//}
 
 void CentipedeGame::kill(GameObject *thing) {
 	bool readyToDie;
