@@ -19,7 +19,22 @@ int main()
 	const sf::Vector2u winDim(480, 504);
 	
 	sf::RenderWindow window(sf::VideoMode(winDim.x, winDim.y), "Centipede");
+
+
+	sf::Texture startingScreen;
+	startingScreen.loadFromFile("../Sprites/start.png");
+
+	sf::Sprite sprite;
+	sprite.setTexture(startingScreen);
+
+	window.draw(sprite);
+
+
 	CentipedeGame game(&window, winDim);
+
+
+
+
 
 	window.setFramerateLimit(60);
 	window.setMouseCursorVisible(false);
