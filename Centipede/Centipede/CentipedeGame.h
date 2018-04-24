@@ -27,6 +27,7 @@ public:
 	unsigned int getCountOf(char*, unsigned int, unsigned int, unsigned int, unsigned int);
 
 private:
+	void killCentipedes();//centipede should be reset when player dies
 	void resolveCollisions();
 	void generateGrid();
 

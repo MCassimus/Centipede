@@ -279,7 +279,6 @@ void Spider::setPointValue()//finds the distance between spider and player for p
 
 
 void Spider::collideWith(GameObject* other)
-
 {
 	if (dynamic_cast<Bullet*>(other) != nullptr)
 		health = 0;
