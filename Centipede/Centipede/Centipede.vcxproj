@@ -157,6 +157,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ScoreBoi.h" />
     <ClInclude Include="Scorpion.h" />
     <ClInclude Include="Spider.h" />
   </ItemGroup>
@@ -170,6 +171,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ScoreBoi.cpp" />
     <ClCompile Include="Scorpion.cpp" />
     <ClCompile Include="Spider.cpp" />
   </ItemGroup>
