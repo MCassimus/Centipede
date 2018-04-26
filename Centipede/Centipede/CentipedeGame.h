@@ -5,8 +5,9 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Flea.h"
-#include "CentipedeManager.h"
 #include <fstream>
+
+class CentipedeManager;
 
 class CentipedeGame
 {
@@ -19,7 +20,7 @@ public:
 	void reset();
 	static void placeObject(unsigned int, unsigned int, GameObject *);
 
-	template <typename type> static void spawnObject(unsigned int, unsigned int);
+	template <typename type> void spawnObject(unsigned int, unsigned int);
 	
 
 	static unsigned int clock;
@@ -62,14 +63,5 @@ private:
 	std::ifstream score_in_file;
 	std::ofstream score_out_file;
 
-	CentipedeManager centMan;
+	CentipedeManager *centMan;
 };
-
-template<typename type>
-inline void CentipedeGame::spawnObject(unsigned int x, unsigned int y)
-{
-	this;
-
-	if (isInBounds(x, y))
-		map[y][x][frame].push_back(type(playerArea, x, y));
-}
