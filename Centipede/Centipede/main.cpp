@@ -8,6 +8,7 @@
 #include "stdafx.h"
 #include <ctime>
 #include "CentipedeGame.h"
+using namespace std;
 
 
 int main()
@@ -21,20 +22,28 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(winDim.x, winDim.y), "Centipede");
 
 
-	sf::Texture startingScreen;
-	startingScreen.loadFromFile("../Sprites/start.png");
+//StartScreen stuff
+/*	sf::Texture startingScreen;
+	startingScreen.loadFromFile("../Sprites/startscreen.png");
 
 	sf::Sprite sprite;
 	sprite.setTexture(startingScreen);
+	sprite.setScale(1.95f, 2.05f);
+
+	sf::Mouse::getPosition(window);
+
+	sf::RectangleShape startButton(sf::Vector2f(120, 50));
+	startButton.setFillColor(sf::Color(100, 250, 50));
+	startButton.setPosition(185, 335);
+
+	sf::FloatRect boundingBox = startButton.getGlobalBounds();
+
 
 	window.draw(sprite);
-
+	window.draw(startButton);
+	*/window.display();
 
 	CentipedeGame game(&window, winDim);
-
-
-
-
 
 	window.setFramerateLimit(60);
 	window.setMouseCursorVisible(false);
@@ -71,6 +80,8 @@ int main()
 
 		}
 	}
+
+	system("pause");
 
 	return 0;
 }
