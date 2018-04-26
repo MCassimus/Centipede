@@ -8,6 +8,7 @@
 #include "Scorpion.h"
 #include "CentipedeSegment.h"
 #include "Spider.h"
+#include "CentipedeManager.h"
 
 
 bool CentipedeGame::frame = false;
@@ -42,8 +43,13 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 		lives[i].setPosition(10 + 20 * i, 0);
 	}
 
+	centMan = new CentipedeManager();
 
-	manageCentipedePopulation();
+	centMan->bindToGame(this);
+	centMan->beginSpawn(CentipedeGame::clock, 8, 8);
+
+	spawnObject<CentipedeSegment>(2, 2);
+
 }
 
 
@@ -55,7 +61,8 @@ CentipedeGame::~CentipedeGame()
 			{
 				delete map[y][x][frame].at(i);
 				map[y][x][frame].erase(i + map[y][x][frame].begin());
-			}		
+			}	
+	delete centMan;
 }
 
 
@@ -184,9 +191,8 @@ bool CentipedeGame::update()
 	}
 	#pragma endregion
 
-	//Centipede spawning
-	//moved to ctor temp while getting mushroom rebuild & centipede respawn on player death
-	//manageCentipedePopulation();
+	manageCentipedePopulation();
+	centMan->update();
 	
 	draw();
 	
@@ -293,10 +299,11 @@ void CentipedeGame::placeObject(unsigned int x, unsigned int y, GameObject * obj
 		CentipedeGame::kill(object);
 }
 
-//template <typename type> void CentipedeGame::spawnObject(unsigned int x, unsigned int y) {
-//	if (isInBounds(x,y))
-//		map[y][x][frame].push_back(type(playerArea, x, y));
-//}
+template <typename type> void CentipedeGame::spawnObject(unsigned int x, unsigned int y) {
+	if (isInBounds(x, y)) {
+		map[y][x][frame].push_back(new type(window, x, y));
+	}
+}
 
 void CentipedeGame::kill(GameObject *thing) {
 	bool readyToDie;
@@ -363,15 +370,7 @@ void CentipedeGame::manageCentipedePopulation() {
 	}
 	else {
 
-		CentipedeSegment *last = nullptr, *current = nullptr;
-		for (int i = 0, x; i < 5; ++i) {
-
-			current = new CentipedeSegment(window, i, 0, last);
-			placeObject(i, 0, current);
-			last = current;
-		}
-		current->setAsHead();
-		activeCentipede = true;
+		//centMan.beginSpawn()
 	}
 }
 

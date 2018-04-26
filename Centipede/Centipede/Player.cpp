@@ -3,7 +3,7 @@
 #include "CentipedeGame.h"
 #include "CentipedeSegment.h"
 #include "Scorpion.h"
-#include "Spider.h";
+#include "Spider.h"
 
 Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y)
 {
