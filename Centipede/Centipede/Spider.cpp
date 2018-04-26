@@ -127,7 +127,7 @@ void Spider::move()
 		if (rand() % 6 == 1)
 			setVelocity(velocities[0]);
 		else if (rand() % 6 == 1 || count % 6 == 0 || currentPosition.y == 29)
-			setVelocity(velocities[]);
+			setVelocity(velocities[4]);
 		//move up left 1/6 chance
 		//after 6 steps move up left
 		//override die to set score to 0 when offscreen, then kill.
