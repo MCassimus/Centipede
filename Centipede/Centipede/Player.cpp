@@ -14,8 +14,18 @@ Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (rend
 
 void Player::update()
 {
+	setVelocity(sf::Vector2i(getNearestCellPos(getRelMousePos()).x - currentPosition.x, getNearestCellPos(getRelMousePos()).y-currentPosition.y));
+
+	
+
+
+
 	currentPosition = getNearestCellPos(getRelMousePos());
 	currentPosition /= static_cast<int>(interval.x);
+	//if (!mushroom in way)
+		//goto mouse
+	//else
+		// go untill hit mushroom
 
 	if ((30 - currentPosition.y) > 12)
 		currentPosition.y = 30-12;
