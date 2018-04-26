@@ -10,6 +10,8 @@ public:
 	void update();
 	void setPointValue();
 	void collideWith(GameObject*);
+	void move();
+	//int die(bool);//override die func to set score to 0 offscreen
 	~Spider();
 private: 
 	Player *player; 

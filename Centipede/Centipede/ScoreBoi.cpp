@@ -28,6 +28,8 @@ std::string ScoreBoi::getScoreX(int place)
 	}
 	else
 		std::cout << "file error\n";
+
+	return "This is a default string";
 }
 
 
