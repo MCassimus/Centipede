@@ -36,7 +36,6 @@ bool CentipedeManager::beginSpawn(unsigned int frame, unsigned int _speed, unsig
 
 	return status;
 }
-
 void CentipedeManager::update() {
 	if (!done && (CentipedeGame::clock % speed == 0)) {
 		gameHandle->spawnObject<CentipedeSegment>(entryX, 0);

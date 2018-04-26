@@ -48,8 +48,6 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	centMan->bindToGame(this);
 	centMan->beginSpawn(CentipedeGame::clock, 8, 8);
 
-	spawnObject<CentipedeSegment>(2, 2);
-
 }
 
 
