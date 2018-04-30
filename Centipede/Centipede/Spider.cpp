@@ -37,11 +37,6 @@ void Spider::update()
 	static int scuttle = 0; //for animation
 	if (CentipedeGame::clock % delay == 0)
 	{
-		/*if (currentPosition.x == 0 && (getVelocity() == velocities[5] || getVelocity() == velocities[4]))
-			health = 0;
-		else if (currentPosition.x == 29 && (getVelocity() == velocities[1] || getVelocity() == velocities[2]))
-			health = 0;*/
-
 		//animations
 		if (scuttle++ >= 4)//dancing
 			scuttle = 0;
@@ -63,7 +58,11 @@ void Spider::update()
 //finds the distance between spider and player for pointValue
 void Spider::setPointValue()
 {
-	if(((player->getPosition().x <= currentPosition.x + 1)&&(player->getPosition().x >= currentPosition.x -1)) && 
+	if (currentPosition.x == -1 || currentPosition.x == 30)//if offscreen return no points
+		pointValue = 0;
+	else if (player->getPosition() == currentPosition)//no points rewarded if player dies
+		pointValue = 0;	
+	else if(((player->getPosition().x <= currentPosition.x + 1)&&(player->getPosition().x >= currentPosition.x -1)) && 
 		((player->getPosition().y <= currentPosition.y + 1) && (player->getPosition().y >= currentPosition.y - 1)))
 		pointValue = 900;
 	else if (((player->getPosition().x <= currentPosition.x + 4) && (player->getPosition().x >= currentPosition.x - 4)) &&
@@ -158,7 +157,5 @@ unsigned int Spider::die(bool &readyToDie) {
 	readyToDie = true;
 	setPointValue();//determine current point value
 
-	if (currentPosition.x == -1 || currentPosition.x == 30)//if offscreen return no points
-		return 0;
 	return getPointValue();
 }
