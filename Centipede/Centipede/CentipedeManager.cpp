@@ -1,8 +1,11 @@
 #include "CentipedeManager.h"
+#include "CentipedeSegment.h"
 #include <iostream>
 #include "CentipedeGame.h"
 
 CentipedeManager::CentipedeManager() {
+
+	gameHandle = nullptr;
 }
 
 void CentipedeManager::bindToGame(CentipedeGame *handle) {
@@ -38,7 +41,9 @@ bool CentipedeManager::beginSpawn(unsigned int frame, unsigned int _speed, unsig
 }
 void CentipedeManager::update() {
 	if (!done && (CentipedeGame::clock % speed == 0)) {
-		gameHandle->spawnObject<CentipedeSegment>(entryX, 0);
+		gameHandle->doNothing();
+		if( gameHandle != nullptr)
+			gameHandle->spawnObject<CentipedeSegment>(entryX, 0);
 		if (++haveSpawned >= length)
 			done = true;
 	}

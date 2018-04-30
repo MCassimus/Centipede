@@ -20,12 +20,17 @@ public:
 	void reset();
 	static void placeObject(unsigned int, unsigned int, GameObject *);
 
-	template <typename type> void spawnObject(unsigned int, unsigned int);
-	
+	template <typename type> void spawnObject(unsigned int x, unsigned int y) {
+		if (isInBounds(x, y)) {
+			map[y][x][frame].push_back(new type(window, x, y));
+		}
+	};
 
 	static unsigned int clock;
 
 	unsigned int getCountOf(char*, unsigned int, unsigned int, unsigned int, unsigned int);
+
+	void doNothing();
 
 private:
 	void killCentipedes();//centipede should be reset when player dies

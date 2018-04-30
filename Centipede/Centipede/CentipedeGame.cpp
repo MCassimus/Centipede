@@ -48,6 +48,8 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	centMan->bindToGame(this);
 	centMan->beginSpawn(CentipedeGame::clock, 8, 8);
 
+	//spawnObject(2,2);
+
 }
 
 
@@ -297,10 +299,8 @@ void CentipedeGame::placeObject(unsigned int x, unsigned int y, GameObject * obj
 		CentipedeGame::kill(object);
 }
 
-template <typename type> void CentipedeGame::spawnObject(unsigned int x, unsigned int y) {
-	if (isInBounds(x, y)) {
-		map[y][x][frame].push_back(new type(window, x, y));
-	}
+void CentipedeGame::doNothing() {
+	return;
 }
 
 void CentipedeGame::kill(GameObject *thing) {

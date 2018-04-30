@@ -4,6 +4,10 @@
 #include "Mushroom.h"
 #include <math.h>
 
+CentipedeSegment::CentipedeSegment()
+{
+//What am I doing??!?!
+}
 
 CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
 {
