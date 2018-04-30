@@ -21,65 +21,86 @@ int main()
 	
 	sf::RenderWindow window(sf::VideoMode(winDim.x, winDim.y), "Centipede");
 
-
-//StartScreen stuff
-/*	sf::Texture startingScreen;
+	sf::Texture startingScreen;
 	startingScreen.loadFromFile("../Sprites/startscreen.png");
 
 	sf::Sprite sprite;
 	sprite.setTexture(startingScreen);
 	sprite.setScale(1.95f, 2.05f);
 
-	sf::Mouse::getPosition(window);
-
-	sf::RectangleShape startButton(sf::Vector2f(120, 50));
-	startButton.setFillColor(sf::Color(100, 250, 50));
-	startButton.setPosition(185, 335);
-
-	sf::FloatRect boundingBox = startButton.getGlobalBounds();
-
-
 	window.draw(sprite);
-	window.draw(startButton);
-	*/window.display();
+	window.display();
 
 	CentipedeGame game(&window, winDim);
 
+	//window.setMouseCursorVisible(false);
 	window.setFramerateLimit(60);
-	window.setMouseCursorVisible(false);
 	//window.setKeyRepeatEnabled(false);
 
 	bool frameByFrameMode(false), enterPressed(false);
 
 	sf::Event event;
-	while (window.isOpen())
-	{
 
-		if (frameByFrameMode) {
-			if (enterPressed) {
+	if (sf::Mouse::getPosition(window).x > 185 &&
+		sf::Mouse::getPosition(window).x < 305 &&
+		sf::Mouse::getPosition(window).y > 335 &&
+		sf::Mouse::getPosition(window).y < 385 &&
+		sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		cout << "START BUTTON" << endl;
+
+		while (window.isOpen())
+		{
+			if (frameByFrameMode) {
+				if (enterPressed) {
+					game.update();
+					enterPressed = false;
+				}
+			}
+			else
 				game.update();
-				enterPressed = false;
+
+			while (window.pollEvent(event)) {
+				if (event.type == sf::Event::Closed)
+					window.close();
+				if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
+					window.setSize(sf::Vector2u(event.size.width, event.size.width * 1.05));
+				if (event.type == sf::Event::KeyPressed)
+					if (event.key.code == sf::Keyboard::Escape)
+						window.close();
+					else if (event.key.code == sf::Keyboard::F1)
+						frameByFrameMode = !frameByFrameMode;
+					else if (event.key.code == sf::Keyboard::Return)
+						enterPressed = true;
 			}
 		}
-		else 
-			game.update();
-
-		while (window.pollEvent(event)) {
-
-			if (event.type == sf::Event::Closed)
-				window.close();
-			if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
-				window.setSize(sf::Vector2u(event.size.width, event.size.width * 1.05));
-			if (event.type == sf::Event::KeyPressed)
-				if (event.key.code == sf::Keyboard::Escape)
-					window.close();
-				else if (event.key.code == sf::Keyboard::F1)
-					frameByFrameMode = !frameByFrameMode;
-				else if (event.key.code == sf::Keyboard::Return)
-					enterPressed = true;
-
-		}
 	}
+
+	//while (window.isOpen())
+	//{		
+	//	if (frameByFrameMode) {
+	//		if (enterPressed) {
+	//			game.update();
+	//			enterPressed = false;
+	//		}
+	//	}
+	//	else
+	//		game.update();
+
+	//	while (window.pollEvent(event)) {
+	//		if (event.type == sf::Event::Closed)
+	//			window.close();
+	//		if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
+	//			window.setSize(sf::Vector2u(event.size.width, event.size.width * 1.05));
+	//		if (event.type == sf::Event::KeyPressed)
+	//			if (event.key.code == sf::Keyboard::Escape)
+	//				window.close();
+	//			else if (event.key.code == sf::Keyboard::F1)
+	//				frameByFrameMode = !frameByFrameMode;
+	//			else if (event.key.code == sf::Keyboard::Return)
+	//				enterPressed = true;
+	//	}
+	//}
 
 	system("pause");
 
