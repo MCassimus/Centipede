@@ -4,8 +4,12 @@
 #include "Mushroom.h"
 #include <math.h>
 
+CentipedeSegment::CentipedeSegment()
+{
+//What am I doing??!?!
+}
 
-CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y, CentipedeSegment* _previous) : GameObject(renderWindow, x,  y)
+CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
 {
 	pointValue = 10;
 	health = 1;
@@ -16,8 +20,10 @@ CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y
 	velocity = sf::Vector2i(1, 0);
 
 	movingDown = movingRight = true;
+}
 
-	previous = _previous;
+void CentipedeSegment::attach(CentipedeSegment *segment) {
+	previous = segment;
 }
 
 
@@ -57,8 +63,6 @@ unsigned int CentipedeSegment::die(bool &readyToDie) {
 	readyToDie = true;
 
 	CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
-
-	std::cout << "rip centipede segment_______________________________________\n";
 
 	if (previous != nullptr)
 		previous->setAsHead();

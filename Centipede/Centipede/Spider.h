@@ -10,12 +10,11 @@ public:
 	void update();
 	void setPointValue();
 	void collideWith(GameObject*);
+	void move();
+	unsigned int die(bool &);
 	~Spider();
 private: 
 	Player *player; 
-	int scuttle; //for animation
 	unsigned int delay = 15;
-	sf::Vector2i velocities[6];
-	int count; //for direction change
-	bool lastDir;
+	bool dir;
 };

@@ -8,6 +8,7 @@
 #include "Scorpion.h"
 #include "CentipedeSegment.h"
 #include "Spider.h"
+#include "CentipedeManager.h"
 
 
 bool CentipedeGame::frame = false;
@@ -43,8 +44,13 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 		lives[i].setPosition(10 + 20 * i, 0);
 	}
 
+	centMan = new CentipedeManager();
 
-	manageCentipedePopulation();
+	centMan->bindToGame(this);
+	centMan->beginSpawn(CentipedeGame::clock, 8, 8);
+
+	//spawnObject(2,2);
+
 }
 
 
@@ -56,7 +62,8 @@ CentipedeGame::~CentipedeGame()
 			{
 				delete map[y][x][frame].at(i);
 				map[y][x][frame].erase(i + map[y][x][frame].begin());
-			}		
+			}	
+	delete centMan;
 }
 
 
@@ -106,9 +113,6 @@ bool CentipedeGame::update()
 					//check if object removed is scorpion
 					if (liveScorpion && dynamic_cast<Scorpion *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
 						liveScorpion = false;
-					//check if object removed is spider
-					if (liveSpider && dynamic_cast<Spider *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
-						liveSpider = false;
 
 					kill(map[y][x][frame].at(i));
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
@@ -149,8 +153,20 @@ bool CentipedeGame::update()
 		liveScorpion = true;
 	}
 
-	//Spider spawning
-	if (!liveSpider && rand() % 1000 < 5)
+	//check if there is currenly a spider
+	if (liveSpider)
+	{
+		Spider * temp = nullptr;
+		for (int y = 0; y < 30; ++y)
+			for (int x = 0; x < 30; ++x)
+				for (int i = 0; i < map[y][x][frame].size(); ++i)
+					if (dynamic_cast<Spider *>(map[y][x][frame].at(i)) != nullptr)
+						temp = dynamic_cast<Spider *>(map[y][x][frame].at(i));
+
+		liveSpider = temp == nullptr ? false : true;
+	}
+	//no spider alive, spawn if rand allows
+	else if ( rand() % 1000 < 5)
 	{
 		Player * player = nullptr;
 
@@ -162,7 +178,8 @@ bool CentipedeGame::update()
 						player = dynamic_cast<Player *>(map[y][x][frame].at(i));
 
 		int xRandPos = rand() % 30 < 15 ? 0 : 29;
-		placeObject(xRandPos, 20, new Spider(window, xRandPos, 20, *player));
+		int yRandPos = rand() % 5 + 18;
+		placeObject(xRandPos, yRandPos, new Spider(window, xRandPos, yRandPos, *player));
 		liveSpider = true;
 	}
 
@@ -185,9 +202,8 @@ bool CentipedeGame::update()
 	}
 	#pragma endregion
 
-	//Centipede spawning
-	//moved to ctor temp while getting mushroom rebuild & centipede respawn on player death
-	//manageCentipedePopulation();
+	manageCentipedePopulation();
+	centMan->update();
 	
 	draw();
 	
@@ -249,8 +265,6 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
-	int yRandPos;
-
 	placeObject(15, 29, new Player(window, 15, 29));//spawn player
 
 	Player * player = nullptr;
@@ -262,7 +276,9 @@ void CentipedeGame::reset()
 				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
 					player = dynamic_cast<Player *>(map[y][x][frame].at(i));
 
-	placeObject(0, 20, new Spider(window, 0, 20, *player));
+	int xRandPos = rand() % 30 < 15 ? 0 : 29;
+	int yRandPos = rand() % 5 + 18;
+	placeObject(xRandPos, yRandPos, new Spider(window, xRandPos, yRandPos, *player));
 	liveSpider = true;
 	
 	//randomly place mushrooms on map on startup
@@ -294,10 +310,9 @@ void CentipedeGame::placeObject(unsigned int x, unsigned int y, GameObject * obj
 		CentipedeGame::kill(object);
 }
 
-//template <typename type> void CentipedeGame::spawnObject(unsigned int x, unsigned int y) {
-//	if (isInBounds(x,y))
-//		map[y][x][frame].push_back(type(playerArea, x, y));
-//}
+void CentipedeGame::doNothing() {
+	return;
+}
 
 void CentipedeGame::kill(GameObject *thing) {
 	bool readyToDie;
@@ -364,15 +379,7 @@ void CentipedeGame::manageCentipedePopulation() {
 	}
 	else {
 
-		CentipedeSegment *last = nullptr, *current = nullptr;
-		for (int i = 0, x; i < 5; ++i) {
-
-			current = new CentipedeSegment(window, i, 0, last);
-			placeObject(i, 0, current);
-			last = current;
-		}
-		current->setAsHead();
-		activeCentipede = true;
+		//centMan.beginSpawn()
 	}
 }
 

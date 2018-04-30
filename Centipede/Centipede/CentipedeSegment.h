@@ -5,8 +5,12 @@
 class CentipedeSegment: public GameObject
 {
 public:
-	CentipedeSegment(sf::RenderWindow *, int, int, CentipedeSegment*);
+	CentipedeSegment();
+	CentipedeSegment(sf::RenderWindow *, int, int);
 	~CentipedeSegment();
+
+	void attach(CentipedeSegment*);
+
 	void update();
 	void collideWith(GameObject *);
 	bool canMoveTo(int, int);
@@ -22,5 +26,5 @@ public:
 private:
 	bool isPoisoned;
 	bool movingDown, movingRight;
-	CentipedeSegment * previous;
+	CentipedeSegment * previous = nullptr;
 };
