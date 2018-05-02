@@ -21,6 +21,8 @@ int main()
 
 	sf::RenderWindow window(sf::VideoMode(winDim.x, winDim.y), "Centipede");
 
+	CentipedeGame game(&window, winDim);
+
 	sf::Texture startingScreen;
 	startingScreen.loadFromFile("../Sprites/startscreen.png");
 
@@ -31,14 +33,11 @@ int main()
 	window.draw(sprite);
 	window.display();
 
-	bool gameStart = false;
-
-	CentipedeGame game(&window, winDim);
-
 	window.setFramerateLimit(60);
 	//window.setKeyRepeatEnabled(false);
 
 	bool frameByFrameMode(false), enterPressed(false);
+	bool gameStart = false;
 
 	sf::Event event;
 
@@ -50,7 +49,6 @@ int main()
 			sf::Mouse::getPosition(window).y < 385 &&
 			sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			cout << "START BUTTON" << endl;
 			gameStart = true;
 			window.setMouseCursorVisible(false);
 		}
