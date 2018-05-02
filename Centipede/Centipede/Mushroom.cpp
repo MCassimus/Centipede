@@ -5,7 +5,7 @@
 #include "Bullet.h"
 
 
-Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, x, y)
+Mushroom::Mushroom(int x, int y) : GameObject(x, y)
 {
 	pointValue = 5;
 	poisoned = false;
@@ -15,7 +15,7 @@ Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, 
 }
 
 
-void Mushroom::update()
+void Mushroom::update(CentipedeGame *gameHandle)
 {
 	switch (health)//changes texture based on health
 	{

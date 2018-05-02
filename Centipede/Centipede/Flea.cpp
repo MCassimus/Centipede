@@ -9,7 +9,7 @@ Flea::Flea()
 }
 
 
-Flea::Flea(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
+Flea::Flea(int x, int y) : GameObject(x,  y)
 {
  	setTexture("../Sprites/flea.png");
 	object.setScale(sf::Vector2f(.5,.5));
@@ -26,7 +26,7 @@ Flea::~Flea()
 
 
 static unsigned int frame = 0;
-void Flea::update()
+void Flea::update(CentipedeGame *gameHandle)
 {
 	setPixels();
 	if (frame++ == delay)//if time to update
@@ -45,7 +45,7 @@ void Flea::update()
 
 		//places flea at random x cordinate at y==0
 		if (rand() % 100 < 30 && currentPosition.y != 30 && !CentipedeGame::isMushroomCell(currentPosition.x, currentPosition.y))
-			CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
+			gameHandle->spawnObject<Mushroom>(currentPosition.x, currentPosition.y);
 
 
 

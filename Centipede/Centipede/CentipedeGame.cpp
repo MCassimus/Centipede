@@ -12,7 +12,7 @@
 
 
 bool CentipedeGame::frame = false;
-std::vector<GameObject *> CentipedeGame::map[30][30][2] = {};
+std::vector<std::shared_ptr<GameObject>> CentipedeGame::map[30][30][2] = {};
 unsigned int CentipedeGame::clock = 0, CentipedeGame::score = 0;
 int CentipedeGame::playerLives = -1;
 static int lastPlayerLives;
@@ -48,8 +48,6 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	centMan->bindToGame(this);
 	centMan->beginSpawn(CentipedeGame::clock, 8, 8);
 
-	//spawnObject(2,2);
-
 }
 
 
@@ -59,7 +57,7 @@ CentipedeGame::~CentipedeGame()
 		for (int x = 0; x < 30; x++)                                
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 			{
-				delete map[y][x][frame].at(i);
+				map[y][x][frame].at(i).reset();
 				map[y][x][frame].erase(i + map[y][x][frame].begin());
 			}	
 	delete centMan;
@@ -77,7 +75,7 @@ bool CentipedeGame::update()
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x) 
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
-				map[y][x][frame].at(i)->update();
+				map[y][x][frame].at(i)->update(this);
 	#pragma endregion	
 
 	frame = !frame;
@@ -107,10 +105,10 @@ bool CentipedeGame::update()
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
 					//check if object removed is flea
-					if (liveFlea && dynamic_cast<Flea *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
+					if (liveFlea && std::dynamic_pointer_cast<Flea>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)))
 						liveFlea = false;
 					//check if object removed is scorpion
-					if (liveScorpion && dynamic_cast<Scorpion *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
+					if (liveScorpion && std::dynamic_pointer_cast<Scorpion>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)))
 						liveScorpion = false;
 
 					kill(map[y][x][frame].at(i));
@@ -124,7 +122,7 @@ bool CentipedeGame::update()
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
-				if (dynamic_cast<Player *> (map[y][x][frame].at(i)) != nullptr)
+				if (std::dynamic_pointer_cast<Player> (map[y][x][frame].at(i)))
 					playerLives = map[y][x][frame].at(i)->getHealth();
 
 	//check if flea needs to be spawned
@@ -138,7 +136,7 @@ bool CentipedeGame::update()
 	if (mushroomCount < 5 && !liveFlea)
 	{
 		int xpos = rand() % 29;
- 		placeObject(xpos , 0, new Flea(window, xpos, 0));
+ 		spawnObject<Flea>(xpos, 0);
 		liveFlea = true;
 	}
 	#pragma endregion
@@ -148,37 +146,31 @@ bool CentipedeGame::update()
 	{
 		int xRandPos = rand() % 30 < 15 ? 0 : 29;
 		int yRandPos = rand() % 17;
-		placeObject(xRandPos, yRandPos, new Scorpion(window, xRandPos, yRandPos));
+		spawnObject<Scorpion>(xRandPos, yRandPos);
 		liveScorpion = true;
 	}
 
 	//check if there is currenly a spider
 	if (liveSpider)
 	{
-		Spider * temp = nullptr;
+		std::shared_ptr<Spider> temp;
 		for (int y = 0; y < 30; ++y)
 			for (int x = 0; x < 30; ++x)
 				for (int i = 0; i < map[y][x][frame].size(); ++i)
-					if (dynamic_cast<Spider *>(map[y][x][frame].at(i)) != nullptr)
-						temp = dynamic_cast<Spider *>(map[y][x][frame].at(i));
+					if (std::dynamic_pointer_cast<Spider>(map[y][x][frame].at(i)))
+						temp = std::dynamic_pointer_cast<Spider>(map[y][x][frame].at(i));
 
-		liveSpider = temp == nullptr ? false : true;
+		liveSpider = (temp) ? false : true;
 	}
 	//no spider alive, spawn if rand allows
 	else if ( rand() % 1000 < 5)
 	{
-		Player * player = nullptr;
-
-		//find player
-		for (int y = 0; y < 30; ++y)
-			for (int x = 0; x < 30; ++x)
-				for (int i = 0; i < map[y][x][frame].size(); ++i)
-					if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
-						player = dynamic_cast<Player *>(map[y][x][frame].at(i));
+		std::shared_ptr<Player> player(findFirstInstanceOf<Player>());
 
 		int xRandPos = rand() % 30 < 15 ? 0 : 29;
 		int yRandPos = rand() % 5 + 18;
-		placeObject(xRandPos, yRandPos, new Spider(window, xRandPos, yRandPos, *player));
+		std::shared_ptr<Spider> spider = spawnObject<Spider>(xRandPos, yRandPos);
+		spider->setTarget(player);
 		liveSpider = true;
 	}
 
@@ -190,14 +182,14 @@ bool CentipedeGame::update()
 		for (int x = 0; x < 30; ++x)
 			for (int y = 0; y < 30; ++y)
 				for (int i = 0; i < map[y][x][frame].size(); ++i)
-					if (dynamic_cast<Mushroom *> (map[y][x][frame].at(i)) != nullptr)
-						while (dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->getHealth() < 4)
+					if (std::dynamic_pointer_cast<Mushroom> (map[y][x][frame].at(i)))
+						while (std::dynamic_pointer_cast<Mushroom> (map[y][x][frame].at(i))->getHealth() < 4)
 						{
 							draw();
-							dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->resetHeath();
+							std::dynamic_pointer_cast<Mushroom> (map[y][x][frame].at(i))->resetHeath();
 						}
 
-		killCentipedes();
+		//killCentipedes();
 	}
 	#pragma endregion
 
@@ -239,6 +231,8 @@ void CentipedeGame::draw()
 	playerArea.display();
 	scoreArea.display();
 
+	GameObject::interval = static_cast<sf::Vector2i>(playerArea.getSize()) / 30;
+
 	//draw all objects in map
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
@@ -255,7 +249,7 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 {
 	if (x < 30 && y < 30)
 		for (int i = 0; i < CentipedeGame::map[y][x][CentipedeGame::frame].size(); i++)
-			if (dynamic_cast<Mushroom *>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)) != nullptr)
+			if (std::dynamic_pointer_cast<Mushroom>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)))
 				return true;
 	return false;
 }
@@ -264,27 +258,20 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
-	placeObject(15, 29, new Player(window, 15, 29));//spawn player
 
-	Player * player = nullptr;
-
-	//find player
-	for (int y = 0; y < 30; ++y)
-		for (int x = 0; x < 30; ++x)
-			for (int i = 0; i < map[y][x][frame].size(); ++i)
-				if (dynamic_cast<Player *>(map[y][x][frame].at(i)) != nullptr)
-					player = dynamic_cast<Player *>(map[y][x][frame].at(i));
+	std::shared_ptr<Player> player = spawnObject<Player>(15, 29);
 
 	int xRandPos = rand() % 30 < 15 ? 0 : 29;
 	int yRandPos = rand() % 5 + 18;
-	placeObject(xRandPos, yRandPos, new Spider(window, xRandPos, yRandPos, *player));
+	std::shared_ptr<Spider> spider = spawnObject<Spider>(xRandPos, yRandPos);
+	spider->setTarget(player);
 	liveSpider = true;
 	
 	//randomly place mushrooms on map on startup
 	for (int y = 0; y < 29; ++y)
 		for (int x = 0; x < 30; ++x)
 			if(rand() % (rand() % 35 + 1) == 1)
-				placeObject(x, y, new Mushroom(window, x, y));
+				spawnObject<Mushroom>(x, y);
 }
 
 
@@ -297,35 +284,24 @@ void CentipedeGame::resolveCollisions()
 				for (int i = 0; i < map[y][x][frame].size(); ++i)
 					for (int j = 0; j < map[y][x][frame].size(); ++j)
 						if(i != j)
-							map[y][x][frame].at(i)->collideWith(map[y][x][frame].at(j));
+							map[y][x][frame].at(i)->collideWith(map[y][x][frame].at(j).get());
 }
 
 
-void CentipedeGame::placeObject(unsigned int x, unsigned int y, GameObject * object)
+void CentipedeGame::placeObject(unsigned int x, unsigned int y, std::shared_ptr<GameObject> object)
 {
 	if (x < 30 && y < 30)//keep object in bounds of array
 		map[y][x][frame].push_back(object);
 	else
-		CentipedeGame::kill(object);
+		kill(object);
 }
 
-void CentipedeGame::doNothing() {
-	return;
-}
-
-void CentipedeGame::kill(GameObject *thing) {
+void CentipedeGame::kill(std::shared_ptr<GameObject> thing) {
 	bool readyToDie;
-	score += thing->die(readyToDie);
-
-	//spider does not respawn after remove self when killed off screen
-	//if (dynamic_cast<Spider *>(thing) != nullptr)
-	//{
-	//	printf("this is spider\n");
-	//	system("pause");
-	//}
+	score += thing->die(readyToDie, this);
 
 	if (readyToDie)
-		delete thing;
+		thing.reset();
 
 	std::cout << "score is now " << score << std::endl;
 }
@@ -353,21 +329,6 @@ unsigned int CentipedeGame::getCountOf(char* type, unsigned int startX = 0, unsi
 				if (!std::strcmp(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)->getType(), type))
 					++count;
 	return count;
-}
-
-void CentipedeGame::killCentipedes()
-{
-	bool die;
-	for (int y = 0; y < 30; y++)
-		for (int x = 0; x < 30; x++)
-			for (int i = 0; i < CentipedeGame::map[frame][y][x].size(); i++)
-				if (dynamic_cast<CentipedeSegment *>(CentipedeGame::map[frame][y][x].at(i)) != nullptr)
-				{
-					delete CentipedeGame::map[frame][y][x].at(i);
-					delete CentipedeGame::map[!frame][y][x].at(i);
-				}
-
-	printf("%i\n", getCountOf("CentipedeSegment", 0, 0, 30, 30));
 }
 
 

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameObject.h"
+#include "CentipedeGame.h"
 #include <iostream>
 
 sf::Vector2u GameObject::oWD = sf::Vector2u(0,0);
@@ -10,18 +11,9 @@ GameObject::GameObject()
 
 }
 
-GameObject::GameObject(sf::RenderWindow * renderWindow, int x, int y)
+GameObject::GameObject(int x, int y)
 {
-	window = renderWindow;
-	interval = static_cast<sf::Vector2i>(oWD / static_cast<unsigned int>(30));
 	currentPosition = sf::Vector2i(x, y);
-	soundPlayer.setBuffer(soundClip);
-}
-
-GameObject::GameObject(sf::RenderWindow * renderWindow)
-{
-	window = renderWindow;
-	interval = static_cast<sf::Vector2i>(oWD / static_cast<unsigned int>(30));
 	soundPlayer.setBuffer(soundClip);
 }
 
@@ -104,19 +96,12 @@ sf::Vector2i GameObject::getNearestCellPos(sf::Vector2i position) {
 	return position;
 }
 
-sf::Vector2i GameObject::getRelMousePos() {
-	sf::Vector2f mousePos(sf::Mouse::getPosition(*window));
-	float scalar = static_cast<float>(oWD.x) / window->getSize().x;
-	mousePos *= scalar;
-	return sf::Vector2i(mousePos);
-}
-
 void GameObject::setPixels()
 {
 	object.setPosition(currentPosition.x * interval.x, currentPosition.y * interval.y);
 }
 
-unsigned int GameObject::die(bool &readyToDie) {
+unsigned int GameObject::die(bool &readyToDie, CentipedeGame *gameHandle) {
 	readyToDie = true;
 	return getPointValue();
 }

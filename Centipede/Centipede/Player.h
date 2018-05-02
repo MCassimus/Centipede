@@ -5,9 +5,8 @@
 class Player : public GameObject
 {
 public:
-	Player(sf::RenderWindow *, int, int);
-	void update();
-	~Player();
+	Player(int, int);
+	void update(CentipedeGame *gameHandle);
 	char* getType();
 	void collideWith(GameObject *);
 protected:

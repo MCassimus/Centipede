@@ -6,9 +6,8 @@
 bool Bullet::liveBullet = false;
 
 
-Bullet::Bullet(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x, y)
+Bullet::Bullet(int x, int y) : GameObject(x, y)
 {
-	window = renderWindow; 
 	health = 1;
 	setVelocity(sf::Vector2i(0, -1));
 	setTexture("../Sprites/bullet.png");
@@ -40,9 +39,9 @@ void Bullet::collideWith(GameObject * other)
 }
 
 
-unsigned int Bullet::die(bool &readyToDie) {
+unsigned int Bullet::die(bool &readyToDie, CentipedeGame *gameHandle) {
 	liveBullet = false;
-	return GameObject::die(readyToDie);
+	return GameObject::die(readyToDie, gameHandle);
 }
 
 

@@ -6,10 +6,9 @@
 class Mushroom: public GameObject
 {
 public:
-	Mushroom(sf::RenderWindow*, int, int);
-	//Mushroom(sf::RenderWindow*, sf::Vector2f);
+	Mushroom(int, int);
 	~Mushroom();
-	void update();
+	void update(CentipedeGame *gameHandle);
 	bool getPoisoned();
 	bool resetHeath();
 	void collideWith(GameObject*);
