@@ -1,6 +1,10 @@
 #pragma once
 
+#include <vector>
+#include <memory>
+
 class CentipedeGame;
+class CentipedeSegment;
 
 class CentipedeManager {
 public:
@@ -20,4 +24,5 @@ private:
 
 	unsigned int entryTime, haveSpawned, entryX, speed, length;
 	bool done = true;
+	std::vector<std::shared_ptr<CentipedeSegment>> segments;
 };

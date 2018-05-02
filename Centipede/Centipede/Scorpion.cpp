@@ -4,7 +4,7 @@
 #include "Bullet.h"
 
 
-Scorpion::Scorpion(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
+Scorpion::Scorpion(int x, int y) : GameObject(x,  y)
 {
 	pointValue = 1000;
 	health = 1;
@@ -15,7 +15,7 @@ Scorpion::Scorpion(sf::RenderWindow * renderWindow, int x, int y) : GameObject(r
 
 
 static unsigned int frame = 0;
-void Scorpion::update()
+void Scorpion::update(CentipedeGame *gameHandle)
 {
 	setPixels();
 	if (frame++ == frameMax)

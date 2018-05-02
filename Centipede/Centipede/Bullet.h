@@ -6,13 +6,13 @@
 class Bullet: public GameObject
 {
 public:
-	Bullet(sf::RenderWindow * renderWindow, int, int);
+	Bullet(int, int);
 	~Bullet();
 	void update();
 	void collideWith(GameObject*);
 	//bool isAlive();
 	//void shootFrom(sf::Vector2i);
-	unsigned int die(bool&);
+	unsigned int die(bool&, CentipedeGame*);
 	char* getType();
 	static bool liveBullet;
 private:

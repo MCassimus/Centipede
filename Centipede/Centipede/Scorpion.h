@@ -5,9 +5,8 @@
 class Scorpion: public GameObject
 {
 public:
-	Scorpion(sf::RenderWindow *, int, int);
-	~Scorpion();
-	void update();
+	Scorpion(int, int);
+	void update(CentipedeGame *gameHandle);
 	void collideWith(GameObject*);
 	char* getType() { return "Scorpion"; }
 private:

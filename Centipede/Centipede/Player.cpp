@@ -5,20 +5,28 @@
 #include "Scorpion.h"
 #include "Spider.h"
 
-Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (renderWindow, x, y)
+Player::Player(int x, int y) : GameObject (x, y)
 {
 	setTexture("../Sprites/player.png");
 	health = 3;
 }
 
 
-void Player::update()
+void Player::update(CentipedeGame *gameHandle)
 {
+<<<<<<< HEAD
+
+	/*
+	//setVelocity(sf::Vector2i(getNearestCellPos(getRelMousePos()).x - currentPosition.x, getNearestCellPos(getRelMousePos()).y-currentPosition.y));
+
+	
+=======
 	setVelocity(sf::Vector2i(getNearestCellPos(getRelMousePos()).x - currentPosition.x, getNearestCellPos(getRelMousePos()).y-currentPosition.y));
 	if (!obstructed(1))
 		currentPosition.x = currentPosition.x + velocity.x;
 	if (!obstructed(0))
 		currentPosition.y = currentPosition.y + velocity.y;
+>>>>>>> 0f3f565c4479e80a7642366667bba3130106bca0
 
 
 
@@ -37,21 +45,17 @@ void Player::update()
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Bullet::liveBullet)
 	{
-		bullet = new Bullet(window, currentPosition.x, currentPosition.y);
-		CentipedeGame::placeObject(currentPosition.x, currentPosition.y, bullet);
+		CentipedeGame::spawnObject<Bullet>(currentPosition.x, currentPosition.y);
 	}
 
 	object.setPosition(static_cast<sf::Vector2f>(currentPosition*static_cast<int>(interval.x)));
+	
+	*/
 }
 
 
 char* Player::getType() {
 	return "Player";
-}
-
-
-Player::~Player()
-{
 }
 
 void Player::collideWith(GameObject * other)

@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Flea.h"
 #include <fstream>
+#include <memory>
 
 class CentipedeManager;
 
@@ -18,33 +19,33 @@ public:
 	void draw();
 	static bool isMushroomCell(unsigned int, unsigned int);
 	void reset();
-	static void placeObject(unsigned int, unsigned int, GameObject *);
+	void placeObject(unsigned int, unsigned int, std::shared_ptr<GameObject>);
 
-	template <typename type> void spawnObject(unsigned int x, unsigned int y) {
+	template <typename type> std::shared_ptr<type> spawnObject(unsigned int x, unsigned int y) {
+		std::shared_ptr<type> thing(nullptr);
 		if (isInBounds(x, y)) {
-			map[y][x][frame].push_back(new type(window, x, y));
+			thing = std::make_shared<type>(x, y);
+			map[y][x][frame].push_back(thing);
 		}
+		return thing;
 	};
 
 	static unsigned int clock;
 
 	unsigned int getCountOf(char*, unsigned int, unsigned int, unsigned int, unsigned int);
 
-	void doNothing();
-
 private:
-	void killCentipedes();//centipede should be reset when player dies
 	void resolveCollisions();
 	void generateGrid();
 
 	void manageCentipedePopulation();
 	static bool isInBounds(unsigned int x, unsigned int y) { return x < 30 && y < 30; }
 
-	static void kill(GameObject*);
+	void kill(std::shared_ptr<GameObject>);
 	sf::VertexArray linePoints;
 
 	static bool frame;
-	static std::vector<GameObject *> map[30][30][2];
+	static std::vector<std::shared_ptr<GameObject>> map[30][30][2];
 	sf::RenderWindow * window = nullptr;
 	const sf::Vector2u originalWindowDimensions;
 	static unsigned int score;
@@ -69,4 +70,15 @@ private:
 	std::ofstream score_out_file;
 
 	CentipedeManager *centMan;
+
+	template <class type> std::shared_ptr<type> findFirstInstanceOf() {
+		std::shared_ptr<type> instance;
+		for (int y = 0; y < 30; ++y)
+			for (int x = 0; x < 30; ++x)
+				for (int i = 0; i < map[y][x][frame].size(); ++i)
+					if (std::dynamic_pointer_cast<type>(map[y][x][frame].at(i)))
+						instance = std::dynamic_pointer_cast<type>(map[y][x][frame].at(i));
+
+		return instance;
+	}
 };
