@@ -22,20 +22,18 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	GameObject::oWD = oWD;
 	window = renderWindow;
 	generateGrid();
-	reset();
 
-	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
-	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
-
-	playerAreaSprite.setTexture(playerArea.getTexture());
-	scoreAreaSprite.setTexture(scoreArea.getTexture());
-
-	playerAreaSprite.move(0, renderWindow->getSize().x * .05);
+	placeObject(15, 29, new Player(window, 15, 29));//spawn player
 
 	arcadeFont.loadFromFile("../ARCADECLASSIC.TTF");
 	scoreDisplay.setFont(arcadeFont);
 	scoreDisplay.setCharacterSize(18);
-	
+	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
+	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
+	playerAreaSprite.setTexture(playerArea.getTexture());
+	scoreAreaSprite.setTexture(scoreArea.getTexture());
+	playerAreaSprite.move(0, renderWindow->getSize().x * .05);
+
 	lifeTexture.loadFromFile("../Sprites/player.png");
 	for (int i = 0; i < 6; i++)
 	{
@@ -44,12 +42,8 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	}
 
 	centMan = new CentipedeManager();
-
 	centMan->bindToGame(this);
-	centMan->beginSpawn(CentipedeGame::clock, 8, 8);
-
-	//spawnObject(2,2);
-
+	reset();
 }
 
 
@@ -197,9 +191,18 @@ bool CentipedeGame::update()
 							dynamic_cast<Mushroom *> (map[y][x][frame].at(i))->resetHeath();
 						}
 
-		killCentipedes();
+		reset();
+
 	}
 	#pragma endregion
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal) && clock % 10 == 0)
+		if (Mushroom::color++ == 6)
+			Mushroom::color = 0;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Dash) && clock % 10 == 0)
+		if (Mushroom::color-- == -1)
+			Mushroom::color = 5;
 
 	manageCentipedePopulation();
 	centMan->update();
@@ -264,7 +267,12 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
-	placeObject(15, 29, new Player(window, 15, 29));//spawn player
+	static int centSegs = 9;
+	centMan->beginSpawn(CentipedeGame::clock, 8, centSegs--);
+	
+	//change mushroom color between levels
+	if (Mushroom::color++ == 6)
+		Mushroom::color = 0;
 
 	Player * player = nullptr;
 
@@ -276,7 +284,7 @@ void CentipedeGame::reset()
 					player = dynamic_cast<Player *>(map[y][x][frame].at(i));
 
 	int xRandPos = rand() % 30 < 15 ? 0 : 29;
-	int yRandPos = rand() % 5 + 18;
+	int yRandPos = rand() % 5 + 19;
 	placeObject(xRandPos, yRandPos, new Spider(window, xRandPos, yRandPos, *player));
 	liveSpider = true;
 	
