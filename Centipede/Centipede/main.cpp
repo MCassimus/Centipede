@@ -8,6 +8,7 @@
 #include "stdafx.h"
 #include <ctime>
 #include "CentipedeGame.h"
+using namespace std;
 
 
 int main()
@@ -17,31 +18,52 @@ int main()
 	srand(seed);
 
 	const sf::Vector2u winDim(480, 504);
-	
+
 	sf::RenderWindow window(sf::VideoMode(winDim.x, winDim.y), "Centipede");
+
 	CentipedeGame game(&window, winDim);
 
+	sf::Texture startingScreen;
+	startingScreen.loadFromFile("../Sprites/startscreen.png");
+
+	sf::Sprite sprite;
+	sprite.setTexture(startingScreen);
+	sprite.setScale(1.95f, 2.05f);
+
+	window.draw(sprite);
+	window.display();
+
 	window.setFramerateLimit(60);
-	window.setMouseCursorVisible(false);
 	//window.setKeyRepeatEnabled(false);
 
 	bool frameByFrameMode(false), enterPressed(false);
+	bool gameStart = false;
 
 	sf::Event event;
+
 	while (window.isOpen())
 	{
+		if (sf::Mouse::getPosition(window).x > 185 &&
+			sf::Mouse::getPosition(window).x < 305 &&
+			sf::Mouse::getPosition(window).y > 335 &&
+			sf::Mouse::getPosition(window).y < 385 &&
+			sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			gameStart = true;
+			window.setMouseCursorVisible(false);
+		}
 
-		if (frameByFrameMode) {
+		if (frameByFrameMode && gameStart) {
 			if (enterPressed) {
 				game.update();
 				enterPressed = false;
 			}
 		}
-		else 
+		else if (gameStart)
 			game.update();
 
-		while (window.pollEvent(event)) {
 
+		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed)
 				window.close();
 			if (event.type == sf::Event::Resized)//resize to keep original aspect ratio
@@ -53,9 +75,8 @@ int main()
 					frameByFrameMode = !frameByFrameMode;
 				else if (event.key.code == sf::Keyboard::Return)
 					enterPressed = true;
-
 		}
 	}
-
+	
 	return 0;
 }

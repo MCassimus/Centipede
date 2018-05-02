@@ -19,23 +19,28 @@ static int lastPlayerLives;
 
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD), linePoints(sf::Lines, 30 * 30)
 {
+
 	GameObject::oWD = oWD;
 	window = renderWindow;
 	generateGrid();
-	reset();
 
-	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
-	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
+	placeObject(15, 29, new Player(window, 15, 29));//spawn player
 
-	playerAreaSprite.setTexture(playerArea.getTexture());
-	scoreAreaSprite.setTexture(scoreArea.getTexture());
-
-	playerAreaSprite.move(0, renderWindow->getSize().x * .05);
+	//randomy place mushrooms on startup
+	for (int y = 0; y < 29; ++y)
+		for (int x = 0; x < 30; ++x)
+			if (rand() % (rand() % 35 + 1) == 1)
+				placeObject(x, y, new Mushroom(window, x, y));
 
 	arcadeFont.loadFromFile("../ARCADECLASSIC.TTF");
 	scoreDisplay.setFont(arcadeFont);
 	scoreDisplay.setCharacterSize(18);
-	
+	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
+	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
+	playerAreaSprite.setTexture(playerArea.getTexture());
+	scoreAreaSprite.setTexture(scoreArea.getTexture());
+	playerAreaSprite.move(0, renderWindow->getSize().x * .05);
+
 	lifeTexture.loadFromFile("../Sprites/player.png");
 	for (int i = 0; i < 6; i++)
 	{
@@ -44,10 +49,13 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	}
 
 	centMan = new CentipedeManager();
-
 	centMan->bindToGame(this);
+<<<<<<< HEAD
 	centMan->beginSpawn(CentipedeGame::clock, 8, 8);
 
+=======
+	reset();
+>>>>>>> 0f3f565c4479e80a7642366667bba3130106bca0
 }
 
 
@@ -189,9 +197,23 @@ bool CentipedeGame::update()
 							std::dynamic_pointer_cast<Mushroom> (map[y][x][frame].at(i))->resetHeath();
 						}
 
+<<<<<<< HEAD
 		//killCentipedes();
+=======
+		reset();
+>>>>>>> 0f3f565c4479e80a7642366667bba3130106bca0
 	}
+
+	manageCentipedePopulation();
 	#pragma endregion
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal) && clock % 10 == 0)
+		if (Mushroom::color++ == 6)
+			Mushroom::color = 0;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Dash) && clock % 10 == 0)
+		if (Mushroom::color-- == -1)
+			Mushroom::color = 5;
 
 	manageCentipedePopulation();
 	centMan->update();
@@ -211,7 +233,6 @@ void CentipedeGame::draw()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		grid = !grid;
 
-	//window->clear();
 	scoreArea.clear();
 	playerArea.clear();
 
@@ -222,7 +243,6 @@ void CentipedeGame::draw()
 	scoreDisplay.setPosition(scoreAreaSprite.getTexture()->getSize().x / 2, 0);
 
 	scoreArea.draw(scoreDisplay);
-	//draw lives
 	drawLives();
 
 	if(grid)
@@ -258,6 +278,7 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
+<<<<<<< HEAD
 
 	std::shared_ptr<Player> player = spawnObject<Player>(15, 29);
 
@@ -272,6 +293,15 @@ void CentipedeGame::reset()
 		for (int x = 0; x < 30; ++x)
 			if(rand() % (rand() % 35 + 1) == 1)
 				spawnObject<Mushroom>(x, y);
+=======
+	////spawn centipede
+	//static int centSegs = 9;
+	//centMan->beginSpawn(CentipedeGame::clock, 8, centSegs--);
+	
+	//change mushroom color between levels
+	if (Mushroom::color++ == 6)
+		Mushroom::color = 0;
+>>>>>>> 0f3f565c4479e80a7642366667bba3130106bca0
 }
 
 
@@ -296,15 +326,28 @@ void CentipedeGame::placeObject(unsigned int x, unsigned int y, std::shared_ptr<
 		kill(object);
 }
 
+<<<<<<< HEAD
 void CentipedeGame::kill(std::shared_ptr<GameObject> thing) {
 	bool readyToDie;
 	score += thing->die(readyToDie, this);
+=======
+
+void CentipedeGame::doNothing() {
+	return;
+}
+
+
+void CentipedeGame::kill(GameObject *thing) {
+	bool readyToDie;
+	score += thing->die(readyToDie);
+>>>>>>> 0f3f565c4479e80a7642366667bba3130106bca0
 
 	if (readyToDie)
 		thing.reset();
 
 	std::cout << "score is now " << score << std::endl;
 }
+
 
 void CentipedeGame::generateGrid() {
 	int scalar = originalWindowDimensions.x / 30;
@@ -321,6 +364,7 @@ void CentipedeGame::generateGrid() {
 	}
 }
 
+
 unsigned int CentipedeGame::getCountOf(char* type, unsigned int startX = 0, unsigned int startY = 0, unsigned int endX = 30, unsigned int endY = 30) {
 	unsigned int count = 0;
 	for (int y = startY; y < endY; ++y)//check mushrooms in player position
@@ -331,15 +375,37 @@ unsigned int CentipedeGame::getCountOf(char* type, unsigned int startX = 0, unsi
 	return count;
 }
 
+<<<<<<< HEAD
+=======
+
+void CentipedeGame::killCentipedes()
+{
+	bool die;
+	for (int y = 0; y < 30; y++)
+		for (int x = 0; x < 30; x++)
+			for (int i = 0; i < CentipedeGame::map[frame][y][x].size(); i++)
+				if (dynamic_cast<CentipedeSegment *>(CentipedeGame::map[frame][y][x].at(i)) != nullptr)
+				{
+					delete CentipedeGame::map[frame][y][x].at(i);
+					delete CentipedeGame::map[!frame][y][x].at(i);
+				}
+
+	printf("%i\n", getCountOf("CentipedeSegment", 0, 0, 30, 30));
+}
+
+>>>>>>> 0f3f565c4479e80a7642366667bba3130106bca0
 
 void CentipedeGame::manageCentipedePopulation() {
-	if (activeCentipede) {
-		//check if centipede has died
-		activeCentipede = getCountOf("CentipedeSegment", 0, 0, 30, 30) > 0;
-	}
-	else {
+	static int centSeg = 9;
+	
 
-		//centMan.beginSpawn()
+	if (getCountOf("CentipedeSegment", 0, 0, 30, 30) == 0)
+	{
+		printf("%i\n", centSeg);
+		if (centMan->beginSpawn(clock, 8, centSeg))
+			centSeg--;
+		if (centSeg > 8)
+			reset();
 	}
 }
 

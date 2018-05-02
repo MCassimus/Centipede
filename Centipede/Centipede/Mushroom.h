@@ -13,6 +13,7 @@ public:
 	bool resetHeath();
 	void collideWith(GameObject*);
 	char* getType();
+	static int color;
 private:
 	bool poisoned;
 };
