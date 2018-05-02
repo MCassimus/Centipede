@@ -42,8 +42,10 @@ bool CentipedeManager::beginSpawn(unsigned int frame, unsigned int _speed, unsig
 void CentipedeManager::update() {
 	if (!done && (CentipedeGame::clock % speed == 0)) {
 		gameHandle->doNothing();
-		if( gameHandle != nullptr)
+		if (gameHandle != nullptr) {
+			std::cout << haveSpawned << ',' << length << std::endl;
 			gameHandle->spawnObject<CentipedeSegment>(entryX, 0);
+		}
 		if (++haveSpawned >= length)
 			done = true;
 	}
