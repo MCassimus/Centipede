@@ -46,8 +46,10 @@ void CentipedeManager::update() {
 
 
 		gameHandle->doNothing();
-		if( gameHandle != nullptr)
+		if (gameHandle != nullptr) {
+			std::cout << haveSpawned << ',' << length << std::endl;
 			gameHandle->spawnObject<CentipedeSegment>(entryX, 0);
+		}
 		if (++haveSpawned >= length)
 			done = true;
 	}
