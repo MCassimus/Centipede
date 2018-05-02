@@ -19,6 +19,7 @@ static int lastPlayerLives;
 
 CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD), linePoints(sf::Lines, 30 * 30)
 {
+
 	GameObject::oWD = oWD;
 	window = renderWindow;
 	generateGrid();
