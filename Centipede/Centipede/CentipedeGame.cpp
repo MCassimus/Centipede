@@ -372,7 +372,8 @@ void CentipedeGame::manageCentipedePopulation() {
 	{
 		printf("%i\n", centSeg);
 		if (centMan->beginSpawn(clock, 8, centSeg))
-			centSeg--;
+			if(centSeg-- <= 3)
+			centSeg = 3;
 		if (centSeg > 8)
 			reset();
 	}
