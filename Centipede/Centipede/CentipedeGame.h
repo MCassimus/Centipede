@@ -20,6 +20,7 @@ public:
 	static bool isMushroomCell(unsigned int, unsigned int);
 	void reset();
 	void placeObject(unsigned int, unsigned int, std::shared_ptr<GameObject>);
+	sf::Vector2i getRelMousePos();
 
 	template <typename type> std::shared_ptr<type> spawnObject(unsigned int x, unsigned int y) {
 		std::shared_ptr<type> thing(nullptr);

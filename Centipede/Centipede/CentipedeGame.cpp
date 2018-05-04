@@ -310,3 +310,11 @@ void CentipedeGame::drawLives()
 	for (int i = 0; i < playerLives; i++)
 		scoreArea.draw(lives[i]);
 }
+
+
+sf::Vector2i CentipedeGame::getRelMousePos() {
+	sf::Vector2f mousePos(sf::Mouse::getPosition(*window));
+	float scalar = static_cast<float>(GameObject::oWD.x) / window->getSize().x;
+	mousePos *= scalar;
+	return sf::Vector2i(mousePos);
+}
