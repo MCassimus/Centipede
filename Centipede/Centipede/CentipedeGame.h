@@ -20,6 +20,7 @@ public:
 	static bool isMushroomCell(unsigned int, unsigned int);
 	void reset();
 	void placeObject(unsigned int, unsigned int, std::shared_ptr<GameObject>);
+	sf::Vector2i getRelMousePos();
 
 	template <typename type> std::shared_ptr<type> spawnObject(unsigned int x, unsigned int y) {
 		std::shared_ptr<type> thing(nullptr);
@@ -72,13 +73,12 @@ private:
 	CentipedeManager *centMan;
 
 	template <class type> std::shared_ptr<type> findFirstInstanceOf() {
-		std::shared_ptr<type> instance;
+		std::shared_ptr<type> instance = nullptr;
 		for (int y = 0; y < 30; ++y)
 			for (int x = 0; x < 30; ++x)
 				for (int i = 0; i < map[y][x][frame].size(); ++i)
 					if (std::dynamic_pointer_cast<type>(map[y][x][frame].at(i)))
 						instance = std::dynamic_pointer_cast<type>(map[y][x][frame].at(i));
-
 		return instance;
 	}
 };

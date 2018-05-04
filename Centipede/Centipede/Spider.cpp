@@ -25,7 +25,8 @@ Spider::Spider(int x, int y) : GameObject(x, y)
 	soundPlayer.setVolume(20);
 }
 
-void Spider::setTarget(std::shared_ptr<Player> _player) {
+void Spider::setTarget(std::shared_ptr<Player> _player)
+{
 	player = _player;
 }
 
@@ -40,11 +41,6 @@ void Spider::update(CentipedeGame *gameHandle)
 	static int scuttle = 0; //for animation
 	if (CentipedeGame::clock % delay == 0)
 	{
-		/*if (currentPosition.x == 0 && (getVelocity() == velocities[5] || getVelocity() == velocities[4]))
-		health = 0;
-		else if (currentPosition.x == 29 && (getVelocity() == velocities[1] || getVelocity() == velocities[2]))
-		health = 0;*/
-
 		//animations
 		if (scuttle++ >= 4)//dancing
 			scuttle = 0;
@@ -157,7 +153,12 @@ void Spider::move()
 
 
 //sets score to 0 when die off screen else return score
+<<<<<<< HEAD
 unsigned int Spider::die(bool &readyToDie, CentipedeGame *gameHandle) {
+=======
+unsigned int Spider::die(bool &readyToDie, CentipedeGame * uselessthing)
+{
+>>>>>>> 4390e2108a9e97653fce7b67d1ea7e09769f5294
 	readyToDie = true;
 	setPointValue();//determine current point value
 
