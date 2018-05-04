@@ -97,11 +97,9 @@ void Mushroom::collideWith(GameObject* other) //dynamic_cast returns null pointe
 		poisoned = true;
 	if (dynamic_cast<Bullet*>(other) != nullptr)
 		--health;
+
 }
 
-char* Mushroom::getType() {
-	return "Mushroom";
-}
 
 
 Mushroom::~Mushroom()

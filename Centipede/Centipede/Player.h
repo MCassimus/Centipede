@@ -7,8 +7,8 @@ class Player : public GameObject
 public:
 	Player(int, int);
 	void update(CentipedeGame *gameHandle);
-	char* getType();
+	char* getType() { return "Player"; }
 	void collideWith(GameObject *);
 protected:
-	Bullet * bullet = nullptr;
+	std::shared_ptr<Bullet> bullet;
 };

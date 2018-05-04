@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
+#include <memory>
 
 class CentipedeGame;
 
@@ -36,7 +37,7 @@ protected:
 
 	sf::Sprite object;
 	unsigned int health = 1;
-	unsigned int pointValue;
+	unsigned int pointValue = 0;
 	sf::Vector2i velocity;
 	sf::Vector2i currentPosition;
 	sf::Texture textureTemp;

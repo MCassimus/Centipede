@@ -41,7 +41,7 @@ private:
 	void manageCentipedePopulation();
 	static bool isInBounds(unsigned int x, unsigned int y) { return x < 30 && y < 30; }
 
-	void kill(std::shared_ptr<GameObject>);
+	void kill(std::shared_ptr<GameObject>&);
 	sf::VertexArray linePoints;
 
 	static bool frame;

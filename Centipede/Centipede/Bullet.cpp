@@ -43,8 +43,3 @@ unsigned int Bullet::die(bool &readyToDie, CentipedeGame *gameHandle) {
 	liveBullet = false;
 	return GameObject::die(readyToDie, gameHandle);
 }
-
-
-char* Bullet::getType() {
-	return "Bullet";
-}

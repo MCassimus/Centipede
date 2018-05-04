@@ -41,11 +41,6 @@ void Player::update(CentipedeGame *gameHandle)
 	*/
 }
 
-
-char* Player::getType() {
-	return "Player";
-}
-
 void Player::collideWith(GameObject * other)
 {
 	if (dynamic_cast<CentipedeSegment *>(other) != nullptr)
