@@ -5,13 +5,12 @@
 static sf::Vector2i velocities[6] = { sf::Vector2i(0, -1), sf::Vector2i(1, -1), sf::Vector2i(1, 1), sf::Vector2i(0, 1), sf::Vector2i(-1, 1), sf::Vector2i(-1, -1) };
 
 
-Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameObject(renderWindow, x,  y)
+Spider::Spider(int x, int y) : GameObject(x,  y)
 {
 	currentPosition.x = x;
 	currentPosition.y = y;
 	object.setOrigin(0, -4);//sprite offset
 	setTexture("../Sprites/Spider/spider0.png");
-	player = &p;
 
 	//decides which direction to move first
 	dir = x < 15 ? true : false; //true = right, false = left
@@ -26,13 +25,17 @@ Spider::Spider(sf::RenderWindow * renderWindow, int x, int y, Player& p) : GameO
 	soundPlayer.setVolume(20);
 }
 
+void Spider::setTarget(std::shared_ptr<Player> _player) {
+	player = _player;
+}
+
 
 Spider::~Spider()
 {
 }
 
 
-void Spider::update()
+void Spider::update(CentipedeGame *gameHandle)
 {
 	static int scuttle = 0; //for animation
 	if (CentipedeGame::clock % delay == 0)

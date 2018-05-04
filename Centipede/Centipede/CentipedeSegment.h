@@ -6,12 +6,12 @@ class CentipedeSegment: public GameObject
 {
 public:
 	CentipedeSegment();
-	CentipedeSegment(sf::RenderWindow *, int, int);
+	CentipedeSegment(int, int);
 	~CentipedeSegment();
 
 	void attach(CentipedeSegment*);
 
-	void update();
+	void update(CentipedeGame *gameHandle);
 	void collideWith(GameObject *);
 	bool canMoveTo(int, int);
 
@@ -21,7 +21,7 @@ public:
 
 	char* getType() { return "CentipedeSegment"; }
 
-	unsigned int die(bool&);
+	unsigned int die(bool&, CentipedeGame*);
 
 private:
 	bool isPoisoned;

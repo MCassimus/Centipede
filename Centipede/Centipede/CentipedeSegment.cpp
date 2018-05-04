@@ -9,7 +9,7 @@ CentipedeSegment::CentipedeSegment()
 //What am I doing??!?!
 }
 
-CentipedeSegment::CentipedeSegment(sf::RenderWindow * renderWindow, int x, int y) : GameObject(renderWindow, x,  y)
+CentipedeSegment::CentipedeSegment(int x, int y) : GameObject(x,  y)
 {
 	pointValue = 10;
 	health = 1;
@@ -36,7 +36,7 @@ bool CentipedeSegment::canMoveTo(int x, int y) {
 }
 
 
-void CentipedeSegment::update()
+void CentipedeSegment::update(CentipedeGame *gameHandle)
 {
 
 	if (CentipedeGame::clock % 8 == 0) {
@@ -59,10 +59,10 @@ void CentipedeSegment::collideWith(GameObject * other)
 		health = 0;
 }
 
-unsigned int CentipedeSegment::die(bool &readyToDie) {
+unsigned int CentipedeSegment::die(bool &readyToDie, CentipedeGame *gameHandle) {
 	readyToDie = true;
 
-	CentipedeGame::placeObject(currentPosition.x, currentPosition.y, new Mushroom(window, currentPosition.x, currentPosition.y));
+	gameHandle->spawnObject<Mushroom>(currentPosition.x, currentPosition.y);
 
 	if (previous != nullptr)
 		previous->setAsHead();

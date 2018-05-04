@@ -1,20 +1,22 @@
 #pragma once
 #include "GameObject.h"
 #include "Player.h"
+#include <memory>
 
 
 class Spider : public GameObject
 {
 public:
-	Spider(sf::RenderWindow *, int, int, Player&);
-	void update();
+	Spider(int, int);
+	void setTarget(std::shared_ptr<Player>);
+	void update(CentipedeGame *gameHandle);
 	void setPointValue();
 	void collideWith(GameObject*);
 	void move();
 	unsigned int die(bool &);
 	~Spider();
 private: 
-	Player *player; 
+	std::shared_ptr<Player> player; 
 	unsigned int delay = 15;
 	bool dir;
 };

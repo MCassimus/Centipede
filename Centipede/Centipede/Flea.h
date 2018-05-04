@@ -6,9 +6,9 @@ class Flea : public GameObject
 {
 public:
 	Flea();
-	Flea(sf::RenderWindow *, int, int);
+	Flea(int, int);
 	~Flea();
-	void update();
+	void update(CentipedeGame*);
 	void collideWith(GameObject * other);
 	char* getType() { return "Flea"; }
 private:

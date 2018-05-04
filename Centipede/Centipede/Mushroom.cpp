@@ -5,9 +5,13 @@
 #include "Bullet.h"
 
 
+<<<<<<< HEAD
+Mushroom::Mushroom(int x, int y) : GameObject(x, y)
+=======
 int Mushroom::color = -1;
 
 Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, x, y)
+>>>>>>> 0f3f565c4479e80a7642366667bba3130106bca0
 {
 	pointValue = 5;
 	poisoned = false;
@@ -17,7 +21,7 @@ Mushroom::Mushroom(sf::RenderWindow* window, int x, int y) : GameObject(window, 
 }
 
 
-void Mushroom::update()
+void Mushroom::update(CentipedeGame *gameHandle)
 {
 	if (!poisoned)
 	{
