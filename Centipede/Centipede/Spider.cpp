@@ -31,11 +31,6 @@ void Spider::setTarget(std::shared_ptr<Player> _player)
 }
 
 
-Spider::~Spider()
-{
-}
-
-
 void Spider::update(CentipedeGame *gameHandle)
 {
 	static int scuttle = 0; //for animation
@@ -153,12 +148,7 @@ void Spider::move()
 
 
 //sets score to 0 when die off screen else return score
-<<<<<<< HEAD
 unsigned int Spider::die(bool &readyToDie, CentipedeGame *gameHandle) {
-=======
-unsigned int Spider::die(bool &readyToDie, CentipedeGame * uselessthing)
-{
->>>>>>> 4390e2108a9e97653fce7b67d1ea7e09769f5294
 	readyToDie = true;
 	setPointValue();//determine current point value
 

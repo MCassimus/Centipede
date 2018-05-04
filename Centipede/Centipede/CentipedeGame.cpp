@@ -130,20 +130,11 @@ bool CentipedeGame::update()
 	}
 #pragma endregion
 
-
-<<<<<<< HEAD
-	//check if there is currenly a spider
-	if (liveSpider)
-		liveSpider = bool(findFirstInstanceOf<Spider>());
-	//no spider alive, spawn if rand allows
-	else if (rand() % 1000 < 5)
-=======
-	if (findFirstInstanceOf<Scorpion>() == nullptr && rand() % 1000 < 5)
+	if (findFirstInstanceOf<Scorpion>() && rand() % 1000 < 5)
 		spawnObject<Scorpion>(rand() % 30 < 15 ? 0 : 29, rand() % 17);
 
 	//check if live spider
-	if (findFirstInstanceOf<Spider>() == nullptr && rand() % 1000 < 5)//no spider check if able to respawn
->>>>>>> 4390e2108a9e97653fce7b67d1ea7e09769f5294
+	if (findFirstInstanceOf<Spider>() && rand() % 1000 < 5)//no spider check if able to respawn
 	{
 		std::shared_ptr<Spider> spider = spawnObject<Spider>(rand() % 30 < 15 ? 0 : 29, rand() % 5 + 18);
 		spider->setTarget(findFirstInstanceOf<Player>());
