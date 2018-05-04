@@ -40,11 +40,6 @@ void Spider::update(CentipedeGame *gameHandle)
 	static int scuttle = 0; //for animation
 	if (CentipedeGame::clock % delay == 0)
 	{
-		/*if (currentPosition.x == 0 && (getVelocity() == velocities[5] || getVelocity() == velocities[4]))
-		health = 0;
-		else if (currentPosition.x == 29 && (getVelocity() == velocities[1] || getVelocity() == velocities[2]))
-		health = 0;*/
-
 		//animations
 		if (scuttle++ >= 4)//dancing
 			scuttle = 0;

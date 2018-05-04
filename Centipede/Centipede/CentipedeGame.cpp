@@ -1,5 +1,4 @@
 #pragma once
-
 #include "stdafx.h"
 #include <iostream>
 #include "CentipedeGame.h"
@@ -10,32 +9,40 @@
 #include "Spider.h"
 #include "CentipedeManager.h"
 
-
 bool CentipedeGame::frame = false;
 std::vector<std::shared_ptr<GameObject>> CentipedeGame::map[30][30][2] = {};
 unsigned int CentipedeGame::clock = 0, CentipedeGame::score = 0;
 int CentipedeGame::playerLives = -1;
 static int lastPlayerLives;
 
-CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD), linePoints(sf::Lines, 30 * 30)
+
+CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u oWD) : originalWindowDimensions(oWD)
 {
 	GameObject::oWD = oWD;
 	window = renderWindow;
-	generateGrid();
-	reset();
 
+	//create player
+	std::shared_ptr<Player> player = spawnObject<Player>(15, 29);
+
+	//randomly place mushrooms on map on startup
+	for (int y = 0; y < 29; ++y)
+		for (int x = 0; x < 30; ++x)
+			if (rand() % (rand() % 35 + 1) == 1)
+				spawnObject<Mushroom>(x, y);
+
+	//create sprites for drawing 
 	scoreArea.create(renderWindow->getSize().x, renderWindow->getSize().x * .05);
 	playerArea.create(renderWindow->getSize().x, renderWindow->getSize().y);
-
 	playerAreaSprite.setTexture(playerArea.getTexture());
 	scoreAreaSprite.setTexture(scoreArea.getTexture());
-
 	playerAreaSprite.move(0, renderWindow->getSize().x * .05);
 
+	//load score fonts and stuff
 	arcadeFont.loadFromFile("../ARCADECLASSIC.TTF");
 	scoreDisplay.setFont(arcadeFont);
 	scoreDisplay.setCharacterSize(18);
 
+	//score display
 	lifeTexture.loadFromFile("../Sprites/player.png");
 	for (int i = 0; i < 6; i++)
 	{
@@ -44,10 +51,8 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	}
 
 	centMan = new CentipedeManager();
-
 	centMan->bindToGame(this);
 	centMan->beginSpawn(CentipedeGame::clock, 8, 8);
-
 }
 
 
@@ -65,8 +70,6 @@ CentipedeGame::~CentipedeGame()
 
 
 static bool liveFlea = false;
-static bool liveScorpion = false;
-static bool liveSpider = false;
 bool CentipedeGame::update()
 {
 	//std::cout << "-----New frame, clock = " << clock << "-----\n";
@@ -104,13 +107,6 @@ bool CentipedeGame::update()
 			{
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
-					//check if object removed is flea
-					if (liveFlea && std::dynamic_pointer_cast<Flea>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)))
-						liveFlea = false;
-					//check if object removed is scorpion
-					if (liveScorpion && std::dynamic_pointer_cast<Scorpion>(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)))
-						liveScorpion = false;
-
 					kill(map[y][x][frame].at(i));
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
@@ -141,37 +137,15 @@ bool CentipedeGame::update()
 	}
 #pragma endregion
 
-	//Scorpion spawning
-	if (!liveScorpion && rand() % 1000 < 5)
-	{
-		int xRandPos = rand() % 30 < 15 ? 0 : 29;
-		int yRandPos = rand() % 17;
-		spawnObject<Scorpion>(xRandPos, yRandPos);
-		liveScorpion = true;
-	}
 
-	//check if there is currenly a spider
-	if (liveSpider)
-	{
-		std::shared_ptr<Spider> temp;
-		for (int y = 0; y < 30; ++y)
-			for (int x = 0; x < 30; ++x)
-				for (int i = 0; i < map[y][x][frame].size(); ++i)
-					if (std::dynamic_pointer_cast<Spider>(map[y][x][frame].at(i)))
-						temp = std::dynamic_pointer_cast<Spider>(map[y][x][frame].at(i));
+	if (findFirstInstanceOf<Scorpion>() == nullptr && rand() % 1000 < 5)
+		spawnObject<Scorpion>(rand() % 30 < 15 ? 0 : 29, rand() % 17);
 
-		liveSpider = (temp) ? false : true;
-	}
-	//no spider alive, spawn if rand allows
-	else if (rand() % 1000 < 5)
+	//check if live spider
+	if (findFirstInstanceOf<Spider>() == nullptr && rand() % 1000 < 5)//no spider check if able to respawn
 	{
-		std::shared_ptr<Player> player(findFirstInstanceOf<Player>());
-
-		int xRandPos = rand() % 30 < 15 ? 0 : 29;
-		int yRandPos = rand() % 5 + 18;
-		std::shared_ptr<Spider> spider = spawnObject<Spider>(xRandPos, yRandPos);
-		spider->setTarget(player);
-		liveSpider = true;
+		std::shared_ptr<Spider> spider = spawnObject<Spider>(rand() % 30 < 15 ? 0 : 29, rand() % 5 + 18);
+		spider->setTarget(findFirstInstanceOf<Player>());
 	}
 
 	//this should be happening when player dies
@@ -258,20 +232,7 @@ bool CentipedeGame::isMushroomCell(unsigned int x, unsigned int y)
 //start a level
 void CentipedeGame::reset()
 {
-
-	std::shared_ptr<Player> player = spawnObject<Player>(15, 29);
-
-	int xRandPos = rand() % 30 < 15 ? 0 : 29;
-	int yRandPos = rand() % 5 + 18;
-	std::shared_ptr<Spider> spider = spawnObject<Spider>(xRandPos, yRandPos);
-	spider->setTarget(player);
-	liveSpider = true;
-
-	//randomly place mushrooms on map on startup
-	for (int y = 0; y < 29; ++y)
-		for (int x = 0; x < 30; ++x)
-			if (rand() % (rand() % 35 + 1) == 1)
-				spawnObject<Mushroom>(x, y);
+	
 }
 
 
