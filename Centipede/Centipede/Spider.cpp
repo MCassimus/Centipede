@@ -25,7 +25,8 @@ Spider::Spider(int x, int y) : GameObject(x, y)
 	soundPlayer.setVolume(20);
 }
 
-void Spider::setTarget(std::shared_ptr<Player> _player) {
+void Spider::setTarget(std::shared_ptr<Player> _player)
+{
 	player = _player;
 }
 
@@ -152,7 +153,8 @@ void Spider::move()
 
 
 //sets score to 0 when die off screen else return score
-unsigned int Spider::die(bool &readyToDie) {
+unsigned int Spider::die(bool &readyToDie, CentipedeGame * uselessthing)
+{
 	readyToDie = true;
 	setPointValue();//determine current point value
 

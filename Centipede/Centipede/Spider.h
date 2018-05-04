@@ -13,7 +13,7 @@ public:
 	void setPointValue();
 	void collideWith(GameObject*);
 	void move();
-	unsigned int die(bool &);
+	unsigned int die(bool &, CentipedeGame *);
 	~Spider();
 private:
 	std::shared_ptr<Player> player;

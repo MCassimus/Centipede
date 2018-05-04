@@ -42,7 +42,7 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 	scoreDisplay.setFont(arcadeFont);
 	scoreDisplay.setCharacterSize(18);
 
-	//score display
+	//life display
 	lifeTexture.loadFromFile("../Sprites/player.png");
 	for (int i = 0; i < 6; i++)
 	{
@@ -58,13 +58,6 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 
 CentipedeGame::~CentipedeGame()
 {
-	for (int y = 0; y < 30; y++)
-		for (int x = 0; x < 30; x++)
-			for (int i = 0; i < map[y][x][frame].size(); ++i)
-			{
-				map[y][x][frame].at(i).reset();
-				map[y][x][frame].erase(i + map[y][x][frame].begin());
-			}
 	delete centMan;
 }
 
