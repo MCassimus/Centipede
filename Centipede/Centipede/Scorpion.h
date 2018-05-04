@@ -2,7 +2,7 @@
 #include "GameObject.h"
 
 
-class Scorpion: public GameObject
+class Scorpion : public GameObject
 {
 public:
 	Scorpion(int, int);
@@ -11,6 +11,6 @@ public:
 	char* getType() { return "Scorpion"; }
 private:
 	int scuttle; // for walking animation
-	
+
 	unsigned int frameMax = 40;
 };

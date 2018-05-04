@@ -4,7 +4,7 @@
 #include "Bullet.h"
 
 
-Scorpion::Scorpion(int x, int y) : GameObject(x,  y)
+Scorpion::Scorpion(int x, int y) : GameObject(x, y)
 {
 	pointValue = 1000;
 	health = 1;

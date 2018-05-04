@@ -9,10 +9,10 @@ Flea::Flea()
 }
 
 
-Flea::Flea(int x, int y) : GameObject(x,  y)
+Flea::Flea(int x, int y) : GameObject(x, y)
 {
- 	setTexture("../Sprites/flea.png");
-	object.setScale(sf::Vector2f(.5,.5));
+	setTexture("../Sprites/flea.png");
+	object.setScale(sf::Vector2f(.5, .5));
 	object.setOrigin(-6, -10);
 	object.setPosition(sf::Vector2f(0, 0));
 	velocity = sf::Vector2i(0, 1);
@@ -36,7 +36,7 @@ void Flea::update(CentipedeGame *gameHandle)
 
 		//reset frame counter
 		frame = 0;
-	
+
 		//this just fills the entire screen with fleas
 		//if (rand() % 40)
 		//	CentipedeGame::placeObject(rand() % 30, rand() % 30,

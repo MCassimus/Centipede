@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-class Bullet: public GameObject
+class Bullet : public GameObject
 {
 public:
 	Bullet(int, int);

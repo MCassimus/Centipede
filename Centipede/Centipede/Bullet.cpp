@@ -28,7 +28,7 @@ Bullet::~Bullet()
 
 void Bullet::update()
 {
-	if(CentipedeGame::clock % delay == 0)
+	if (CentipedeGame::clock % delay == 0)
 		currentPosition.y += velocity.y;
 }
 

@@ -53,7 +53,7 @@ private:
 
 	sf::Font arcadeFont;
 	sf::Text scoreDisplay;
-	
+
 	sf::Texture lifeTexture;
 	sf::Sprite lives[6];
 	sf::RenderTexture playerArea;

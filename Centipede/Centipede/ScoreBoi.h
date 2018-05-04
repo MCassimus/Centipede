@@ -19,4 +19,3 @@ private:
 	std::string inStuff;
 	int cutScore(std::string);
 };
-

@@ -3,7 +3,7 @@
 #include "GameObject.h"
 
 
-class Mushroom: public GameObject
+class Mushroom : public GameObject
 {
 public:
 	Mushroom(int, int);
@@ -13,7 +13,6 @@ public:
 	bool resetHeath();
 	void collideWith(GameObject*);
 	char* getType();
-	static int color;
 private:
 	bool poisoned;
 };

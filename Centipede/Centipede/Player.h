@@ -11,5 +11,4 @@ public:
 	void collideWith(GameObject *);
 protected:
 	Bullet * bullet = nullptr;
-	bool obstructed(bool);// bool is for x/y true is x, false is y
 };

@@ -15,8 +15,8 @@ public:
 	void move();
 	unsigned int die(bool &);
 	~Spider();
-private: 
-	std::shared_ptr<Player> player; 
+private:
+	std::shared_ptr<Player> player;
 	unsigned int delay = 15;
 	bool dir;
 };

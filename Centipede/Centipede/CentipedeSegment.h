@@ -2,7 +2,7 @@
 #include "GameObject.h"
 
 
-class CentipedeSegment: public GameObject
+class CentipedeSegment : public GameObject
 {
 public:
 	CentipedeSegment();

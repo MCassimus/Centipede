@@ -6,10 +6,10 @@
 
 CentipedeSegment::CentipedeSegment()
 {
-//What am I doing??!?!
+	//What am I doing??!?!
 }
 
-CentipedeSegment::CentipedeSegment(int x, int y) : GameObject(x,  y)
+CentipedeSegment::CentipedeSegment(int x, int y) : GameObject(x, y)
 {
 	pointValue = 10;
 	health = 1;
