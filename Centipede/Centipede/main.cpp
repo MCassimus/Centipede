@@ -8,12 +8,12 @@
 #include "stdafx.h"
 #include <ctime>
 #include "CentipedeGame.h"
+
 using namespace std;
 
 
 int main()
 {
-
 	std::time_t seed = time(NULL);
 	srand(seed);
 
@@ -23,6 +23,8 @@ int main()
 
 	CentipedeGame game(&window, winDim);
 
+
+	//Create and display Starting Screen
 	sf::Texture startingScreen;
 	startingScreen.loadFromFile("../Sprites/startscreen.png");
 
@@ -43,7 +45,7 @@ int main()
 
 	while (window.isOpen())
 	{
-		if (sf::Mouse::getPosition(window).x > 185 &&
+		if (sf::Mouse::getPosition(window).x > 185 && //Checking if mouse is clicking start 
 			sf::Mouse::getPosition(window).x < 305 &&
 			sf::Mouse::getPosition(window).y > 335 &&
 			sf::Mouse::getPosition(window).y < 385 &&
@@ -77,6 +79,5 @@ int main()
 					enterPressed = true;
 		}
 	}
-	
 	return 0;
 }

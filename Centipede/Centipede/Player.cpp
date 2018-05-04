@@ -15,10 +15,6 @@ Player::Player(sf::RenderWindow * renderWindow, int x, int y) : GameObject (rend
 void Player::update()
 {
 	setVelocity(sf::Vector2i(getNearestCellPos(getRelMousePos()).x - currentPosition.x, getNearestCellPos(getRelMousePos()).y-currentPosition.y));
-	if(obstructed(1))
-		
-
-
 
 	currentPosition = getNearestCellPos(getRelMousePos());
 	currentPosition /= static_cast<int>(interval.x);
@@ -55,6 +51,7 @@ Player::~Player()
 {
 }
 
+
 void Player::collideWith(GameObject * other)
 {
 	if (dynamic_cast<CentipedeSegment *>(other) != nullptr)
@@ -67,33 +64,4 @@ void Player::collideWith(GameObject * other)
 		health--;
 
 	//play a death anim here
-}
-
-
-bool Player::obstructed(bool isX)
-{
-	int directionX;
-	if (velocity.x + velocity.x >= velocity.x + 1)
-		directionX = 1;
-	else
-		directionX = -1;
-
-	int directionY;
-	if (velocity.y + velocity.y >= velocity.y + 1)
-		directionY = 1;
-	else
-		directionY = -1;
-	
-	if (isX)
-		if (CentipedeGame::isMushroomCell(currentPosition.x + directionX, currentPosition.y)
-			&& currentPosition.x + directionX >= 0 && currentPosition.x + directionX <= 29 && currentPosition.y >= 0 && currentPosition.y <= 29)
-			return true;
-		else
-			return false;
-	else
-		if (CentipedeGame::isMushroomCell(currentPosition.x , currentPosition.y + directionY)
-			&& currentPosition.x >= 0 && currentPosition.x <= 29 && currentPosition.y + directionY >= 0 && currentPosition.y + directionY <= 29)
-			return true;
-		else
-			return false;
 }

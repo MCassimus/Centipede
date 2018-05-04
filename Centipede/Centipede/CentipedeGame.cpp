@@ -345,7 +345,7 @@ unsigned int CentipedeGame::getCountOf(char* type, unsigned int startX = 0, unsi
 				if (!std::strcmp(CentipedeGame::map[y][x][CentipedeGame::frame].at(i)->getType(), type))
 					++count;
 	return count;
-}
+ }
 
 
 void CentipedeGame::killCentipedes()
