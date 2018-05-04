@@ -6,10 +6,12 @@
 sf::Vector2u GameObject::oWD = sf::Vector2u(0, 0);
 sf::Vector2i GameObject::interval = sf::Vector2i(0, 0);
 
+
 GameObject::GameObject()
 {
 
 }
+
 
 GameObject::GameObject(int x, int y)
 {
@@ -40,6 +42,7 @@ sf::Vector2i GameObject::getVelocity() const
 	return velocity;
 }
 
+
 sf::Vector2i GameObject::getPosition() const
 {
 	return currentPosition;
@@ -65,12 +68,6 @@ void GameObject::collideWith(GameObject *)
 {
 	return;
 }
-
-
-//void GameObject::collideWith(std::vector<GameObject *> *)
-//{
-//	return;
-//}
 
 
 void GameObject::setPointValue(unsigned int newPointValue)

@@ -58,6 +58,10 @@ CentipedeGame::CentipedeGame(sf::RenderWindow * renderWindow, const sf::Vector2u
 
 CentipedeGame::~CentipedeGame()
 {
+	for (int y = 0; y < 30; ++y)
+		for (int x = 0; x < 30; ++x)
+			map[y][x][frame].clear();
+
 	delete centMan;
 }
 
@@ -65,27 +69,21 @@ CentipedeGame::~CentipedeGame()
 static bool liveFlea = false;
 bool CentipedeGame::update()
 {
-	//std::cout << "-----New frame, clock = " << clock << "-----\n";
-
-#pragma region updateObjects
+	//update objects
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
 				map[y][x][frame].at(i)->update(this);
-#pragma endregion	
 
 	frame = !frame;
 
 	//migrates map from frame a to frame b
-#pragma region moveMap
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][!frame].size(); ++i)
 				placeObject(map[y][x][!frame].at(i)->getPosition().x, map[y][x][!frame].at(i)->getPosition().y, map[y][x][!frame].at(i));
-#pragma endregion
 
-	//clear the old map
-
+	//clear the old map from other frame
 	for (int y = 0; y < 30; y++)
 		for (int x = 0; x < 30; x++)
 			map[y][x][!frame].clear();
@@ -93,20 +91,18 @@ bool CentipedeGame::update()
 	resolveCollisions();
 
 	//remove items with 0 health
-#pragma region mapCleanup
+	#pragma region mapCleanup
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
 			for (int i = 0; i < map[y][x][frame].size(); ++i)
-			{
 				if (map[y][x][frame].at(i)->getHealth() == 0)
 				{
 					kill(map[y][x][frame].at(i));
 					map[y][x][frame].erase(map[y][x][frame].begin() + i);
 				}
-			}
-#pragma endregion
+	#pragma endregion
 
-	//update player health
+	//update player health display
 	lastPlayerLives = playerLives;
 	for (int y = 0; y < 30; ++y)
 		for (int x = 0; x < 30; ++x)
@@ -115,7 +111,7 @@ bool CentipedeGame::update()
 					playerLives = map[y][x][frame].at(i)->getHealth();
 
 	//check if flea needs to be spawned
-#pragma region fleaCheck
+	#pragma region fleaCheck
 	int mushroomCount = 0;
 	for (int y = 28; y > 17; y--)//check mushrooms in player position
 		for (int x = 0; x < 29; x++)
@@ -128,7 +124,7 @@ bool CentipedeGame::update()
 		spawnObject<Flea>(xpos, 0);
 		liveFlea = true;
 	}
-#pragma endregion
+	#pragma endregion
 
 	if (findFirstInstanceOf<Scorpion>() && rand() % 1000 < 5)
 		spawnObject<Scorpion>(rand() % 30 < 15 ? 0 : 29, rand() % 17);
