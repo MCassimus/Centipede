@@ -15,7 +15,7 @@ GameObject::GameObject()
 
 GameObject::GameObject(int x, int y)
 {
-	currentPosition = sf::Vector2i(x, y);
+	currentPosition = sf::Vector2i(x, y); //consider adding an intermediary position variable so that objects such as ship can move based upon trigonometric functions (look up atan2)
 	soundPlayer.setBuffer(soundClip);
 }
 
